@@ -1,10 +1,10 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 test('', () => {
-  const { getByText, getByRole } = render(
+  render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
@@ -27,3 +27,5 @@ test('', () => {
   });
   expect(favPokemon).toBeInTheDocument();
 });
+
+// Solução pro screen https://stackoverflow.com/questions/64792767/what-is-the-difference-between-getbytext-and-screen-getbytext-in-rtl

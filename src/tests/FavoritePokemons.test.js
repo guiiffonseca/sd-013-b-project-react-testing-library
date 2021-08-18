@@ -26,7 +26,7 @@ const pokemons = [
   },
 ];
 
-describe('About.js tests', () => {
+describe('FavoritePokemons.js tests', () => {
   it('should show message "No favorite pokemon found", if you dont have pokemon favoriot',
     () => {
       render(<FavoritePokemons />);

@@ -17,7 +17,6 @@ test('About.js tests - Check Pokedex p', () => {
   const pokedexParagraph2 = screen.getByText(/One can filter Pokémons by type/i);
   expect(pokedexParagraph1).toBeInTheDocument();
   expect(pokedexParagraph2).toBeInTheDocument();
-  
 });
 
 test('About.js tests - Check Pokedex image in about', () => {

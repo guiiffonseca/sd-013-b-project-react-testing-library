@@ -26,7 +26,7 @@ describe('Verificando as rotas de navegação', () => {
     userEvent.click(homeLink);
     const { pathname } = history.location;
 
-    expect(pathname).toBe('/home');
+    expect(pathname).toBe('/');
   });
 
   test('Página - ABOUT', () => {
@@ -53,7 +53,7 @@ describe('Verificando as rotas de navegação', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/qualquerpagina');
-    const notFound = screen.getByText('Page request not found');
+    const notFound = screen.getByText(/Page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
 });

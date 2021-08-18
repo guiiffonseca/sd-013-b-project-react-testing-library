@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-test('App.js tests - Expect Home, About and Favorites Pokemons links', () => {
+test('App.js tests - Expect Home, About, NotFound and Favorites Pokemons links', () => {
   renderWithRouter(<App />);
   const homeLink = screen.getByText(/home/i);
   expect(homeLink).toBeInTheDocument();

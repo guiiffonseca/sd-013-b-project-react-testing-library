@@ -22,10 +22,9 @@ describe('Test App', () => {
   test('test if a link is Not Found', () => {
     const { history } = renderWithRouter(<App />);
     history.push('Xablau');
-    const notFound = screen.getByRole('heading', {
+    expect(screen.getByRole('heading', {
       level: 2,
       name: /Page requested not found/,
-    });
-    expect(notFound).toBeInTheDocument();
+    })).toBeInTheDocument();
   });
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
@@ -22,9 +22,9 @@ function renderWithRouter(componentToRender) {
 describe('Teste o componente <App.js />', () => {
   it('se contém um conjunto fixo de links de navegação.', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const linkHome = screen.getByRole('link', {
@@ -49,9 +49,9 @@ describe('Teste o componente <App.js />', () => {
 
   it('ir para URL "/" ao clicar no link Home da barra de navegação.', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const linkHome = screen.getByRole('link', {
@@ -67,9 +67,9 @@ describe('Teste o componente <App.js />', () => {
 
   it('ir para URL "/about", ao clicar no link About da barra de navegação.', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const linkAbout = screen.getByRole('link', {
@@ -86,9 +86,9 @@ describe('Teste o componente <App.js />', () => {
 
   it('ir para URL "/favorites", ao clicar no link Favorite Pokémons...', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const linkFavorite = screen.getByRole('link', {

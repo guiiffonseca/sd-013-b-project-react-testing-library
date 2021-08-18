@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import renderWithRouter from "../services/renderWithRouter";
 
-const funcGetByRole = (anyComponent, role, regex) => {
+const funcGetByRole = (anyComponent, role, properties) => {
   renderWithRouter(anyComponent);
-  const tested = screen.getByRole(role, { name: regex });
+  const tested = screen.getByRole(role, properties);
   return expect(tested).toBeDefined();
 };
 

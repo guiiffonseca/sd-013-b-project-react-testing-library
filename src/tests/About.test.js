@@ -19,7 +19,7 @@ describe('Testa o componente About.js', () => {
   });
   test('Testa se a página contém 2 parágrafos com texto sobre Pokedex', () => {
     renderWithRouter(<About />);
-    const paragraphsText = screen.getAllByTestId('para');
+    const paragraphsText = screen.getAllByText(/,/);
     expect(paragraphsText.length).toBe(2);
   });
   test('Testa se contém uma imagem de uma Pokédex', () => {

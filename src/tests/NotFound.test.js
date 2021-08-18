@@ -7,7 +7,8 @@ test('NotFound.js tests - If page exist with H2 and image', () => {
   const { history } = renderWithRouter(<NotFound />);
   history.push('/notfound');
 
-  const notFoundText = screen.getByRole('heading', { level: 2, name: /Page requested not found/i });
+  const notFoundText = screen.getByRole('heading',
+    { level: 2, name: /Page requested not found/i });
   expect(notFoundText).toBeInTheDocument();
 
   const notFoundGif = screen.getByAltText(/Pikachu/);

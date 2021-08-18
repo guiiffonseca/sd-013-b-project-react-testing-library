@@ -7,7 +7,6 @@ describe('Not found tests', () => {
   beforeEach(() => render(<NotFound />));
 
   test('If has a text indicating not found', () => {
-
     const text = screen.getByRole('heading', { level: 2 });
     expect(text).toBeInTheDocument();
     expect(text).toHaveTextContent(/page requested not found/i);

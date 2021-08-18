@@ -102,10 +102,9 @@ describe('FavoritePokemeons.js', () => {
       },
     ];
     renderWithRouter(<FavoritePokemons pokemons={ testPokemons } />);
-    const pokemonCards = screen.getAllByTestId('pokemon-card');
-    const THREE = 3;
+    const pokemonCards = screen.getAllByTestId('pokemon-name');
 
-    expect(pokemonCards).toHaveLength(THREE);
+    expect(pokemonCards).toHaveLength(testPokemons.length);
     pokemonCards.forEach((pokemon) => expect(pokemon).toBeInTheDocument());
   });
 });

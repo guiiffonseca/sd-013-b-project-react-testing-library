@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import NotFound from '../components/NotFound';
-import renderRouter from '../services/renderRouter';
+import renderRouter from '../components/renderRouter';
 
 describe('Teste do componente notFound', () => {
   test('Teste se a página contem um heading com o texto page request not found', () => {

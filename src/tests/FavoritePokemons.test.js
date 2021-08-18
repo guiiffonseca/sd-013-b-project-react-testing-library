@@ -1,7 +1,6 @@
 import React from 'react';
-import { getByRole, render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
 
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
@@ -15,9 +14,7 @@ describe('Teste Favorite Pokemons ', () => {
   });
 
   test('Cards com pokemons', () => {
-    const IDPIKACHU = 25;
-    const IDEKANS = 23;
-    const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const MoreDetails = screen.getByRole('link', {
       name: 'More details',
     });

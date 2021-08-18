@@ -25,7 +25,7 @@ describe('Testing App component', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('If the app contains favorites link and if upon click redirects to favorites', () => {
+  test('If contains favorites link and if upon click redirects to favorites', () => {
     const { history } = renderWithRouter(<App />);
     const favorites = screen.getByRole('link', { name: /favorite/i });
     expect(favorites).toBeInTheDocument();

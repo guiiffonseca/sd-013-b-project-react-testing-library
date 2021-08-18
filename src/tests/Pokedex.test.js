@@ -73,7 +73,7 @@ describe('Test Pokedex', () => {
     });
   });
 
-  it('A Pokedéx deverá mostrar todos os pokemons, quando o botão All for clicado', () => {
+  it('Should show all pokemons when option "All" is pressed.', () => {
     userEvent.click(screen.getByRole('button', { name: 'All' }));
     pokemons.forEach((pokemon) => {
       expect(screen.getByTestId('pokemon-name')).toHaveTextContent(pokemon.name);

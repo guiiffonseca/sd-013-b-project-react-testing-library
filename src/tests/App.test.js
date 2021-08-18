@@ -41,6 +41,10 @@ describe('Teste o componente <App.js />', () => {
       name: /Favorite Pokémons/i,
     });
     expect(linkFavorite).toBeInTheDocument();
+
+    const number = 4;
+    const linkLengh = screen.getAllByRole('link');
+    expect(linkLengh).toHaveLength(number);
   });
 
   it('ir para URL "/" ao clicar no link Home da barra de navegação.', () => {

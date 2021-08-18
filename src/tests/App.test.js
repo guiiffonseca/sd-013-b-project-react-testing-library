@@ -49,6 +49,7 @@ describe('Requisito 1', () => {
 Not Found ao entrar em uma URL desconhecida.`, () => {
     render(
       <MemoryRouter initialEntries={ ['/asdasd'] }>
+        {/* https://reactrouter.com/web/api/MemoryRouter */}
         <App />
       </MemoryRouter>,
     );

@@ -9,6 +9,7 @@ describe('verifica o componente App.js', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: /home/i });
     expect(home).toBeDefined();
+
     userEvent.click(home);
 
     const { pathname } = history.location;
@@ -21,6 +22,7 @@ describe('verifica o componente App.js', () => {
     expect(about).toBeDefined();
 
     userEvent.click(about);
+
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
@@ -31,6 +33,7 @@ describe('verifica o componente App.js', () => {
     expect(favoritePokemons).toBeDefined();
 
     userEvent.click(favoritePokemons);
+
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './router';
+import renderWithRouter from './router/renderWithRouter';
 import App from '../App';
 
 describe('Teste de navegação de páginas', () => {

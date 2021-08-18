@@ -4,7 +4,6 @@ import About from '../components/About';
 import renderWithRouter from '../utils/renderWithRouter';
 
 describe('Verifica se a página contém as seguintes informações', () => {
-
   it('informações sobre Pokédex', () => {
     renderWithRouter(<About />);
     const aboutPokedex = screen.getByRole('heading', {
@@ -22,9 +21,4 @@ describe('Verifica se a página contém as seguintes informações', () => {
     expect(img).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
     expect(img).toHaveAttribute('alt', 'Pokédex');
   });
-
-  it('', () => {});
-
-  it('', () => {});
-
 });

@@ -7,7 +7,7 @@ import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
 
 describe(
-  'a aplicação contém um conjunto fixo de links de navegação.', () => {
+  'Teste o componente <App.js />', () => {
     test('O primeiro link deve possuir o texto Home.', () => {
       render(
         <MemoryRouter>

@@ -1,12 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Links de navegação', () => {
   test('Teste se há links de navegação da página ', () => {
-    const { getByText } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const link1 = screen.getByText(/Home/);
     expect(link1).toBeInTheDocument();
 

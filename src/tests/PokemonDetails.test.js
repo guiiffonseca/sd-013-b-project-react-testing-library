@@ -70,13 +70,10 @@ describe('Testa o componente PokemonDetails', () => {
     });
     userEvent.click(detailsLink);
 
-    expect(screen.getByRole('checkbox', {
-      name: /Pokémon favoritado?/,
-    })).toBeInTheDocument();
-
     const favoriteButton = screen.getByRole('checkbox', {
       name: /Pokémon favoritado?/,
     });
+    expect(favoriteButton).toBeInTheDocument();
     userEvent.click(favoriteButton);
     const favoriteLink = screen.getByText('Favorite Pokémons');
     userEvent.click(favoriteLink);

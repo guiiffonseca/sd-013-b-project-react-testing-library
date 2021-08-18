@@ -5,7 +5,6 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
 describe('Testing if the top of application have three fixed links', () => {
-
   it('should have three requested links', () => {
     renderWithRouter(<App />);
     const links = screen.getAllByRole('link');

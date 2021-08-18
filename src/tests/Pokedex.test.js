@@ -53,6 +53,10 @@ describe('Teste o componente <Pokedex.js />', () => {
           const actualButton = screen.getByRole('button', { name: button });
           expect(actualButton).toBeInTheDocument();
         });
+        const AllButtons = screen.getAllByTestId('pokemon-type-button');
+        AllButtons.forEach((button) => {
+          expect(button).toBeInTheDocument();
+        });
       });
       const labelTest3 = 'O texto do botão deve corresponder '
       + 'ao nome do tipo e o All está sempre visivel';

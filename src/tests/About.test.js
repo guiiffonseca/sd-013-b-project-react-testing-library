@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 
 describe(('About.js tests'), () => {
-  test('Testa se a página contém informações sobre a pokedex', () => {
+  test('Testa se a página contém um h2 com um texto definido', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/about');
 
@@ -14,12 +14,22 @@ describe(('About.js tests'), () => {
       name: /About Pokédex/i,
     });
     expect(aboutPageText).toBeInTheDocument();
+  });
+
+  test('Testa se a página tem 2 parágrafos com textos definidos', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/about');
 
     // Teste com o outro parágrafo está dando mais de 90 de extensão
 
     expect(screen.getByText(
       'One can filter Pokémons by type, and see more details for each one of them',
     ).toBeInTheDocument);
+  });
+
+  test('Testa se a página tem uma imagem específica', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/about');
 
     const aboutImage = screen.getByRole('img', {
       name: /Pokédex/i,

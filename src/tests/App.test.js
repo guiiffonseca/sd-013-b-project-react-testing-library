@@ -63,9 +63,3 @@ describe('Testando o "App.js"', () => {
     expect(titleNotFound).toBeInTheDocument();
   });
 });
-
-describe('', () => {
-  it('', () => {
-
-  });
-});

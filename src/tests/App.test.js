@@ -58,6 +58,6 @@ describe('Testa conjunto de Links do App', () => {
       history.push('/pikachu');
       const notFound = screen.getByText(/not found/i);
       expect(notFound).toBeInTheDocument();
-    })
-  })
+    });
+  });
 });

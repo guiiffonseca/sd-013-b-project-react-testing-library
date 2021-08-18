@@ -21,7 +21,14 @@ describe('2. Teste o componente <About.js />.', () => {
     });
     expect(titleAboutPokedex).toBeInTheDocument();
   });
-  test.skip('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {});
+
+  test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
+    renderWithRouter(<About />);
+
+    const paragraphs = screen.getAllByText(/Pokémons/i);
+    expect(paragraphs).toHaveLength(2);
+  });
+
   test.skip('Teste se a página contém a imagem de uma Pokédex', () => {
     // https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png.
   });

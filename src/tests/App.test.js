@@ -56,7 +56,7 @@ describe('App.js Tests', () => {
     });
 
     expect(favoritePokemonsTextHeading).toBeInTheDocument();
-    expect(favoritePokemonsTextHeading.innerHTML).toBe('Favorite pokémons');
+    expect(favoritePokemonsTextHeading.innerHTML).toMatch(/Favorite pokémons/);
   });
 
   test(`a aplicação é redirecionada para a${

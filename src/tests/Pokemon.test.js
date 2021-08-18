@@ -16,7 +16,9 @@ describe('Pokemon.js tests', () => {
 
     expect(pokemonName).not.toHaveTextContent('');
     expect(pokemonType).not.toHaveTextContent('');
-    expect(pokemonWeight).toHaveTextContent(/[(weight)(0-9)(kg)]/);
+    expect(pokemonWeight).toHaveTextContent(/weight/);
+    expect(pokemonWeight).toHaveTextContent(/[0-9]/);
+    expect(pokemonWeight).toHaveTextContent(/kg/);
     expect(pokemonImg.src).not.toBe('');
   });
 
@@ -45,6 +47,6 @@ describe('Pokemon.js tests', () => {
     const starIcon = screen.getByAltText(/is marked as favorite/);
 
     expect(starIcon.src).not.toBe('');
-    expect(starIcon).toHaveAttribute('alt', expect.stringMatching(/favorite/));
+    expect(starIcon).not.toHaveAttribute('alt', 'is marked as favorite');
   });
 });

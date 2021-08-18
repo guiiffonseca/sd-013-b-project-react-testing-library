@@ -20,15 +20,19 @@ describe('Teste o componente <About.js />.', () => {
 
   it('se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     render(<About />);
-    const number = 2;
-    const sholdParagraph = screen.getAllByTestId('paragraph');
-    expect(sholdParagraph).toHaveLength(number);
+    const textOne = /This application simulates a Pokédex/;
+    const textTwo = /One can filter Pokémons by type/;
+
+    const infoParagraphOne = screen.getByText(textOne);
+    expect(infoParagraphOne).toBeInTheDocument();
+    const infoParagraphTwo = screen.getByText(textTwo);
+    expect(infoParagraphTwo).toBeInTheDocument();
   });
 
   it('se a página contém a seguinte imagem de uma Pokédex', () => {
     render(<About />);
     const imgUrl = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    const image = screen.getByRole('img');
+    const image = screen.getByAltText('Pokédex');
     expect(image).toHaveAttribute('src', imgUrl);
   });
 });

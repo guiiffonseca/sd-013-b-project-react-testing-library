@@ -61,7 +61,6 @@ class App extends Component {
         pokemons={ pokemons }
         onUpdateFavoritePokemons={ (pokemonId, isFavorite) => (
           this.onUpdateFavoritePokemons(pokemonId, isFavorite)
-
         ) }
       />
     );

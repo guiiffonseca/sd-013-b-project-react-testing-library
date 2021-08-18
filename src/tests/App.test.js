@@ -3,6 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
+// Requisito feito com ajuda do conteudo do dia 15.3
 describe('Teste se contém um conjunto fixo de links de navegação', () => {
   test('Teste se a aplicação é redirecionada para a página inicial', () => {
     const { history } = renderWithRouter(<App />);

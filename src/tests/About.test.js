@@ -1,7 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 
-// import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import { About } from '../components';
 
@@ -26,11 +25,11 @@ describe('Teste componente About', () => {
   });
 
   it('Verifica se a page contém 2 parágrafos com texto sobre Pokédex', () => {
-    const textParagraphOne = /This application simulates a Pokédex/i;
-    const textParagraphTwo = /One can filter Pokémons by type/i;
-
     const { history } = renderWithRouter(<About />);
     history.push('/about');
+
+    const textParagraphOne = /This application simulates a Pokédex/i;
+    const textParagraphTwo = /One can filter Pokémons by type/i;
 
     const pageParagraphTextOne = screen.getByText(textParagraphOne);
     expect(pageParagraphTextOne).toBeInTheDocument();
@@ -39,10 +38,11 @@ describe('Teste componente About', () => {
   });
 
   it('Verifica se a página contém a imagem de uma Pokédex', () => {
+    const imgURL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const { history } = renderWithRouter(<About />);
     history.push('/about');
 
     const pageAboutImage = screen.getByRole('img');
-    expect(pageAboutImage).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(pageAboutImage).toHaveAttribute('src', imgURL);
   });
 });

@@ -32,7 +32,6 @@ const mockedPokemons = [
         map: 'https://cdn2.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png',
       },
     ],
-    summary: 'For protection, it releases a horrible stench from the antennae on its head to drive away enemies.',
   },
   {
     id: 23,
@@ -50,7 +49,6 @@ const mockedPokemons = [
         map: 'https://cdn2.bulbagarden.net/upload/e/ec/Johto_Goldenrod_City_Map.png',
       },
     ],
-    summary: 'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
   },
   {
     id: 65,
@@ -68,7 +66,6 @@ const mockedPokemons = [
         map: 'https://cdn2.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png',
       },
     ],
-    summary: 'Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes.',
   },
 ];
 

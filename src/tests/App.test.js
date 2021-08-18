@@ -17,7 +17,8 @@ describe('Testa o componente App.js', () => {
     expect(linkFavoritePokemons).toBeInTheDocument();
   });
 
-  test('se a aplicação é redirecionada para a página inicial, na URL / ao clicar no link Home da barra de navegação.', () => {
+  test('se a aplicação é redirecionada para a página inicial, na URL / ao '
+    + 'clicar no link Home da barra de navegação.', () => {
     const { history } = RenderWithRouter(<App />);
 
     const linkHome = screen.getByText('Home');
@@ -29,7 +30,8 @@ describe('Testa o componente App.js', () => {
     expect(encounteredText).toHaveTextContent(/encountered/i);
   });
 
-  test('se a aplicação é redirecionada para a página de About, na URL /about, ao clicar no link About da barra de navegação.', () => {
+  test('se a aplicação é redirecionada para a página de About, na URL /about, '
+    + 'ao clicar no link About da barra de navegação.', () => {
     const { history } = RenderWithRouter(<App />);
 
     const linkAbout = screen.getByText('About');
@@ -41,7 +43,8 @@ describe('Testa o componente App.js', () => {
     expect(aboutText).toHaveTextContent(/about/i);
   });
 
-  test('se a aplicação é redirecionada para a página de Pokémons Favoritados, na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.', () => {
+  test('se a aplicação é redirecionada para a página de Pokémons Favoritados, na '
+    + 'URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação', () => {
     const { history } = RenderWithRouter(<App />);
 
     const linkFavoritePokemons = screen.getByText('Favorite Pokémons');
@@ -53,7 +56,8 @@ describe('Testa o componente App.js', () => {
     expect(favoriteText).toHaveTextContent(/favorite/i);
   });
 
-  test('se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida.', () => {
+  test('se a aplicação é redirecionada para a página Not Found ao entrar em uma '
+    + 'URL desconhecida.', () => {
     const { history } = RenderWithRouter(<App />);
 
     history.push('/pagina-not-found');

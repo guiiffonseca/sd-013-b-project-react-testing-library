@@ -51,5 +51,5 @@ describe('Testa o componente About', () => {
     const pokedexImg = screen.getByRole('img');
     expect(pokedexImg).toBeInTheDocument();
     expect(pokedexImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-  });
+  }); // inspirado em https://dev.to/raphaelchaula/a-simple-image-test-in-react-3p6f.
 });

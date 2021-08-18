@@ -12,7 +12,6 @@ describe('Teste o componente <About.js />', () => {
     expect(pathname).toBe('/about');
     const aboutAll = screen.getByText('Pokédex');
     expect(aboutAll).toBeInTheDocument();
-
   });
   it('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
     const { history } = renderWithRouter(<App />);
@@ -27,10 +26,8 @@ describe('Teste o componente <About.js />', () => {
     userEvent.click(screen.getByText(/About/i));
     const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
-    const p1 = 'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons';
-    expect(screen.getByText(p1)).toBeInTheDocument();
-    const p2 = 'One can filter Pokémons by type, and see more details for each one of them';
-    expect(screen.getByText(p2)).toBeInTheDocument();
+    expect(screen.getByText(/ulates a Pokédex, a digital encyc/)).toBeInTheDocument();
+    expect(screen.getByText(/er Pokémons by type, and see more/)).toBeInTheDocument();
   });
   it('Teste se a página contém uma determinada imagem de uma Pokédex', () => {
     const { history } = renderWithRouter(<App />);

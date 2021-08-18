@@ -12,13 +12,16 @@ describe('Teste o componente <PokemonDetails.js />', () => {
       const nameDetails = screen.getByRole('heading', { name: /Pikachu Detail/i });
       expect(nameDetails).toBeInTheDocument();
     });
-  test('Teste se existe na página uma seção com os mapas contendo as localizações do pokémon', () => {
-    renderWithRouter(<App />);
-    userEvent.click(screen.getByRole('link', { name: /More Details/i }));
-    const imagesMapas = screen.getAllByAltText('Pikachu location')[0];
-    expect(imagesMapas.src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
-    expect(imagesMapas.alt).toBe('Pikachu location');
-  });
+  test(
+    'Teste se existe na página uma seção com os mapas contendo as localizações',
+    () => {
+      renderWithRouter(<App />);
+      userEvent.click(screen.getByRole('link', { name: /More Details/i }));
+      const imagesMapas = screen.getAllByAltText('Pikachu location')[0];
+      expect(imagesMapas.src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+      expect(imagesMapas.alt).toBe('Pikachu location');
+    },
+  );
   test('Teste se existe um heading com o Text Game Locations e Summary', () => {
     renderWithRouter(<App />);
     userEvent.click(screen.getByRole('link', { name: /More Details/i }));

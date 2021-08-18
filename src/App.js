@@ -1,6 +1,6 @@
 // inniting project!
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import {
   About,
@@ -72,6 +72,7 @@ class App extends Component {
     const favoritePokemons = pokemons.filter(({ id }) => isPokemonFavoriteById[id]);
 
     return (
+    <BrowserRouter>
       <Switch>
         <Route
           exact
@@ -89,6 +90,7 @@ class App extends Component {
         <Route path="/about" component={ About } />
         <Route component={ NotFound } />
       </Switch>
+    </BrowserRouter>
     );
   }
 
@@ -97,9 +99,11 @@ class App extends Component {
       <div className="App">
         <h1>Pokédex</h1>
         <nav>
+        <BrowserRouter>
           <Link className="link" to="/">{`Home`}</Link>
           <Link className="link" to="/about">{`About`}</Link>
           <Link className="link" to="/favorites">{`Favorite Pokémons`}</Link>
+        </BrowserRouter>
         </nav>
         {this.renderRoutes()}
       </div>

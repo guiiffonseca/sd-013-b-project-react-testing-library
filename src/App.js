@@ -27,7 +27,6 @@ class App extends Component {
     }, {});
 
     return isPokemonFavorite;
-    // teste 
   }
 
   constructor(props) {

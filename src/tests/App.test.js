@@ -2,18 +2,19 @@ import React from 'react';
 // import { screen } from "@testing-library/react";
 // import userEvent from "@testing-library/user-event";
 import App from '../App';
-import renderWithRouter from '../services/renderWithRouter';
 import funcGetByRole from '../services/funcGetByRole';
 import funcClickRole from '../services/funcClickRole';
 
 // npx stryker run ./stryker/App.conf.json
 describe('1 - Test component <APP/>', () => {
-  test('3 links: 1-\'Home\' 2-About 3-favorite pokémons', () => {
-    renderWithRouter(<App />);
-    // Check role and text:
-    funcGetByRole('link', /home/i);
-    funcGetByRole('link', /About/i);
-    funcGetByRole('link', /favorite pokémons/i);
+  test('if there is a link with text -Home-', () => {
+    funcGetByRole(<App />, 'link', /home/i);
+  });
+  test('if there is a link with text -About-', () => {
+    funcGetByRole(<App />, 'link', /About/i);
+  });
+  test('if there is a link with text -Favorite pokémons-', () => {
+    funcGetByRole(<App />, 'link', /favorite pokémons/i);
   });
   test('test \'Home\' links path', () => {
     // Testando a renderização dentro de funções:

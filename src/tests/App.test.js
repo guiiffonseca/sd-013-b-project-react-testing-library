@@ -29,22 +29,22 @@ describe('Verifica o componente App', () => {
 
 describe('routes', () => {
   it('Verifica se ao clicar em Home, a página é redirecionada para inicial', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    userEvent.click(getByText(/Home/i));
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/Home/i));
     const pathName = history.location.pathname;
     expect(pathName).toBe('/');
   });
 
   it('Verifica se ao clicar em About, a página é redirecionada para /about', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    userEvent.click(getByText(/About/i));
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/About/i));
     const pathName = history.location.pathname;
     expect(pathName).toBe('/about');
   });
 
   it('Verifica ao clicar em Favorite Pokémons, é redirecionada para /favorites', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    userEvent.click(getByText(/Favorite Pokémons/i));
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/Favorite Pokémons/i));
     const pathName = history.location.pathname;
     expect(pathName).toBe('/favorites');
   });

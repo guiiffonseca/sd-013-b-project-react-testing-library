@@ -28,7 +28,7 @@ describe('Teste o componente <About.js />.', () => {
   it('se a página contém a seguinte imagem de uma Pokédex', () => {
     render(<About />);
     const imgUrl = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    const image = screen.getByAltText('Pokédex');
+    const image = screen.getByRole('img');
     expect(image).toHaveAttribute('src', imgUrl);
   });
 });

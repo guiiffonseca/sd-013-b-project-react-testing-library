@@ -67,6 +67,8 @@ describe('test notFound', () => {
       pokemons={ pokemonsMock }
       isPokemonFavoriteById={ favOBJ }
     />);
+    const tittle = screen.getByText('Encountered pokémons');
+    expect(tittle).toBeInTheDocument();
     const buttonNext = screen.getByRole('button', {
       name: 'Próximo pokémon',
     });

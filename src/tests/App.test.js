@@ -35,8 +35,8 @@ describe('requisito 1', () => {
   test('Teste se ao clicar em home volta a página inicial', () => {
     const { history } = renderWithRouter(<App />);
     const nav = screen.getByRole('navigation');
-    const homeLink = nav.childNodes[0];
-    fireEvent.click(homeLink);
+    const homeLinks = nav.childNodes[0];
+    fireEvent.click(homeLinks);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/');
   });

@@ -11,12 +11,27 @@ describe('Test Pokedex', () => {
   });
 
   const nextButton = 'Próximo pokémon';
-  const filters = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+
+  const filters = [
+    'All',
+    'Electric',
+    'Fire',
+    'Bug',
+    'Poison',
+    'Psychic',
+    'Normal',
+    'Dragon',
+  ];
+
   const pokemonName = 'pokemon-name';
 
   it('should have a h2 element with Encountered pokémons content', () => {
     expect(screen.getByRole('heading', { level: 2 }))
       .toHaveTextContent('Encountered pokémons');
+  });
+
+  it('should contain the text "Próximo pokémon" inside button', () => {
+    expect(screen.getByTestId('next-pokemon')).toHaveTextContent('Próximo pokémon');
   });
 
   it('should show the next pokemon when click in "Próximo pokémon"', () => {
@@ -59,14 +74,22 @@ describe('Test Pokedex', () => {
     });
   });
 
+  // it('Should show just filtered pokémons and always show all option', () => {
+  //   filters.forEach((filter, index) => {
+  //     userEvent.click(screen.getAllByTestId('pokemon-type-button')[index]);
+  //     const filteredPokemons = pokemons.filter(({ type }) => type === filter);
+  //     filteredPokemons.forEach(({ type }) => {
+  //       expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
+  //       expect(screen.getByTestId('pokemon-type')).toHaveTextContent(type);
+  //       userEvent.click(screen.getByRole('button', { name: nextButton }));
+  //     });
+  //   });
+  // });
+
   it('Should show all pokemons when the filter "All" is pressed', () => {
     pokemons.forEach(({ name }) => {
       expect(screen.getByTestId(pokemonName)).toHaveTextContent(name);
       userEvent.click(screen.getByRole('button', { name: nextButton }));
     });
-  });
-
-  it('should start with "All" filter selected', () => {
-    userEvent.click(screen.getByTestId(''));
   });
 });

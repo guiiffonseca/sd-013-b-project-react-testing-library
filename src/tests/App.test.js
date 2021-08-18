@@ -10,7 +10,7 @@ describe('1. Teste o componente <App.js />', () => {
   About, Favorite Pokémons`, () => {
     renderWithRouter(<App />);
 
-    const linkHome = screen.getByRole('link', { name: 'Home', });
+    const linkHome = screen.getByRole('link', { name: 'Home' });
     expect(linkHome).toBeInTheDocument();
 
     const linkAbout = screen.getByRole('link', { name: 'About' });
@@ -24,7 +24,7 @@ describe('1. Teste o componente <App.js />', () => {
   link Home da barra de navegação.`, () => {
     renderWithRouter(<App />);
 
-    const linkHome = screen.getByRole('link', { name: /home/i, });
+    const linkHome = screen.getByRole('link', { name: /home/i });
     userEvent.click(linkHome);
 
     const titleEncounteredPokemons = screen.getByRole('heading', {
@@ -32,14 +32,14 @@ describe('1. Teste o componente <App.js />', () => {
       name: /encountered pokémons/i,
     });
     expect(titleEncounteredPokemons).toBeInTheDocument();
-
   });
 
   test.skip(`Teste se a aplicação é redirecionada para a página de About, na URL /about,
   ao clicar no link About da barra de navegação.`, () => {});
 
   test.skip(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados,
-  na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {});
+  na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {
+  });
 
   test.skip(`Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma
   URL desconhecida.`, () => {});

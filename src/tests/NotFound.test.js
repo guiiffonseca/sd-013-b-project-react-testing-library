@@ -6,7 +6,7 @@ import renderWithRouter from './utils/renderWithRouter';
 describe('Teste NotFound.js', () => {
   test('Se página contém um heading h2 com o texto Page requested not found', () => {
     renderWithRouter(<NotFound />);
-    expect(screen.getAllByText(/Page requested not found/i)).toBeInTheDocument();
+    expect(screen.getByText(/Page requested not found/i)).toBeInTheDocument();
   });
   test('Teste se página mostra a imagem X', () => {
     renderWithRouter(<NotFound />);

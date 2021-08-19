@@ -37,7 +37,7 @@ describe('Testando o "Pokemon Details"', () => {
     expect(btnMoreDetails).not.toBeInTheDocument();
   });
 
-  it('Testando A seção de detalhes deve conter heading h2 com o texto "Summary"', () => {
+  it('Testando seção de detalhes deve conter heading h2 com o texto "Summary"', () => {
     renderWithRouter(<App />);
     const btnMoreDetails = screen.getByRole('link', { name: /More Details/i });
     userEvent.click(btnMoreDetails);
@@ -46,4 +46,13 @@ describe('Testando o "Pokemon Details"', () => {
     expect(summaryH2).toBeInTheDocument();
   });
 
+  it('Testando deve conter um parágrafo com o resumo do Pokémon', () => {
+    renderWithRouter(<App />);
+    const btnMoreDetails = screen.getByRole('link', { name: /More Details/i });
+    userEvent.click(btnMoreDetails);
+    const pSummary = screen.getByText(/This intelligent Pokémon/i);
+    expect(pSummary).toBeInTheDocument();
+  });
+
+  
 });

@@ -81,6 +81,5 @@ describe(' Teste o componente <Pokemon.js />', () => {
     // testa se tem icone:
     userEvent.click(favoriteCheckbox);
     expect(pokemonFavorited).toHaveProperty('src', 'http://localhost/star-icon.svg');
-
   });
 });

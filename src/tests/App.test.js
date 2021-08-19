@@ -50,4 +50,13 @@ describe('Teste do componente App', () => {
     expect(pathname).toBe('/favorites');
     expect(favoriteText).toBeInTheDocument();
   });
+
+  it('Entrar em uma URL desconhecida redireciona à página Not Found', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/xablau/');
+
+    const notFoundText = screen.getByText('Page requested not found');
+    expect(notFoundText).toBeInTheDocument();
+  });
 });

@@ -7,7 +7,7 @@ describe('Test 2- Testing about', () => {
   test('Testing if page shows information about pokedex', () => {
     renderWithRouter(<About />);
 
-    const aboutText = screen.getAllByText('/containing all Pokémons/i');
+    const aboutText = screen.getByText('/containing all Pokémons/i');
     expect(aboutText).toBeInTheDocument();
   });
   test('Test if page have a heading H2 with text "About Pokédex"', () => {

@@ -50,12 +50,17 @@ describe('Teste o componente <Pokedex.js />', () => {
   test('Pokédex tem botões de filtro', () => {
     // renderiza :
     renderWithRouter(<App />);
-    // testa primeiro pokemon tem botao de filtro:
-    expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
+    // testa primeiro pokemons têm botao de filtro:
     const filterButton = screen.getAllByTestId('pokemon-type-button');
-    // eslint-disable-next-line no-magic-numbers
-    const number = 7;
-    expect(filterButton.length).toBe(number);
+    // testa quantidade de botoes type:
+    const arrayTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic',
+      'Normal', 'Dragon'];
+    expect(filterButton.length).toBe(arrayTypes.length);
+    // testa se existe no documento e cada um tem o texto type:
+    filterButton.forEach((button, index) => {
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveTextContent(arrayTypes[index]);
+    });
     // testa se existe botao All:
     expect(screen.getByRole('button', { name: /All/i })).toBeInTheDocument();
   });

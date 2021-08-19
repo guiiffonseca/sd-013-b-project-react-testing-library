@@ -39,9 +39,9 @@ describe('Requisito 5', () => {
         <App />
       </MemoryRouter>,
     );
-  
+
     const alltypes = screen.getAllByTestId('pokemon-type-button');
-  
+
     expect(alltypes[0]).toHaveTextContent('Electric');
     expect(alltypes[1]).toHaveTextContent('Fire');
     expect(alltypes[2]).toHaveTextContent('Bug');
@@ -49,21 +49,21 @@ describe('Requisito 5', () => {
     expect(alltypes[4]).toHaveTextContent('Psychic');
     expect(alltypes[5]).toHaveTextContent('Normal');
     expect(alltypes[6]).toHaveTextContent('Dragon');
-  
+
     for (let i = 0; i < alltypes.length; i += 1) {
       userEvent.click(alltypes[i]);
       const typeId = screen.getByTestId('pokemon-type');
       expect(typeId.textContent).toBe(alltypes[i].textContent);
     }
   });
-  
+
   test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-  
+
     const getButtonAll = screen.getByRole('button', {
       name: /All/i,
     });

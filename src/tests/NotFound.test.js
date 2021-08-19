@@ -5,11 +5,11 @@ import NotFound from '../components/NotFound';
 describe('Teste o componente <NotFound.js />', () => {
   it('se página contém um heading h2 com o texto Page requested not found 😭', () => {
     render(<NotFound />);
-    const aboutPokedex = screen.getByRole('heading', {
+    const component = screen.getByRole('heading', {
       level: 2,
       name: /Page requested not found/i,
     });
-    expect(aboutPokedex).toBeInTheDocument();
+    expect(component).toBeInTheDocument();
   });
 
   it('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {

@@ -24,6 +24,6 @@ describe('Teste do About', () => {
   test('Teste se há uma imagem na tela', () => {
     render(<About />);
     const imagePokedex = screen.getByRole('img');
-    expect(imagePokedex.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png')
+    expect(imagePokedex.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

@@ -1,10 +1,11 @@
+// npx stryker run ./stryker/About.conf.json
+
 import React from 'react';
 import { About } from '../components';
 import funcGetByRole from '../services/funcGetByRole';
 import funcLengthOfGetAll from '../services/funcLengthOfGetAll';
 import funcTextStrictEqual from '../services/funcTextStrictEqual';
 
-// npx stryker run ./stryker/About.conf.json
 describe('2 - Test component <About/>', () => {
   test('page has h2 with text \'About Pokédex\'', () => {
     funcGetByRole(<About />, 'heading', { level: 2, name: 'About Pokédex' });

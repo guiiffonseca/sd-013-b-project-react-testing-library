@@ -1,9 +1,10 @@
+// npx stryker run ./stryker/App.conf.json
+
 import React from 'react';
 import App from '../App';
 import funcGetByRole from '../services/funcGetByRole';
 import funcClickRole from '../services/funcClickRole';
 
-// npx stryker run ./stryker/App.conf.json
 describe('1 - Test component <APP/>', () => {
   test('if there is a link with text \'Home\'', () => {
     funcGetByRole(<App />, 'link', { name: /home/i });

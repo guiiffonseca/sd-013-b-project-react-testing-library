@@ -1,2 +1,3 @@
+// npx stryker run ./stryker/PokemonDetails.conf.json
+
 test('', () => {});
-// npx stryker run ./stryker/About.conf.json

@@ -4,26 +4,26 @@ import userEvent from '@testing-library/user-event';
 import renderRouter from '../components/renderRouter';
 import App from '../App';
 
-Describe('Pokemon test', () => {
+describe('Pokemon test', () => {
   test('Testa se o topo da aplicação contém um conjunto de links de navegação', () => {
-    renderRouter = (<App />);
-    const linkHome = screen.getByRole('Link', {
+    renderRouter(<App />);
+    const linkHome = screen.getByRole('link', {
       name: 'Home',
     });
     expect(linkHome).toBeInTheDocument();
   });
 
   test('O segundo link deve possuir o texto about', () => {
-    renderRouter = (<App />);
-    const linkAbout = screen.getByRole('Link', {
+    renderRouter(<App />);
+    const linkAbout = screen.getByRole('link', {
       name: 'About',
     });
     expect(linkAbout).toBeInTheDocument();
   });
 
   test('O terceiro link deve possuir o texto Favorite Pokemons', () => {
-    renderRouter = (<App />);
-    const linkFavoritePokémons = screen.getByRole('Link', {
+    renderRouter(<App />);
+    const linkFavoritePokémons = screen.getByRole('link', {
       name: 'Favorite Pokémons',
     });
     expect(linkFavoritePokémons).toBeInTheDocument();
@@ -31,17 +31,17 @@ Describe('Pokemon test', () => {
 
   test('Testa se a aplicação é redicionada para a pagina Home', () => {
     const { history } = renderRouter(<App />);
-    const linkHome = screen.getByRole('Link', {
+    const linkHome = screen.getByRole('link', {
       name: 'Home',
     });
     userEvent.click(linkHome);
     const { pathname } = history.location;
-    expect(pathname).toEqual('/about');
+    expect(pathname).toEqual('/');
   });
 
   test('Testa se a aplicação é redicionada para a pagina about', () => {
     const { history } = renderRouter(<App />);
-    const linkHome = screen.getByRole('Link', {
+    const linkHome = screen.getByRole('link', {
       name: 'About',
     });
     userEvent.click(linkHome);
@@ -51,12 +51,12 @@ Describe('Pokemon test', () => {
 
   test('Testa se a aplicação é redicionada para pagina página pokemon favorites', () => {
     const { history } = renderRouter(<App />);
-    const linkHome = screen.getByRole('Link', {
+    const linkHome = screen.getByRole('link', {
       name: 'Favorite Pokémons',
     });
     userEvent.click(linkHome);
     const { pathname } = history.location;
-    expect(pathname).toEqual('/about');
+    expect(pathname).toEqual('/favorites');
   });
 
   test('Testa se a aplicação é redicionada para a pagina página not found', () => {

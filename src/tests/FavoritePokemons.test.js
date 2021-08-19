@@ -16,7 +16,7 @@ describe('3- Test component <FavoritePokemons/>', () => {
       <FavoritePokemons pokemons={ pokemons } />,
       'pokemon-name',
       'length',
-      ['.not.toBe'],
+      ['.toBeGreaterThan'],
       0,
       'all',
     );

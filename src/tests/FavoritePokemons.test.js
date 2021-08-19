@@ -1,9 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import userEvent from '@testing-library/user-event';
 
 describe('Test 3 - Testing Favorite Pokemons ', () => {
   it('Test if "No favorite pokemon found" is shown', () => {

@@ -6,7 +6,7 @@ import About from '../components/About';
 describe('Testa a página que descreve a Pokédex', () => {
   it('Testa se contém o Heading', () => {
     renderWithRouter(<About />);
-    const heading = screen.getByRole('heading', { level: 2 }, { name: 'About Pokédex' });
+    const heading = screen.getByRole('heading', { level: 2, name: 'About Pokédex' });
     expect(heading).toBeInTheDocument();
   });
 

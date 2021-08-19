@@ -6,11 +6,9 @@ import NotFound from '../components/NotFound';
 describe('Testa quando não encontrar nenhuma página', () => {
   it('Renderiza um heading e seu texto', () => {
     renderWithRouter(<NotFound />);
-    const heading = screen.getByRole(
-      'heading',
-      { level: 2 },
-      { name: /Page requested not found/ },
-    );
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: /Page requested not found/ });
     const headingImg = screen.getByLabelText('Crying emoji');
     expect(heading).toBeInTheDocument();
     expect(headingImg).toBeInTheDocument();

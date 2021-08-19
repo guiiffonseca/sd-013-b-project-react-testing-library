@@ -11,19 +11,15 @@ describe('testing cases of Pokemon component', () => {
     const { value, measurementUnit } = pokemons[0].averageWeight;
     const averageWeight = `Average weight: ${value} ${measurementUnit}`;
     const { type } = pokemons[0];
-    const pokemonName = screen.getByTestId('pokemon-name', {
-      text: pokemons[0].name,
-    });
+    const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
-    const pokemonWeight = screen.getByTestId('pokemon-weight', {
-      text: averageWeight,
-    });
+    const pokemonWeight = screen.getByTestId('pokemon-weight');
     const moreDetailsLink = screen.getByRole('link', {
       name: /more details/i,
     });
-    expect(pokemonName).toBeInTheDocument();
+    expect(pokemonName).toHaveTextContent(pokemons[0].name);
     expect(pokemonType).toHaveTextContent(type);
-    expect(pokemonWeight).toBeInTheDocument();
+    expect(pokemonWeight).toHaveTextContent(averageWeight);
     expect(moreDetailsLink).toBeInTheDocument();
     userEvent.click(moreDetailsLink);
     const { pathname } = history.location;

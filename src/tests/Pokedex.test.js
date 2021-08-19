@@ -71,4 +71,25 @@ describe('pokedex test', () => {
     });
     expect(searchTitle).toBeInTheDocument();
   });
+
+  test('ao clicar no botao BUG exibe o Caterpie', () => {
+    const customHistory = createMemoryHistory();
+    render(
+      <Router history={ customHistory }>
+        <App />
+      </Router>,
+    );
+    customHistory.push('/');
+
+    const pokemonName = 'Caterpie';
+    const pokemonCategory = 'Bug';
+    const searchButton = screen.getByRole('button', {
+      name: `${pokemonCategory}`,
+    });
+    expect(searchButton).toBeInTheDocument();
+
+    userEvent.click(searchButton);
+    const searchPokemon = screen.getByText(`${pokemonName}`);
+    expect(searchPokemon).toBeInTheDocument();
+  });
 });

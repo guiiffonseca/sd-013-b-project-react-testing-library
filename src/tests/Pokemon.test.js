@@ -50,6 +50,7 @@ describe('Pokemon.js', () => {
     expect(pokemonDetailsLink).toHaveAttribute('href', `/pokemons/${testPokemon.id}`);
     expect(pokemonDetailsLink).toHaveTextContent('More details');
     expect(pokemonImg).toBeInTheDocument();
+    expect(pokemonImg).toHaveAttribute('src', `${testPokemon.image}`);
     expect(pokemonImg).toHaveAttribute('alt', `${testPokemon.name} sprite`);
   });
 

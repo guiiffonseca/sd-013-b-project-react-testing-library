@@ -3,10 +3,8 @@ import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 import { About } from '../components';
-// import renderWithRouter from './utils/renderWithRouter';
 
 describe('Testando o componente <About.js />', () => {
-  // const TOTAL_PARAGRAPH = 2;
   test('Testa se existe um h2 com o texto "About Pokédex" ', () => {
     render(
       <MemoryRouter>

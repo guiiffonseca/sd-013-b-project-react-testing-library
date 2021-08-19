@@ -20,6 +20,13 @@ test('Pokedex.js tests - Check Button ALL', () => {
   expect(pokedex).toBeInTheDocument();
 });
 
+test('Pokedex.js tests - Check Button Next Pokemon', () => {
+  renderWithRouter(<App />);
+
+  const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+  expect(nextPokemonBtn).toBeInTheDocument();
+});
+
 test('Pokedex.js tests - Check if theres all pokemon type buttons', () => {
   renderWithRouter(<App />);
   const pokemonTypeArrayLength = 7;

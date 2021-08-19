@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import { FavoritePokemons } from '../components';
 import App from '../App';
 
-describe('Favorite =Pokemons funciona corretamente', () => {
+describe('Favorite Pokemons funciona corretamente', () => {
   it('Exibe `No favorite pokemon found` quando não há pokemons favoritados', () => {
     renderWithRouter(<FavoritePokemons />);
 
@@ -23,9 +23,6 @@ describe('Favorite =Pokemons funciona corretamente', () => {
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
 
-    const { location: { pathname } } = history;
-    expect(pathname).toBe('/pokemons/25');
-
     const favoriteOption = screen.getByLabelText('Pokémon favoritado?');
     userEvent.click(favoriteOption);
 
@@ -33,7 +30,8 @@ describe('Favorite =Pokemons funciona corretamente', () => {
     expect(isFavoriteImg).toBeInTheDocument();
 
     userEvent.click(favoritePokemonsLink);
-    expect(pathname).toBe('/pokemons/25');
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites');
 
     const pokeName = screen.getByTestId('pokemon-name');
     const pokeType = screen.getByTestId('pokemon-type');

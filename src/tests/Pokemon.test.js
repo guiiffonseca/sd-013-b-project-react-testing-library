@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from './util/renderWithRouter';
 import pokemons from '../data';
@@ -30,7 +30,7 @@ import pokemons from '../data';
 // },
 describe('Testando o "Pokemon"', () => {
   it('Testando o "Pokemon"', () => {
-    renderWithRouter(<Pokemon
+    const { history } = renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
       isFavorite={ false }
     />);
@@ -39,6 +39,7 @@ describe('Testando o "Pokemon"', () => {
 
     const typeDetailsPokemon = screen.getByTestId('pokemon-type');
     expect(typeDetailsPokemon).toBeInTheDocument();
+    expect(typeDetailsPokemon).toHaveTextContent(`${pokemons[0].type}`);
 
     const weightDetailsPokemon = screen.getByTestId('pokemon-weight');
     expect(weightDetailsPokemon).toBeInTheDocument();
@@ -52,5 +53,29 @@ describe('Testando o "Pokemon"', () => {
     const imgPokemon = screen.getByAltText('Pikachu sprite');
     expect(imgPokemon.src).toBe(pokemons[0].image);
     expect(imgPokemon.alt).toBe(`${pokemons[0].name} sprite`);
+
+    const linkDetailsPokemon = screen.getByRole('link', {
+      name: /More details/i,
+    });
+    expect(linkDetailsPokemon).toBeInTheDocument();
+
+    const urlAntes = history.location.pathname;
+    userEvent.click(linkDetailsPokemon);
+
+    const urlDepois = history.location.pathname;
+    expect(urlAntes).not.toBe(urlDepois);
+    expect(urlDepois).toBe(`/pokemons/${pokemons[0].id}`);
+  });
+
+  const verdd = true;
+  it('Verifica icon favorito details', () => {
+    renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isFavorite={ verdd }
+    />);
+    const iconPokeFavorito = screen
+      .getByAltText(`${pokemons[0].name} is marked as favorite`);
+    expect(iconPokeFavorito.src).toBe('http://localhost/star-icon.svg');
+    expect(iconPokeFavorito.alt).toBe(`${pokemons[0].name} is marked as favorite`);
   });
 });

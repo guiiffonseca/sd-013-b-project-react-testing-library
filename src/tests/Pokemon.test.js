@@ -47,6 +47,6 @@ describe('Pokemon.js tests', () => {
     const starIcon = screen.getByAltText(/is marked as favorite/);
 
     expect(starIcon.src).not.toBe('');
-    expect(starIcon.alt).not.toHaveAttribute('alt', 'is marked as favorite');
+    expect(starIcon).not.toHaveAttribute('alt', 'is marked as favorite');
   });
 });

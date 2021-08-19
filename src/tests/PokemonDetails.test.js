@@ -75,4 +75,20 @@ describe('PokemonDetails.js tests', () => {
 
     expect(favoritePokemonLabel).toBeInTheDocument();
   });
+
+  test('Removing Pokemon from favorites', () => {
+    goToDetails();
+
+    const favoriteCheckbox = screen.getByRole('checkbox');
+    userEvent.click(favoriteCheckbox);
+
+    const starIcon = screen.getByAltText(/is marked as favorite/);
+
+    expect(starIcon.src).not.toBe('');
+    expect(starIcon).not.toHaveAttribute('alt', 'is marked as favorite');
+
+    userEvent.click(favoriteCheckbox);
+
+    expect(starIcon).not.toBeInTheDocument();
+  });
 });

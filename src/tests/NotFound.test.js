@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-describe('Requisito 3', () => {
+describe('Requisito 4', () => {
   test('Teste se a página contém um heading H2 e uma IMG', () => {
     render(
       <MemoryRouter initialEntries={ ['/notfound'] }>

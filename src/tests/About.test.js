@@ -18,11 +18,12 @@ describe('About.js', () => {
   test('testa de a pagina contem "2 <p>" com texto sob Pokédex', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/about');
-    // pequisei em referenc https://testing-library.com/docs/queries/about/#manual-queries
 
-    const paragraf = document.querySelectorAll('p');
+    const paragraf = screen.getByText(/This application simulates/i);
+    const paragraf2 = screen.getByText(/One can filter/i);
 
-    expect(paragraf.length).toBe(2);
+    expect(paragraf).toBeInTheDocument();
+    expect(paragraf2).toBeInTheDocument();
   });
 
   test('testa se a página contém a seguinte "img" Pokédex.', () => {

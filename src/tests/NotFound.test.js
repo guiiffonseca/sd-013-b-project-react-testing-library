@@ -5,10 +5,8 @@ import { screen } from '@testing-library/dom';
 
 describe('4. Teste o componente <NotFound.js />', () => {
   test('Teste se página contém um heading h2 com o texto "Page requested not found 😭"', () => {
-    const { history } = renderWithRouter(<NotFound />);
+    renderWithRouter(<NotFound />);
     
-    history.push('/rota-inexistente');
-
     const notFoundMessage = screen.getByRole('heading', {
       level: 2,
       name: /Page requested not found/i,

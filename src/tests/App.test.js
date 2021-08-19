@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Teste do componente App', () => {
   it('Existe um conjunto de links no topo da navegação', () => {
-    render(<App />);
+    renderWithRouter(<App />);
 
     const linkToHome = screen.getByText('Home');
     const linkToAbout = screen.getByText('About');
@@ -28,10 +28,14 @@ describe('Teste do componente App', () => {
   });
   it('Ao clicar em About a aplicação deve ser redirecionada à página About', () => {
     const { history } = renderWithRouter(<App />);
+
     const linkToAbout = screen.getByText('About');
 
-    const { location: { pathname } } = history;
     userEvent.click(linkToAbout);
+    const { location: { pathname } } = history;
+    const aboutText = screen.getByText(/a digital encyclopedia/i);
+
+    expect(aboutText).toBeInTheDocument();
     expect(pathname).toBe('/about');
   });
 });

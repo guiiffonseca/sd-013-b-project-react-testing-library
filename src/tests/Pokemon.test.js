@@ -10,14 +10,15 @@ describe('Teste App ', () => {
     renderWithRouter(<App />);
     const PokemonName = screen.getByTestId('pokemon-name');
     expect(PokemonName).toBeInTheDocument();
+    expect(PokemonName.innerHTML).toMatch('Pikachu');
 
     const PokemonTipo = screen.getByTestId('pokemon-type');
     expect(PokemonTipo).toBeInTheDocument();
-    console.log(PokemonTipo.innerHTML);
     expect(PokemonTipo.innerHTML).toMatch('Electric');
 
     const PokemonPeso = screen.getByTestId('pokemon-weight');
     expect(PokemonPeso).toBeInTheDocument();
+      expect(PokemonPeso.innerHTML).toMatch(/Average/i);
 
     const PokemonImage = screen.getByRole('img');
     expect(PokemonImage).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');

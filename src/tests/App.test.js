@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { About } from '../components';
 
 describe('Componente App funciona corretamente', () => {
   it('Existe um conjunto de links no topo da navegação', () => {
@@ -59,26 +58,5 @@ describe('Componente App funciona corretamente', () => {
 
     const notFoundText = screen.getByText('Page requested not found');
     expect(notFoundText).toBeInTheDocument();
-  });
-});
-
-describe('Componente About funciona corretamente', () => {
-  it('Página contém informações sobre a Pokédex', () => {
-    renderWithRouter(<About />);
-
-    const pokedexInfos = screen.getByText(/digital encyclopedia containing all Pokémons/);
-    expect(pokedexInfos).toBeInTheDocument();
-  });
-
-  it('Página contém um heading h2 com o texto `About Pokédex`', () => {
-    renderWithRouter(<About />);
-
-    const aboutText = screen.getByRole('heading', { name: 'About Pokédex', level: 2 });
-
-    expect(aboutText).toBeInTheDocument();
-  });
-
-  it('', () => {
-
   });
 });

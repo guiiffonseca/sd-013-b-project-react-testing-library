@@ -29,7 +29,7 @@ Describe('Pokemon test', () => {
     expect(linkFavoritePokémons).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redicionada para a pagina Home', () => {
+  test('Testa se a aplicação é redicionada para a pagina Home', () => {
     const { history } = renderRouter(<App />);
     const linkHome = screen.getByRole('Link', {
       name: 'Home',
@@ -59,7 +59,7 @@ Describe('Pokemon test', () => {
     expect(pathname).toEqual('/about');
   });
 
-  test('Teste se a aplicação é redicionada para a pagina página not found', () => {
+  test('Testa se a aplicação é redicionada para a pagina página not found', () => {
     const { history } = renderRouter(<App />);
     history.push('/pagina/que-nao-existe');
     const notFound = screen.getByText('Page requested not found');

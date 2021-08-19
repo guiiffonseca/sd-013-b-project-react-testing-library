@@ -46,7 +46,7 @@ describe('Teste Pokedex.js', () => {
     const Allbtn = screen.getByRole('button', { name: /All/i });
     expect(Allbtn).toBeInTheDocument();
     const typeBtn = screen.getAllByTestId('pokemon-type-button');
-    expect(typeBtn[7].innerHTML).toBe('Dragon');
+    expect(typeBtn[6].innerHTML).toBe('Dragon');
     const btnFilter = 7;
     expect(typeBtn.length).toBe(btnFilter);
   });

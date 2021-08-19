@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithRouter from './router/renderWithRouter';
 import App from '../App';
 
 describe('Testa o componente Pokemon', () => {
@@ -21,21 +22,18 @@ describe('Testa o componente Pokemon', () => {
 
   test('verifica se há um link com id do pokemon e se redireciona para a página correta',
     () => {
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>,
-      );
+      const { history } = renderWithRouter(<App />);
 
       const moreDetailsLink = screen.getByText('More details');
       expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
       userEvent.click(moreDetailsLink);
-
+      history.push('/pokemons/25');
       expect(screen.getByRole('heading', {
         level: 2,
         name: /Summary/,
       }));
-      expect(window.location.pathname).toBe('/');
+      const { location: { pathname } } = history;
+      expect(pathname).toBe('/pokemons/25');
     });
 
   test('verifica se há uma estrela no pokemon favoritado', () => {

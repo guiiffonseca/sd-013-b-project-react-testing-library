@@ -2,11 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-// import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 describe('about test', () => {
-  test('Existe informações sobre Pokédex', () => {
+  test('existe informações sobre Pokédex', () => {
     const customHistory = createMemoryHistory();
     render(
       <Router history={ customHistory }>
@@ -20,7 +19,7 @@ describe('about test', () => {
     expect(searchInfo2).toBeInTheDocument();
   });
 
-  test('should ', () => {
+  test('exibe titúlo Favorite pokémons', () => {
     const customHistory = createMemoryHistory();
     render(
       <Router history={ customHistory }>
@@ -35,7 +34,7 @@ describe('about test', () => {
     expect(searchTitle).toBeInTheDocument();
   });
 
-  test('should ', () => {
+  test('exibe uma imagem', () => {
     const customHistory = createMemoryHistory();
     render(
       <Router history={ customHistory }>

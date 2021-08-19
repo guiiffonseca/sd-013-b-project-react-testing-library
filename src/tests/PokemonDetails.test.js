@@ -98,9 +98,8 @@ describe('Teste se existe os mapas contendo as localizações do pokémon', () =
     const inputChecked = screen.getByLabelText(/Pokémon favoritado/i);
     expect(inputChecked).toBeInTheDocument();
     userEvent.click(inputChecked);
-    const imgEstrela = screen.getByAltText(`${pokemons[0].name} is marked as favorite`);
-    expect(imgEstrela).toBeInTheDocument();
+    expect(inputChecked.checked).toBe(true);
     userEvent.click(inputChecked);
-    expect(imgEstrela).not.toBeInTheDocument();
+    expect(inputChecked.checked).toBe(false);
   });
 });

@@ -17,7 +17,6 @@ describe('Testando Pokemon Details', () => {
     RenderWithRouter(<App />);
     fireEvent.click(screen.getByText(detaisText));
     const immages = screen.getAllByRole('img');
-    expect(screen.getByTestId('pokeCard')).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-weight')).toBeInTheDocument();
     expect(immages[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');

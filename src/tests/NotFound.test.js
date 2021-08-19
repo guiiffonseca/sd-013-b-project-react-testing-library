@@ -21,5 +21,4 @@ describe('Teste componente NotFound', () => {
     expect(imgNotFound).toHaveAttribute('src', imgUrlNotFound);
     expect(imgNotFound).toBeInTheDocument();
   });
-
 });

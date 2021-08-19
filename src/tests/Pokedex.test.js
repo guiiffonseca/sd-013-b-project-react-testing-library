@@ -4,9 +4,11 @@ import RenderWithRouter from './utils/RenderWithRouter';
 import App from '../App';
 
 describe('Testa Pokedex', () => {
+  const pokemonTypeId = 'pokemon-type-button';
+  const pokeNameId = 'pokemon-name';
   test('Testa se existe 1 pokemon na tela apenas', () => {
     RenderWithRouter(<App />);
-    const pokemons = screen.getAllByTestId('pokemon-name');
+    const pokemons = screen.getAllByTestId(pokeNameId);
 
     expect(pokemons).toHaveLength(1);
   });
@@ -20,7 +22,7 @@ describe('Testa Pokedex', () => {
   test('Testa funcionalidade botão proximo pokemon', () => {
     RenderWithRouter(<App />);
     const nextPokemonButton = screen.getByText('Próximo pokémon');
-    const pokeCard = screen.getByTestId('pokemon-name');
+    const pokeCard = screen.getByTestId(pokeNameId);
 
     fireEvent.click(nextPokemonButton);
     expect(pokeCard).toHaveTextContent('Charmander');
@@ -28,14 +30,14 @@ describe('Testa Pokedex', () => {
 
   test('Testa se existe botoes de filtro', () => {
     RenderWithRouter(<App />);
-    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    const filterButtons = screen.getAllByTestId(pokemonTypeId);
     const FILTER_BUTTONS_NUMBER = 7;
     expect(filterButtons).toHaveLength(FILTER_BUTTONS_NUMBER);
   });
 
   test('Testa se os botoes tem o texto certo', () => {
     RenderWithRouter(<App />);
-    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    const filterButtons = screen.getAllByTestId(pokemonTypeId);
 
     expect(filterButtons[0]).toHaveTextContent('Electric');
   });

@@ -26,7 +26,7 @@ describe('Teste do componente App', () => {
     userEvent.click(linkToHome);
     expect(pathname).toBe('/');
   });
-  it('Ao clicar em About a aplicação deve ser redirecionada à página About', () => {
+  it('Ao clicar em About a aplicação é redirecionada à página About', () => {
     const { history } = renderWithRouter(<App />);
 
     const linkToAbout = screen.getByText('About');
@@ -37,5 +37,17 @@ describe('Teste do componente App', () => {
 
     expect(aboutText).toBeInTheDocument();
     expect(pathname).toBe('/about');
+  });
+
+  it('Clicar em Favorite Pokémons redireciona a aplicação à Pokémons Favoritados', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const linkToFavorites = screen.getByText('Favorite Pokémons');
+    const favoriteText = screen.getByText(/favorite pokémons/i);
+
+    userEvent.click(linkToFavorites);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites');
+    expect(favoriteText).toBeInTheDocument();
   });
 });

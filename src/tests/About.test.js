@@ -5,7 +5,7 @@ import funcLengthOfGetAll from '../services/funcLengthOfGetAll';
 import funcTextStrictEqual from '../services/funcTextStrictEqual';
 
 // npx stryker run ./stryker/About.conf.json
-describe('Requirement 2 - Test the component <About />', () => {
+describe('2 - Test component <About/>', () => {
   test('page has h2 with text \'About Pokédex\'', () => {
     funcGetByRole(<About />, 'heading', { level: 2, name: 'About Pokédex' });
   });

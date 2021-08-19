@@ -15,10 +15,6 @@ describe('3- Test component <FavoritePokemons/>', () => {
     funcGetByTestId(
       <FavoritePokemons pokemons={ pokemons } />,
       'pokemon-name',
-      'length',
-      ['.toBeGreaterThan'],
-      0,
-      'all',
     );
   });
 });

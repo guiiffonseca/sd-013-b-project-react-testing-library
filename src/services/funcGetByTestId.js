@@ -1,14 +1,10 @@
 import { screen } from "@testing-library/react";
 import renderWithRouter from "./renderWithRouter";
 
-const funcGetByTestId = (anyComponent, id, x, c, y, add) => {
+const funcGetByTestId = (anyComponent, id) => {
   renderWithRouter(anyComponent);
-  if (add) {
-    const tested = screen.getAllByTestId(id);
-    return expect(tested[x]).not.toBe(y);
-  }
-  const tested = screen.getByTestId(id);
-  return expect(tested[x])[c](y);
+  const tested = screen.getAllByTestId(id);
+  return expect(tested).toBeDefined();
 };
 
 export default funcGetByTestId;

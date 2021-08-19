@@ -7,8 +7,6 @@ import funcGetByTestId from '../services/funcGetByTestId';
 import funcClickRoleAll from '../services/funcClickRoleAll';
 import pokemons from '../data';
 
-// pokemons={ pokemons }
-
 describe('5 - Test component <App />', () => {
   test('contain h2 and has text \'Encountered pokémons\'', () => {
     funcGetByRole(<App />, 'heading', { level: 2, name: 'Encountered pokémons' });
@@ -38,10 +36,6 @@ describe('5 - Test component <App />', () => {
     funcGetByTestId(
       <App />,
       'pokemon-type-button',
-      'type',
-      ['toBe'],
-      'pokemon-type-button',
-      'all',
     );
   });
 

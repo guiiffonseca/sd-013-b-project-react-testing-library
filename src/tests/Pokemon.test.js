@@ -19,32 +19,23 @@ describe('Testa o componente Pokemon', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
-  test('verifica se há link com id do pokémon', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+  test('verifica se há um link com id do pokemon e se redireciona para a página correta',
+    () => {
+      render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>,
+      );
 
-    const moreDetailsLink = screen.getByText('More details');
-    expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
-  });
+      const moreDetailsLink = screen.getByText('More details');
+      expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
+      userEvent.click(moreDetailsLink);
 
-  test('verifica se o link redireciona para a página correta', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-
-    const moreDetailsLink = screen.getByText('More details');
-    userEvent.click(moreDetailsLink);
-
-    expect(screen.getByRole('heading', {
-      level: 2,
-      name: /Summary/,
-    }));
-  });
+      expect(screen.getByRole('heading', {
+        level: 2,
+        name: /Summary/,
+      }));
+    });
 
   test('verifica se há uma estrela no pokemon favoritado', () => {
     render(
@@ -66,7 +57,7 @@ describe('Testa o componente Pokemon', () => {
     });
     userEvent.click(favoriteButton);
 
-    const starImage = screen.getByAltText('Pikachu is marked as favorite')
+    const starImage = screen.getByAltText('Pikachu is marked as favorite');
     expect(starImage).toBeInTheDocument();
     expect(starImage).toHaveAttribute('src', '/star-icon.svg');
   });

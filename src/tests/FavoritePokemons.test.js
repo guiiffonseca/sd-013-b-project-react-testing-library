@@ -14,5 +14,24 @@ describe(`3. Teste o componente <FavoritePokemons.js />`, () => {
     expect(msgFavoritePokemon).toBeInTheDocument();
   });
   
+  test(`Teste se é exibido todos os cards de Pokémons favoritados.`, () => {
+    const { history } = renderWithRouter(<App />);
 
+    history.push('/pokemons/25');
+
+    const pokemonTitle = screen.getByRole('heading', {
+      level: 2,
+      name: /Details/i,
+    });
+    expect(pokemonTitle).toBeInTheDocument();
+
+    const checkboxFavorite = screen.getByLabelText(/favoritado/i);
+    userEvent.click(checkboxFavorite);
+    expect(checkboxFavorite.checked).toEqual(true);
+
+    history.push('/favorites');
+
+    const msgIconFavorite = screen.getByAltText(/is marked as favorite/i);
+    expect(msgIconFavorite).toBeInTheDocument();
+  });
 });

@@ -15,6 +15,7 @@ fixo de links de navegaçao`, () => {
     expect(homeLink).toHaveTextContent(/Home/i);
     userEvent.click(homeLink);
     const { location: { pathname } } = history;
+    console.log(history);
     expect(pathname).toBe('/');
   });
 

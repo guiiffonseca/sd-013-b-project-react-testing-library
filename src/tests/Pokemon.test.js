@@ -23,3 +23,4 @@ describe('Teste o componente <Pokedex.js />', () => {
 
   // });
 }); */
+test('', () => {});

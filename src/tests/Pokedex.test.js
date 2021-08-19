@@ -1,15 +1,40 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Router } from 'react-router';
+import { createMemoryHistory } from 'history';
 import Pokedex from '../components/Pokedex';
 import Data from '../data';
 
+function renderWithRouter(componentToRender) {
+  const customHistory = createMemoryHistory();
+
+  return {
+    ...render(
+      <Router history={ customHistory }>
+        {componentToRender}
+      </Router>,
+    ),
+    history: customHistory,
+  };
+}
+
+const isPokemonFavoriteById = {
+  4: false,
+  10: false,
+  23: false,
+  25: false,
+  65: false,
+  78: false,
+  143: false,
+  148: false,
+  151: false,
+};
+
 describe('Teste o componente <Pokedex.js />', () => {
   it('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
-    render(
-      <MemoryRouter>
-        <Pokedex pokemons={ Data } isPokemonFavoriteById={ { } } />
-      </MemoryRouter>,
+    renderWithRouter(
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const componentHeading = screen.getByRole('heading', {
@@ -20,62 +45,68 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
 
   it('Teste se é exibido o próximo Pokémon da lista ao click do botão Próximo.', () => {
-    render(
-      <MemoryRouter>
-        <Pokedex pokemons={ Data } isPokemonFavoriteById={ { } } />
-      </MemoryRouter>,
+    renderWithRouter(
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
-    const pokemon1 = screen.getByText('Pikachu');
-    expect(pokemon1).toBeInTheDocument();
+    const buttonNext = screen.getByTestId('next-pokemon');
+    expect(buttonNext).toHaveTextContent('Próximo pokémon');
 
-    const button = screen.getByTestId('next-pokemon');
-    expect(button).toBeInTheDocument();
+    userEvent.click(buttonNext);
+    const pokemon = screen.getByTestId('pokemon-name');
+    expect(pokemon).toHaveTextContent('Charmander');
 
-    fireEvent.click(button);
-    const pokemon2 = screen.getByText('Charmander');
-    expect(pokemon2).toBeInTheDocument();
-
-    fireEvent.click(button);
+    userEvent.click(buttonNext);
     const pokemon3 = screen.getByText('Caterpie');
     expect(pokemon3).toBeInTheDocument();
 
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
+    userEvent.click(buttonNext);
+    const pokemon4 = screen.getByText('Ekans');
+    expect(pokemon4).toBeInTheDocument();
 
+    userEvent.click(buttonNext);
+    const pokemon5 = screen.getByText('Alakazam');
+    expect(pokemon5).toBeInTheDocument();
+
+    userEvent.click(buttonNext);
+    const pokemon6 = screen.getByText('Mew');
+    expect(pokemon6).toBeInTheDocument();
+
+    userEvent.click(buttonNext);
+    const pokemon7 = screen.getByText('Rapidash');
+    expect(pokemon7).toBeInTheDocument();
+
+    userEvent.click(buttonNext);
+    const pokemon8 = screen.getByText('Snorlax');
+    expect(pokemon8).toBeInTheDocument();
+
+    userEvent.click(buttonNext);
     const pokemonLast = screen.getByText('Dragonair');
     expect(pokemonLast).toBeInTheDocument();
 
-    fireEvent.click(button);
+    userEvent.click(buttonNext);
     const pokemonFist = screen.getByText('Pikachu');
     expect(pokemonFist).toBeInTheDocument();
   });
 
   it('Teste se é mostrado apenas um Pokémon por vez', () => {
-    render(
-      <MemoryRouter>
-        <Pokedex pokemons={ Data } isPokemonFavoriteById={ { } } />
-      </MemoryRouter>,
+    renderWithRouter(
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const button = screen.getByTestId('next-pokemon');
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
+    userEvent.click(button);
+    userEvent.click(button);
+    userEvent.click(button);
     const componentImg = screen.getAllByRole('img');
     expect(componentImg).toHaveLength(1);
   });
 
   it('Teste se a Pokédex tem os botões de filtro', () => {
-    render(
-      <MemoryRouter>
-        <Pokedex pokemons={ Data } isPokemonFavoriteById={ { } } />
-      </MemoryRouter>,
+    renderWithRouter(
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
+
     const number = 7;
     const buttonFilter = screen.getAllByTestId('pokemon-type-button');
     expect(buttonFilter).toHaveLength(number);
@@ -89,19 +120,19 @@ describe('Teste o componente <Pokedex.js />', () => {
     expect(buttonFilter[6]).toHaveTextContent('Dragon');
 
     const component = screen.getByTestId('pokemon-type');
-    fireEvent.click(buttonFilter[0]);
+    userEvent.click(buttonFilter[0]);
     expect(component).toHaveTextContent('Electric');
-    fireEvent.click(buttonFilter[1]);
+    userEvent.click(buttonFilter[1]);
     expect(component).toHaveTextContent('Fire');
-    fireEvent.click(buttonFilter[2]);
+    userEvent.click(buttonFilter[2]);
     expect(component).toHaveTextContent('Bug');
-    fireEvent.click(buttonFilter[3]);
+    userEvent.click(buttonFilter[3]);
     expect(component).toHaveTextContent('Poison');
-    fireEvent.click(buttonFilter[4]);
+    userEvent.click(buttonFilter[4]);
     expect(component).toHaveTextContent('Psychic');
-    fireEvent.click(buttonFilter[5]);
+    userEvent.click(buttonFilter[5]);
     expect(component).toHaveTextContent('Normal');
-    fireEvent.click(buttonFilter[6]);
+    userEvent.click(buttonFilter[6]);
     expect(component).toHaveTextContent('Dragon');
 
     const buttonAll = screen.getByText('All');
@@ -109,15 +140,13 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
-    render(
-      <MemoryRouter>
-        <Pokedex pokemons={ Data } isPokemonFavoriteById={ { } } />
-      </MemoryRouter>,
+    renderWithRouter(
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const button = screen.getAllByRole('button');
     expect(button[0]).toHaveTextContent('All');
-    fireEvent.click(button[0]);
+    userEvent.click(button[0]);
     const component = screen.getByTestId('pokemon-type');
     expect(component).toHaveTextContent('Electric');
 

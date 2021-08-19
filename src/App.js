@@ -18,6 +18,7 @@ import pokemons from './data';
 
 import './App.css';
 
+
 class App extends Component {
   static setIsPokemonFavoriteById() {
     const favoritePokemonIds = readFavoritePokemonIds();
@@ -32,7 +33,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { isPokemonFavoriteById: App.setIsPokemonFavoriteById() };
+  
+
   }
+  
 
   onUpdateFavoritePokemons(pokemonId, isFavorite) {
     updateFavoritePokemons(pokemonId, isFavorite);

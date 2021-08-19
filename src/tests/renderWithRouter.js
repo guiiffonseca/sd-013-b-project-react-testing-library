@@ -1,11 +1,11 @@
 import React from 'react';
 import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import { createMemoryHistory, createLocation } from 'history';
 import { render } from '@testing-library/react';
 
 export default function renderWithRouter(componentToRender) {
   const customHistory = createMemoryHistory();
-
+  const customLocation = createLocation();
   return {
     ...render(
       <Router history={ customHistory }>
@@ -13,5 +13,6 @@ export default function renderWithRouter(componentToRender) {
       </Router>,
     ),
     history: customHistory,
+    location: customLocation,
   };
 }

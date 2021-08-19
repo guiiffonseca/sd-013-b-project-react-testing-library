@@ -79,7 +79,7 @@ describe('testing cases of Pokedex component', () => {
     },
   );
 
-  test('has type pokemons button with right test ids', () => {
+  test('has buttons of type of pokemons with right test id', () => {
     renderWithRouter(<App />);
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
     const TYPE_BUTTONS_LENGTH = 7;

@@ -3,8 +3,9 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import { About } from '../components';
 
-describe('Teste do componente App', () => {
+describe('Componente App funciona corretamente', () => {
   it('Existe um conjunto de links no topo da navegação', () => {
     renderWithRouter(<App />);
 
@@ -33,7 +34,7 @@ describe('Teste do componente App', () => {
 
     userEvent.click(linkToAbout);
     const { location: { pathname } } = history;
-    const aboutText = screen.getByText(/a digital encyclopedia/i);
+    const aboutText = screen.getByText(/about pokédex/i);
 
     expect(aboutText).toBeInTheDocument();
     expect(pathname).toBe('/about');
@@ -58,5 +59,22 @@ describe('Teste do componente App', () => {
 
     const notFoundText = screen.getByText('Page requested not found');
     expect(notFoundText).toBeInTheDocument();
+  });
+});
+
+describe('Componente About funciona corretamente', () => {
+  it('Página contém informações sobre a Pokédex', () => {
+    renderWithRouter(<About />);
+
+    const pokedexInfos = screen.getByText(/digital encyclopedia containing all Pokémons/);
+    expect(pokedexInfos).toBeInTheDocument();
+  });
+
+  it('', () => {
+
+  });
+
+  it('', () => {
+
   });
 });

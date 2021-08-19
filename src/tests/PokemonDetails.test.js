@@ -91,4 +91,16 @@ describe('Teste se existe os mapas contendo as localizações do pokémon', () =
     expect(imgLocation[0].alt).toBe(`${pokemons[0].name} location`);
     expect(imgLocation[1].alt).toBe(`${pokemons[0].name} location`);
   });
+  it('Testando favoritar um pokémon', () => {
+    renderWithRouter(<App />);
+    const btnMoreDetails = screen.getByRole('link', { name: /More Details/i });
+    userEvent.click(btnMoreDetails);
+    const inputChecked = screen.getByLabelText(/Pokémon favoritado/i);
+    expect(inputChecked).toBeInTheDocument();
+    userEvent.click(inputChecked);
+    const imgEstrela = screen.getByAltText(`${pokemons[0].name} is marked as favorite`);
+    expect(imgEstrela).toBeInTheDocument();
+    userEvent.click(inputChecked);
+    expect(imgEstrela).not.toBeInTheDocument();
+  });
 });

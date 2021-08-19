@@ -46,6 +46,7 @@ describe('Testing Pokemon', () => {
 
     const pokemonName = screen.getByTestId('pokemon-name');
     expect(pokemonName).toBeInTheDocument();
+    expect(pokemonName.textContent).toBe('Charmander');
 
     const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType).toBeInTheDocument();
@@ -53,6 +54,7 @@ describe('Testing Pokemon', () => {
 
     const pokemonWeight = screen.getByTestId('pokemon-weight');
     expect(pokemonWeight).toBeInTheDocument();
+    expect(pokemonWeight.textContent).toBe('Average weight: 8.5 kg');
 
     const pokemonImage = screen.getByAltText('Charmander sprite');
     expect(pokemonImage.src).toBe('https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png');

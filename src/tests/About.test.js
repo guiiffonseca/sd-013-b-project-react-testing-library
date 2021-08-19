@@ -13,15 +13,15 @@ describe('Testando página about requisito 2', () => {
   });
   test('se contém 2 parágrafos com texto sobre pokemon', () => {
     render(<About />);
-    const primeiro = screen.getByText(/This application simulates a Pokédex/);
-    const segundo = screen.getByText(/One can filter Pokémons by type/);
-    expect(primeiro).toBeInTheDocument();
-    expect(segundo).toBeInTheDocument();
+    const primeiroParagrafo = screen.getByText(/This application simulates a Pokédex/);
+    const segundoParagrafo = screen.getByText(/One can filter Pokémons by type/);
+    expect(primeiroParagrafo).toBeInTheDocument();
+    expect(segundoParagrafo).toBeInTheDocument();
   });
   test('Teste se a página contém a seguinte imagem de uma pokedex', () => {
     render(<About />);
-    const imagem = screen.getByRole('img');
-    expect(imagem).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-    expect(imagem).toHaveAttribute('alt', 'Pokédex');
+    const imagemPokedex = screen.getByRole('img');
+    expect(imagemPokedex).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(imagemPokedex).toHaveAttribute('alt', 'Pokédex');
   });
 });

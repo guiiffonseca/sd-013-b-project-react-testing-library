@@ -19,21 +19,21 @@ const pokemon = {
 
 test('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
   renderWithRouter(<App />);
-  expect(screen.getByTestId('pokemon-name')).toBeInTheDocument();
-  expect(screen.getByTestId('pokemon-weight')).toBeInTheDocument();
-  expect(screen.getByRole('img').src).toContain(pokemon.image);
-  expect(screen.getByRole('img').alt).toContain(`${pokemon.name} sprite`);
   const linkMoreDetails = screen.getByRole('link', { name: /more details/i });
   expect(linkMoreDetails.href).toContain(`pokemons/${pokemon.id}`);
   userEvent.click(linkMoreDetails);
   expect(screen.getByText('Summary'));
-  expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
   userEvent.click(screen.getByRole('checkbox', { checked: false }));
   expect(screen.getByRole('checkbox', { checked: true })).toBeInTheDocument();
   const imgFavorite = screen.getByAltText(/pikachu is marked/i);
   expect(imgFavorite.src).toContain('/star-icon.svg');
+});
 
-  // const { history } = renderWithRouter(<App />);
-  // history.push(`pokemons/${pokemon.id}`);
-  // expect(screen.getByRole('img'));
+test('', () => {
+  renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite={ false } />);
+  expect(screen.getByTestId('pokemon-name')).toBeInTheDocument();
+  expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
+  expect(screen.getByTestId('pokemon-weight')).toBeInTheDocument();
+  expect(screen.getByRole('img').src).toContain(pokemon.image);
+  expect(screen.getByRole('img').alt).toContain(`${pokemon.name} sprite`);
 });

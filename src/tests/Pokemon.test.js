@@ -13,17 +13,17 @@ describe('Requisito 6', () => {
         <App />
       </MemoryRouter>,
     );
-    const Pokemon = pokemons[0];
-    expect(screen.getByText(Pokemon.name)).toBeInTheDocument();
-    expect(screen.getByText(Pokemon.type)).toBeInTheDocument();
+    const PokeInfo = pokemons[0];
+    expect(screen.getByText(PokeInfo.name)).toBeInTheDocument();
+    expect(screen.getByText(PokeInfo.type)).toBeInTheDocument();
     expect(screen.getByText(
-      `Average weight: ${Pokemon.averageWeight.value}
-       ${Pokemon.averageWeight.measurementUnit}`,
+      `Average weight: ${PokeInfo.averageWeight.value} ${
+        PokeInfo.averageWeight.measurementUnit}`,
     )).toBeInTheDocument();
 
     expect(screen.getByRole('img', {
-      name: `${Pokemon.name} sprite`,
-    })).toHaveAttribute('src', Pokemon.image);
+      name: `${PokeInfo.name} sprite`,
+    })).toHaveAttribute('src', PokeInfo.image);
   });
 
   test('Teste se o card do pokemon indicado contém um link de nav', () => {

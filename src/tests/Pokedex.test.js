@@ -61,4 +61,9 @@ describe('Testa Pokedex', () => {
     fireEvent.click(allButton);
     expect(pokemonName).toHaveTextContent('Pikachu');
   });
+
+  test('Testa existencia `Encountered pokémons`', () => {
+    RenderWithRouter(<App />);
+    expect(screen.getByText('Encountered pokémons')).toBeInTheDocument();
+  });
 });

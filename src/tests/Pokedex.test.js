@@ -55,3 +55,12 @@ test('All', () => {
   expect(allButton).toBeInTheDocument();
   userEvent.click(allButton);
 });
+
+test('Resetar filtro', () => {
+  renderWithRouter(<App />);
+  const resetBtn = screen.getByRole('button', {
+    name: /All/i,
+  });
+  userEvent.type(resetBtn);
+  expect(resetBtn).toBeInTheDocument();
+});

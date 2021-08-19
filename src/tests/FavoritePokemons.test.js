@@ -15,7 +15,7 @@ describe('Test 3 - Testing Favorite Pokemons ', () => {
   it('Test if favorites pokemons are on the screen', () => {
     renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
 
-    const favoritePokemons = screen.getByTestId('pokemon-name');
+    const favoritePokemons = screen.getAllByTestId('pokemon-name');
     expect(favoritePokemons).toBeInTheDocument();
     expect(favoritePokemons.length).not.toBe(0);
   });

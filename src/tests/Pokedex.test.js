@@ -54,7 +54,8 @@ describe('Teste o componente <Pokedex.js />', () => {
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
     const filterButton = screen.getAllByTestId('pokemon-type-button');
     // eslint-disable-next-line no-magic-numbers
-    expect(filterButton.length).toBe(7);
+    const number = 7;
+    expect(filterButton.length).toBe(number);
     // testa se existe botao All:
     expect(screen.getByRole('button', { name: /All/i })).toBeInTheDocument();
   });

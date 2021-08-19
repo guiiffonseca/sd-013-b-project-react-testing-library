@@ -70,5 +70,4 @@ describe('Testando PokeCards', () => {
 
     expect(history.location.pathname).toBe('/pokemons/23');
   });
-
 });

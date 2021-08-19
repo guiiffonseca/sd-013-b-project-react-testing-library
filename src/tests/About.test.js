@@ -20,8 +20,8 @@ describe('Testando página about requisito 2', () => {
   });
   test('Teste se a página contém a seguinte imagem de uma pokedex', () => {
     render(<About />);
-    const Pokedeximg = screen.getByRole('img');
-    expect(Pokedeximg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-    expect(Pokedeximg).toHaveAttribute('alt', 'Pokédex');
+    const Pokedeximagem = screen.getByRole('img');
+    expect(Pokedeximagem).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(Pokedeximagem).toHaveAttribute('alt', 'Pokédex');
   });
 });

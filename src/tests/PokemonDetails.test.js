@@ -62,7 +62,7 @@ describe('Testar o componente PokemonDetails.js', () => {
     expect(map1 && map2).toBeInTheDocument();
   });
 
-  test('', () => {
+  test('Testar se o usuário pode favoritar através da página de detalhes.', () => {
     const { history } = renderWithRouter(<App />);
 
     const detailsLink = screen.getByRole('link', {

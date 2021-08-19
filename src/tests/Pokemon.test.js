@@ -15,6 +15,8 @@ describe('test of the component <Pokemon />', () => {
     expect(namePokemon).toBeInTheDocument();
     const typePokemon = screen.getByTestId('pokemon-type');
     expect(typePokemon.innerHTML).toBe('Electric');
+    const textAverage = screen.getByText(/Average weight/i);
+    expect(textAverage).toBeInTheDocument();
     const valueWeight = screen.getByText(/6.0/i);
     expect(valueWeight).toBeInTheDocument();
     const measurementUnit = screen.getByText(/Kg/i);

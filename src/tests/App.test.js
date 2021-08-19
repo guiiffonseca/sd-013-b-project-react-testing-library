@@ -4,55 +4,55 @@ import userEvent from '@testing-library/user-event';
 import renderRouter from '../components/renderRouter';
 import App from '../App';
 
-Describe('Pokemon test',()=>{
+Describe('Pokemon test', () => {
   test('Testa se o topo da aplicação contém um conjunto de links de navegação', () => {
-    renderRouter=(<App />);
-      const linkHome = screen.getByRole('Link',{
-          name:'Home',
-      });
-      expect(linkHome).toBeInTheDocument();
+    renderRouter = (<App />);
+    const linkHome = screen.getByRole('Link', {
+      name: 'Home',
+    });
+    expect(linkHome).toBeInTheDocument();
   });
 
-  test('O segundo link deve possuir o texto about', () =>   {   
-      renderRouter=(<App />);
-        const linkAbout = screen.getByRole('Link',{
-          name:'About',
-        });
-      expect(linkAbout).toBeInTheDocument();
+  test('O segundo link deve possuir o texto about', () => {
+    renderRouter = (<App />);
+    const linkAbout = screen.getByRole('Link', {
+      name: 'About',
+    });
+    expect(linkAbout).toBeInTheDocument();
   });
-    
+
   test('O terceiro link deve possuir o texto Favorite Pokemons', () => {
-      renderRouter = (<App />);
-        const linkFavoritePokémons = screen.getByRole('Link',{
-          name:'Favorite Pokémons',
-        });
-      expect(linkFavoritePokémons).toBeInTheDocument();
+    renderRouter = (<App />);
+    const linkFavoritePokémons = screen.getByRole('Link', {
+      name: 'Favorite Pokémons',
+    });
+    expect(linkFavoritePokémons).toBeInTheDocument();
   });
 
   test('Teste se a aplicação é redicionada para a pagina Home', () => {
     const { history } = renderRouter(<App />);
-    const linkHome = screen.getByRole('Link',{
-        name:'Home',
+    const linkHome = screen.getByRole('Link', {
+      name: 'Home',
     });
     userEvent.click(linkHome);
     const { pathname } = history.location;
     expect(pathname).toEqual('/about');
   });
 
-  test('Teste se a aplicação é redicionada para a pagina about', () => {
+  test('Testa se a aplicação é redicionada para a pagina about', () => {
     const { history } = renderRouter(<App />);
-    const linkHome = screen.getByRole('Link',{
-        name:'Home',
+    const linkHome = screen.getByRole('Link', {
+      name: 'About',
     });
     userEvent.click(linkHome);
     const { pathname } = history.location;
     expect(pathname).toEqual('/about');
   });
 
-  test('Teste se a aplicação é redicionada para a pagina página pokemon favorites', () => {
+  test('Testa se a aplicação é redicionada para pagina página pokemon favorites', () => {
     const { history } = renderRouter(<App />);
-    const linkHome = screen.getByRole('Link',{
-        name:'Home',
+    const linkHome = screen.getByRole('Link', {
+      name: 'Favorite Pokémons',
     });
     userEvent.click(linkHome);
     const { pathname } = history.location;
@@ -65,5 +65,4 @@ Describe('Pokemon test',()=>{
     const notFound = screen.getByText('Page requested not found');
     expect(notFound).toBeInTheDocument();
   });
-    
 });

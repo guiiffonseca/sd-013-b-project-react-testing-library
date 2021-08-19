@@ -7,7 +7,7 @@ describe('Test 2- Testing about', () => {
   test('Testing if page shows information about pokedex', () => {
     renderWithRouter(<About />);
 
-    const aboutText = screen.getByText('/containing all Pokémons/i');
+    const aboutText = screen.getByText('/containing all pokémons/i');
     expect(aboutText).toBeInTheDocument();
   });
   test('Test if page have a heading H2 with text "About Pokédex"', () => {
@@ -29,6 +29,6 @@ describe('Test 2- Testing about', () => {
     renderWithRouter(<About />);
 
     const pokedexImg = screen.getByRole('img');
-    expect(pokedexImg).toStrictEqual('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(pokedexImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

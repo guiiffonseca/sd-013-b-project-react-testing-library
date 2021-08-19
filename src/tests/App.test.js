@@ -70,8 +70,12 @@ describe('Componente About funciona corretamente', () => {
     expect(pokedexInfos).toBeInTheDocument();
   });
 
-  it('', () => {
+  it('Página contém um heading h2 com o texto `About Pokédex`', () => {
+    renderWithRouter(<About />);
 
+    const aboutText = screen.getByRole('heading', { name: 'About Pokédex', level: 2 });
+
+    expect(aboutText).toBeInTheDocument();
   });
 
   it('', () => {

@@ -35,6 +35,7 @@ describe('Testa o componente Pokemon', () => {
         level: 2,
         name: /Summary/,
       }));
+      expect(window.location.pathname).toBe('/');
     });
 
   test('verifica se há uma estrela no pokemon favoritado', () => {

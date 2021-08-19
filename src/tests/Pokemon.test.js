@@ -2,7 +2,6 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../renderWithRouter';
 
 test('Pokemon.js tests - Check Pokemon details infos', () => {
@@ -37,5 +36,4 @@ test('Pokemon.js tests - Check Pokemon details infos', () => {
   const pokemonImage = screen.getAllByRole('img');
   expect(pokemonImage[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   expect(pokemonImage[0]).toHaveAttribute('alt', 'Pikachu sprite');
-
 });

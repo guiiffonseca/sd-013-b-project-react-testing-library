@@ -29,6 +29,7 @@ describe(' Teste o componente <Pokemon.js />', () => {
     // testa :
     const linkMoreDetails = screen.getByText(/More details/i);
     expect(linkMoreDetails).toBeInTheDocument();
+    expect(linkMoreDetails).toHaveAttribute('href', '/pokemons/25');
   });
 
   test('Ao clicar no link detalhes, é redirecionado para a página de detalhes', () => {

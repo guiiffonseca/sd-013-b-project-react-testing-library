@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 describe('favoritePokemons test', () => {
@@ -18,16 +18,40 @@ describe('favoritePokemons test', () => {
     expect(searchText).toBeInTheDocument();
   });
 
-  // test('Existe informações sobre Pokédex', () => {
-  //   const customHistory = createMemoryHistory();
-  //   render(
-  //     <Router history={ customHistory }>
-  //       <App />
-  //     </Router>,
-  //   );
-  //   customHistory.push('/favorites');
-  //   const image = screen.getByAltText(/Pikachu crying/);
-  //   console.log(image);
-  //   // expect(image.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
-  // });
+  test('testa se o input do more details adiciona ao favoritos', () => {
+    const customHistory = createMemoryHistory();
+    render(
+      <Router history={ customHistory }>
+        <App />
+      </Router>,
+    );
+    customHistory.push('/');
+
+    const linkDetails = screen.getByRole('link', {
+      name: /more details/i,
+    });
+    userEvent.click(linkDetails);
+
+    const searchTitle = screen.getByRole('heading', {
+      level: 2,
+      name: 'Pikachu Details',
+    });
+    expect(searchTitle).toBeInTheDocument();
+
+    const searchInput = screen.getByRole('checkbox');
+    expect(searchInput).toBeInTheDocument();
+    userEvent.click(searchInput);
+
+    const linkFavorite = screen.getByRole('link', {
+      name: /favorite pokémons/i,
+    });
+    userEvent.click(linkFavorite);
+
+    const name = screen.getByTestId('pokemon-name');
+    expect(name).toBeInTheDocument();
+    const type = screen.getByTestId('pokemon-type');
+    expect(type).toBeInTheDocument();
+    const weight = screen.getByTestId('pokemon-weight');
+    expect(weight).toBeInTheDocument();
+  });
 });

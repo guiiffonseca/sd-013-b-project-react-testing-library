@@ -1,22 +1,11 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
 import Pokemon from '../components/Pokemon';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from './util/renderWithRouter';
 import pokemons from '../data';
-import App from '../App';
+// import App from '../App';
 
-const isPokemonFavoriteById = {
-  4: false,
-  10: false,
-  23: false,
-  25: false,
-  65: false,
-  78: false,
-  143: false,
-  148: false,
-  151: false,
-};
 // {
 //   id: 25,
 //   name: 'Pikachu',

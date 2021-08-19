@@ -29,7 +29,12 @@ describe('Componente About funciona corretamente', () => {
     expect(aboutSecondParagraph).toBeInTheDocument();
   });
 
-  it('', () => {
+  it('Página contém imagem específica de uma Pokédex', () => {
+    renderWithRouter(<About />);
 
+    const pokedexImage = screen.getByRole('img', { name: 'Pokédex' });
+
+    expect(pokedexImage).toBeInTheDocument();
+    expect(pokedexImage.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

@@ -21,6 +21,7 @@ describe('3. Teste o componente <FavoritePokemons.js />', () => {
     history.push('/pokemons/25');
     const checkboxFavorite25 = screen.getByLabelText(/favoritado/i);
     userEvent.click(checkboxFavorite25);
+    // source: https://stackoverflow.com/a/55178588
     expect(checkboxFavorite25.checked).toEqual(true);
 
     history.push('/pokemons/78');

@@ -26,13 +26,18 @@ describe('3. Teste o componente <FavoritePokemons.js />', () => {
     });
     expect(pokemonTitle).toBeInTheDocument();
 
-    const checkboxFavorite = screen.getByLabelText(/favoritado/i);
-    userEvent.click(checkboxFavorite);
-    expect(checkboxFavorite.checked).toEqual(true);
+    const checkboxFavorite25 = screen.getByLabelText(/favoritado/i);
+    userEvent.click(checkboxFavorite25);
+    expect(checkboxFavorite25.checked).toEqual(true);
+
+    history.push('/pokemons/78');
+    const checkboxFavorite78 = screen.getByLabelText(/favoritado/i);
+    userEvent.click(checkboxFavorite78);
+    expect(checkboxFavorite78.checked).toEqual(true);
 
     history.push('/favorites');
 
-    const msgIconFavorite = screen.getByAltText(/is marked as favorite/i);
-    expect(msgIconFavorite).toBeInTheDocument();
+    const msgIconFavorite = screen.getAllByAltText(/is marked as favorite/i);
+    expect(msgIconFavorite.length).toBe(2);
   });
 });

@@ -23,17 +23,17 @@ describe('Testa o componente Pokemon', () => {
   test('verifica se há um link com id do pokemon e se redireciona para a página correta',
     () => {
       const { history } = renderWithRouter(<App />);
-
+      const POKEMON_LINK = '/pokemons/25';
       const moreDetailsLink = screen.getByText('More details');
-      expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
+      expect(moreDetailsLink).toHaveAttribute('href', POKEMON_LINK);
       userEvent.click(moreDetailsLink);
-      history.push('/pokemons/25');
+      history.push(POKEMON_LINK);
       expect(screen.getByRole('heading', {
         level: 2,
         name: /Summary/,
       }));
       const { location: { pathname } } = history;
-      expect(pathname).toBe('/pokemons/25');
+      expect(pathname).toBe(POKEMON_LINK);
     });
 
   test('verifica se há uma estrela no pokemon favoritado', () => {

@@ -2,10 +2,11 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import RenderWithRouter from './utils/RenderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 describe('Testa pagina Not Found', () => {
   test('Testa se existe texto Not Fund na pagina', () => {
-    const { history } = RenderWithRouter(<App />);
+    const { history } = RenderWithRouter(<App pokemons={ pokemons } />);
     history.push('/testeTeste');
 
     const noFoundText = screen.getByText('Page requested not found');

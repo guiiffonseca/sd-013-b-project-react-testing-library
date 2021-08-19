@@ -2,7 +2,8 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
-import pokemons from '../data';
+import App from '../App';
+import userEvent from '@testing-library/user-event';
 
 describe('Test 3 - Testing Favorite Pokemons ', () => {
   it('Test if "No favorite pokemon found" is shown', () => {
@@ -13,10 +14,18 @@ describe('Test 3 - Testing Favorite Pokemons ', () => {
   });
 
   it('Test if favorites pokemons are on the screen', () => {
-    renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
+    renderWithRouter(<App />);
 
-    const favoritePokemons = screen.getAllByTestId('pokemon-name');
-    expect(favoritePokemons).toBeInTheDocument();
-    expect(favoritePokemons.length).not.toBe(0);
+    const moreDetails = screen.getByText(/More details/i);
+    userEvent.click(moreDetails);
+
+    const favoriteSelect = screen.getByRole('checkbox');
+    userEvent.click(favoriteSelect);
+
+    const favoritePokemons = screen.getByText(/Favorite pokémons/i);
+    userEvent.click(favoritePokemons);
+
+    const pokemonCard = screen.getByTestId('pokemon-name');
+    expect(pokemonCard).toBeInTheDocument();
   });
 });

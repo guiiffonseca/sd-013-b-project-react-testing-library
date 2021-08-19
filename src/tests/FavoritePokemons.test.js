@@ -25,7 +25,7 @@ describe('Test 3 - Testing Favorite Pokemons ', () => {
     const favoritePokemons = screen.getByText(/Favorite pokémons/i);
     userEvent.click(favoritePokemons);
 
-    const pokemonCard = screen.getByTestId('pokemon-name');
-    expect(pokemonCard).toBeInTheDocument();
+    const pokemonText = screen.getByText(/Average weight:/i);
+    expect(pokemonText).toBeInTheDocument();
   });
 });

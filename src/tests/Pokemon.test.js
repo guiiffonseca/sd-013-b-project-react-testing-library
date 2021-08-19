@@ -36,6 +36,7 @@ describe('Testando o "Pokemon"', () => {
     />);
     const nameDetailsPokemon = screen.getByTestId('pokemon-name');
     expect(nameDetailsPokemon).toBeInTheDocument();
+    expect(nameDetailsPokemon).toHaveTextContent(`${pokemons[0].name}`);
 
     const typeDetailsPokemon = screen.getByTestId('pokemon-type');
     expect(typeDetailsPokemon).toBeInTheDocument();

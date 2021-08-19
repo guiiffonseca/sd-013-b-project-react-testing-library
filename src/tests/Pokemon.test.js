@@ -20,7 +20,7 @@ describe('Requisito 6', () => {
       `Average weight: ${Pokemon.averageWeight.value}
        ${Pokemon.averageWeight.measurementUnit}`,
     )).toBeInTheDocument();
-  
+
     expect(screen.getByRole('img', {
       name: `${Pokemon.name} sprite`,
     })).toHaveAttribute('src', Pokemon.image);

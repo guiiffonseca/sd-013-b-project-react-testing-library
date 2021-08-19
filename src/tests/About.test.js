@@ -22,7 +22,7 @@ describe('Test 2- Testing about', () => {
   test('Test if page has 2 paragraphs', () => {
     renderWithRouter(<About />);
 
-    const aboutParaphs = screen.getByRole('/pokemons/i');
+    const aboutParaphs = screen.getAllByText('/pokemons/i');
     expect(aboutParaphs).toHaveLength(2);
   });
   test('Test if images of pokedex are shown', () => {

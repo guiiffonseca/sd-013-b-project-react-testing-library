@@ -19,13 +19,6 @@ describe('3. Teste o componente <FavoritePokemons.js />', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/pokemons/25');
-
-    const pokemonTitle = screen.getByRole('heading', {
-      level: 2,
-      name: /Details/i,
-    });
-    expect(pokemonTitle).toBeInTheDocument();
-
     const checkboxFavorite25 = screen.getByLabelText(/favoritado/i);
     userEvent.click(checkboxFavorite25);
     expect(checkboxFavorite25.checked).toEqual(true);
@@ -36,7 +29,6 @@ describe('3. Teste o componente <FavoritePokemons.js />', () => {
     expect(checkboxFavorite78.checked).toEqual(true);
 
     history.push('/favorites');
-
     const msgIconFavorite = screen.getAllByAltText(/is marked as favorite/i);
     expect(msgIconFavorite.length).toBe(2);
   });

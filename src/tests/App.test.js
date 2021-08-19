@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
@@ -19,17 +18,13 @@ describe('Testando o componente <App.js />', () => {
     // pego os links dentro de nav
     const InternalLinks = within(navigation).getAllByRole('link');
 
-    /* const homeLink = InternalLinks[0];
-    const aboutLink = InternalLinks[1];
-    const favoriteLink = InternalLinks[2]; */
-
     // checo se existe no HTML, o elemento <nav>
     expect(navigation).toBeInTheDocument();
     // checo se número de links dentro de nav é igual a 3
     expect(InternalLinks.length).toBe(TOTAL_LINKS);
   });
 
-  test('O primeiro link deve possuir o texto Home.', () => {
+  test('Os links devem conter Home, About e Favorite Pokémons.', () => {
     render(
       <MemoryRouter>
         <App />
@@ -44,7 +39,7 @@ describe('Testando o componente <App.js />', () => {
     expect(linkFavorites).toBeInTheDocument();
   });
 
-  test('exibe o texto página não encontrada, quando digitar uma rota inválida', () => {
+  test('Exibe o texto "Page requested not found", ao digitar uma rota inválida', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/rota-nao-existente');
@@ -56,15 +51,4 @@ describe('Testando o componente <App.js />', () => {
 
     expect(pageNotFoundText).toBeInTheDocument();
   });
-
-  // const linkHome = screen.getByText('Home');
-  // const linkAbout = screen.getByText('About');
-  // const linkFavorites = screen.getByText('Favorite Pokémons');
-  // test('O segundo link deve possuir o texto About.', () => {
-  //   expect(linkAbout).toBeInTheDocument();
-  // });
-
-  // test('O terceiro link deve possuir o texto Favorite Pokémons.', () => {
-  //   expect(linkFavorites).toBeInTheDocument();
-  // });
 });

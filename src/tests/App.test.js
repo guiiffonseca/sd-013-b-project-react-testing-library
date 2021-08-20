@@ -10,12 +10,12 @@ describe('Testa se o App.js possui links por nome e redirecionamento.', () => {
     const home = screen.getByText(/home/i);
     const favorite = screen.getByText(/favorite/i);
     const about = screen.getByText(/about/i);
-   
+
     expect(home).toBeDefined();
     expect(favorite).toBeDefined();
     expect(about).toBeDefined();
     // expect(homePath).toBe('/');
-    
+
     userEvent.click(favorite);
     expect(history.location.pathname).toBe('/favorites');
     userEvent.click(home);
@@ -23,7 +23,7 @@ describe('Testa se o App.js possui links por nome e redirecionamento.', () => {
     userEvent.click(about);
     expect(history.location.pathname).toBe('/about');
 
-    history.push('/notFound'); 
+    history.push('/notFound');
     const notFound = screen.getByText(/not found/i);
     expect(notFound).toBeInTheDocument();
   });

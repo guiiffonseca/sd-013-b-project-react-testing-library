@@ -13,7 +13,10 @@ describe('Página NotFound funciona corretamente', () => {
     expect(notFoundMessage).toBeInTheDocument();
   });
 
-  it('', () => {
+  it('Página mostra imagem específica', () => {
+    renderWithRouter(<NotFound />);
 
+    const cryingPikachu = screen.getByRole('img', { name: /Pikachu crying/ });
+    expect(cryingPikachu.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

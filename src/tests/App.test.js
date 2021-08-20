@@ -73,7 +73,7 @@ describe('Application navigation links testing', () => {
     });
     expect(favoritePage).toBeInTheDocument();
   });
-  it('"Favorite Pokémons" link redirects to "/" path', () => {
+  it('unknown URL redirects to "NotFound" path', () => {
     const customHistory = createMemoryHistory();
     render(
       <Router history={ customHistory }>

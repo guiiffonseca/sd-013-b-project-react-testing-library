@@ -8,7 +8,7 @@ import App from '../App';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
-const helper = (index, click) => {
+const clickGenerator = (index, click) => {
   let number = 0;
   if (index > number) { click(); }
   number += 1;
@@ -27,7 +27,7 @@ const helper = (index, click) => {
   if (index > number) { click(); }
 };
 describe('6 - Test component \'Pokemon\'', () => {
-  test('find all data-testids when anyPokemon is rendered', () => {
+  test('find all data-testids, weight and image when a Pokemon is rendered', () => {
     renderWithRouter(<App />);
     pokemons.forEach((pokemon) => {
       const pokemonName = screen.getByTestId('pokemon-name');
@@ -39,7 +39,6 @@ describe('6 - Test component \'Pokemon\'', () => {
       });
       expect(pokemonName).toHaveTextContent(`${pokemon.name}`);
       expect(pokemonType).toHaveTextContent(`${pokemon.type}`);
-      expect(img).toBeDefined();
       expect(img).toHaveProperty('alt', `${pokemon.name} sprite`);
       expect(img.src).toStrictEqual(`${pokemon.image}`);
       const { averageWeight: { value, measurementUnit } } = pokemon;
@@ -52,15 +51,13 @@ describe('6 - Test component \'Pokemon\'', () => {
     });
   });
   pokemons.forEach((pokemon, index) => {
-    test('find all data-testids when anyPokemon is rendered', () => {
+    test('check details link of every pokemon', () => {
       const { history } = renderWithRouter(<App />);
       const nextPokemon = screen.getByRole('button', { name: /Próximo pokémon/i });
       const click = () => {
         userEvent.click(nextPokemon);
       };
-
-      helper(index, click);
-
+      clickGenerator(index, click);
       const linkDetails = screen.getByRole('link', { name: /more details/i });
       userEvent.click(linkDetails);
       expect(linkDetails).toHaveTextContent('More details');
@@ -71,10 +68,9 @@ describe('6 - Test component \'Pokemon\'', () => {
     });
   });
   pokemons.forEach((pokemon) => {
-    test(`find all data-testids when ${pokemon.name} is rendered`, () => {
+    test('check if a star appears when a pokemon is marked as favorite', () => {
       renderWithRouter(<FavoritePokemons pokemons={ pokemons } isFavorite />);
       const favoriteImage = screen.getByAltText(`${pokemon.name} is marked as favorite`);
-      expect(favoriteImage.alt).toStrictEqual(`${pokemon.name} is marked as favorite`);
       expect(favoriteImage).toHaveAttribute('src', '/star-icon.svg');
     });
   });

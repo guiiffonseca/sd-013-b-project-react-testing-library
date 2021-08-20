@@ -10,24 +10,21 @@ describe('Testa se o App.js possui links por nome e redirecionamento.', () => {
     const home = screen.getByText(/home/i);
     const favorite = screen.getByText(/favorite/i);
     const about = screen.getByText(/about/i);
-    const homePath = history.location.pathname;
-    const favoritePath = history.location.pathname;
-    const aboutPath = history.location.pathname;
-    const notFound = screen.getByText(/not found/i);
-
+   
     expect(home).toBeDefined();
     expect(favorite).toBeDefined();
     expect(about).toBeDefined();
-    expect(homePath).toBe('/');
-
-    userEvent.click(home);
-    expect(homePath).toBe('/');
+    // expect(homePath).toBe('/');
+    
     userEvent.click(favorite);
-    expect(favoritePath).toBe('/favorites');
+    expect(history.location.pathname).toBe('/favorites');
+    userEvent.click(home);
+    expect(history.location.pathname).toBe('/');
     userEvent.click(about);
-    expect(aboutPath).toBe('/about');
+    expect(history.location.pathname).toBe('/about');
 
-    history.push('/notFound');
+    history.push('/notFound'); 
+    const notFound = screen.getByText(/not found/i);
     expect(notFound).toBeInTheDocument();
   });
 });

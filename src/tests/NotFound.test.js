@@ -5,15 +5,7 @@ import { createMemoryHistory } from 'history';
 import App from '../App';
 
 describe('"Not Found" page testing ', () => {
-  // beforeEach(() => {
-  //   const customHistory = createMemoryHistory();
-  //   render(
-  //     <Router history={ customHistory }>
-  //       <App />
-  //     </Router>,
-  //   );
-  // });
-  it('unknown URL redirects to "NotFound" path', () => {
+  beforeEach(() => {
     const customHistory = createMemoryHistory();
     render(
       <Router history={ customHistory }>
@@ -21,6 +13,8 @@ describe('"Not Found" page testing ', () => {
       </Router>,
     );
     customHistory.push('/nonexistent-route');
+  });
+  it('unknown URL redirects to "NotFound" path', () => {
     const pageNotFound = screen.getByRole('heading', {
       level: 2,
       name: /Page requested not found Crying emoji/i,
@@ -28,13 +22,6 @@ describe('"Not Found" page testing ', () => {
     expect(pageNotFound).toBeInTheDocument();
   });
   it('contains Pikachu gif', () => {
-    const customHistory = createMemoryHistory();
-    render(
-      <Router history={ customHistory }>
-        <App />
-      </Router>,
-    );
-    customHistory.push('/nonexistent-route');
     const pikachuImg = screen.getAllByRole('img');
     expect(pikachuImg[1])
       .toHaveAttribute(

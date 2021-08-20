@@ -43,7 +43,7 @@ describe('Testing PokemonDetails.js component', () => {
   test('If there is a section on the page with maps', () => {
     const moreDetails = screen.getByRole('link', { name: /more details/i });
     userEvent.click(moreDetails);
-    const { name } = pokemons[0];
+    const { name, foundAt } = pokemons[0];
 
     const mapLocation = screen.getByRole('heading', {
       level: 2,
@@ -51,6 +51,14 @@ describe('Testing PokemonDetails.js component', () => {
     });
     expect(mapLocation).toBeInTheDocument();
     expect(mapLocation).toHaveTextContent(`Game Locations of ${name}`);
+
+    const maps = screen.getAllByAltText(`${name} location`);
+
+    foundAt.forEach(({ map, location }, index) => {
+      const locationText = screen.getByText(location);
+      expect(locationText).toBeInTheDocument();
+      expect(maps[index]).toHaveAttribute('src', map);
+    });
   });
 
   test('If the user can bookmark a pokemon', () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import renderWithRouter from './router/renderWithRouter';
+// import userEvent from '@testing-library/user-event';
+// import renderWithRouter from './router/renderWithRouter';
 import App from '../App';
 
 describe('Testa o componente Pokemon', () => {

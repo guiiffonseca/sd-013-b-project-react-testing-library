@@ -4,6 +4,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 // import Pokemon from '../components/Pokemon';
 import App from '../App';
+import pokemons from '../data';
 
 describe(' Teste o componente <Pokemon.js />', () => {
   test('Card renderiza as informações de determinado pokémon.', () => {
@@ -17,7 +18,11 @@ describe(' Teste o componente <Pokemon.js />', () => {
     expect(typePokemon).toHaveTextContent('Electric');
 
     const weightPokemon = screen.getByTestId('pokemon-weight');
-    expect(weightPokemon).toHaveTextContent(/6.0/i);
+
+    // Destructurando o arquivo de pokemons;
+    const { averageWeight: { value, measurementUnit } } = pokemons[0];
+    expect(weightPokemon)
+      .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
 
     const imagePokemon = screen.getByAltText(/sprite/i);
     expect(imagePokemon.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');

@@ -1,4 +1,4 @@
-import { screen, render, getByLabelText } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';

@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 // Requisito 1
-// Tentando arrumar o bug no Lint
+
 test('if it renders a Home link', () => {
   const { getByText } = renderWithRouter(<App />);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
-import { FavoritePokemons, PokemonDetails } from '../components';
+import { FavoritePokemons } from '../components';
 
 test('se mostra No favorite pokemon found, quando não tiver pokémon favoritos', () => {
   renderWithRouter(<FavoritePokemons />);

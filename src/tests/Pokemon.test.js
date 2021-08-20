@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
+import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
 describe('6 - Test component \'Pokemon\'', () => {
@@ -36,12 +37,17 @@ describe('6 - Test component \'Pokemon\'', () => {
       expect(linkDetails).toHaveTextContent('More details');
       const { location: { pathname } } = history;
       expect(pathname).toBe(`/pokemons/${pokemon.id}`);
-      const favoriteCheck = screen.getByRole('checkbox', { id: /favorite/i });
-      userEvent.click(favoriteCheck);
-      expect(favoriteCheck.checked).toBe(true);
+      // const favoriteCheck = screen.getByRole('checkbox', { id: /favorite/i });
+      // userEvent.click(favoriteCheck);
+    });
+    return index;
+  });
+  pokemons.map((pokemon, index) => {
+    test(`find all data-testids when ${pokemon.name} is rendered`, () => {
+      renderWithRouter(<FavoritePokemons pokemons={ pokemons } isFavorite />);
       const favoriteImage = screen.getByAltText(`${pokemon.name} is marked as favorite`);
       expect(favoriteImage.alt).toStrictEqual(`${pokemon.name} is marked as favorite`);
-      expect(favoriteImage.src).toBe('http://localhost/star-icon.svg');
+      expect(favoriteImage).toHaveAttribute('src', '/star-icon.svg');
     });
     return index;
   });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -7,33 +7,33 @@ import App from '../App';
 // Requisito 1
 
 test('if it renders a Home link', () => {
-  const { getByText } = renderWithRouter(<App />);
+  renderWithRouter(<App />);
 
-  const home = getByText(/Home/);
+  const home = screen.getByText(/Home/);
 
   expect(home).toBeInTheDocument();
 });
 
 test('if it renders an About link', () => {
-  const { getByText } = renderWithRouter(<App />);
+  renderWithRouter(<App />);
 
-  const about = getByText(/About/);
+  const about = screen.getByText(/About/);
 
   expect(about).toBeInTheDocument();
 });
 
 test('if it renders a Favorite Pokémons link', () => {
-  const { getByText } = renderWithRouter(<App />);
+  renderWithRouter(<App />);
 
-  const favorite = getByText(/Favorite Pokémons/);
+  const favorite = screen.getByText(/Favorite Pokémons/);
 
   expect(favorite).toBeInTheDocument();
 });
 
 test('if the Home link leads to the Home Page', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  const { history } = renderWithRouter(<App />);
 
-  const home = getByText(/Home/);
+  const home = screen.getByText(/Home/);
 
   fireEvent.click(home);
   const { pathname } = history.location;
@@ -41,9 +41,9 @@ test('if the Home link leads to the Home Page', () => {
 });
 
 test('if the Home link leads to the About Page', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  const { history } = renderWithRouter(<App />);
 
-  const home = getByText(/About/);
+  const home = screen.getByText(/About/);
 
   fireEvent.click(home);
   const { pathname } = history.location;
@@ -51,9 +51,9 @@ test('if the Home link leads to the About Page', () => {
 });
 
 test('if the Home link leads to the Favorite Pokémons Page', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  const { history } = renderWithRouter(<App />);
 
-  const home = getByText(/Favorite Pokémons/);
+  const home = screen.getByText(/Favorite Pokémons/);
 
   fireEvent.click(home);
   const { pathname } = history.location;
@@ -61,14 +61,14 @@ test('if the Home link leads to the Favorite Pokémons Page', () => {
 });
 
 test('if the Home link leads to the NotFound Page', () => {
-  const { getByLabelText, getByAltText, history } = renderWithRouter(<App />);
+  const { history } = renderWithRouter(<App />);
 
   history.push('/nada');
 
-  const cryingEmoji = getByLabelText('Crying emoji');
+  const cryingEmoji = screen.getByLabelText('Crying emoji');
   expect(cryingEmoji).toBeInTheDocument();
 
-  const sadPikachu = getByAltText(
+  const sadPikachu = screen.getByAltText(
     'Pikachu crying because the page requested was not found',
   );
   expect(sadPikachu.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');

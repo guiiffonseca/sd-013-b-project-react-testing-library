@@ -22,8 +22,10 @@ describe('Testa o About.js', () => {
   });
 
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const elementP = screen.getAllByTestId('p-element');
-    expect(elementP.length).toBe(2);
+    const firstP = screen.getByText(/This application simulates/i);
+    expect(firstP).toBeInTheDocument();
+    const secondP = screen.getByText(/One can filter Pokémons/i);
+    expect(secondP).toBeInTheDocument();
   });
 
   test('Teste se a página contém a seguinte imagem de uma Pokédex:', () => {

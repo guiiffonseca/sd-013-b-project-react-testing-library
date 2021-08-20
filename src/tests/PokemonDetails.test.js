@@ -32,12 +32,18 @@ describe('Testing PokemonDetails.js component', () => {
   test('If it contains a heading h2 with the text Summary', () => {
     const moreDetails = screen.getByRole('link', { name: /more details/i });
     userEvent.click(moreDetails);
+    const { summary } = pokemons[0];
 
-    const summary = screen.getByRole('heading', {
+    const summaryTitle = screen.getByRole('heading', {
       level: 2,
       name: /summary/i,
     });
-    expect(summary).toBeInTheDocument();
+
+    const text = screen.getByText(summary);
+    expect(summaryTitle).toBeInTheDocument();
+    expect(summaryTitle).toHaveTextContent(/summary/i);
+    expect(text).toBeInTheDocument();
+    expect(text).toHaveTextContent(summary);
   });
 
   test('If there is a section on the page with maps', () => {

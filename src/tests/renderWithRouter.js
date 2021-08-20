@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-import { render } from '@testing=library/react';
+import { render } from '@testing-library/react';
 
 const renderWithrouter = (component) => {
   const history = createMemoryHistory();

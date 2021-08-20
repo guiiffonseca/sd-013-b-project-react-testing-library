@@ -1,8 +1,8 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '.renderWithRouter';
+import renderWithRouter from './renderWithRouter';
+import App from '../App';
 
 describe('Testa se o App.js possui links por nome e redirecionamento.', () => {
   test('Teste que verifica a existência dos links', () => {
@@ -21,12 +21,12 @@ describe('Testa se o App.js possui links por nome e redirecionamento.', () => {
     expect(mainPath).toBe('/');
 
     userEvent.click(home);
-    expect(homePath).toBe('/')
+    expect(homePath).toBe('/');
     userEvent.click(favorite);
     expect(favoritePath).toBe('/favorites');
     userEvent.click(about);
     expect(aboutPath).toBe('/about');
-    
+
     history.push('/notFound');
     expect(notFound).toBeInTheDocument();
   });

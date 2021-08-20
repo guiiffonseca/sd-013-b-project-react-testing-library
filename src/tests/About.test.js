@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import RouterMemory from './RouterMemory';
 import About from '../components/About';
 
-describe('Testando o About.js', () => {
+describe('Requisito 2', () => {
   test('se a página contém as informações sobre a Pokédex', () => {
     RouterMemory(<About />);
 

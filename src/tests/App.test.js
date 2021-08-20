@@ -40,7 +40,7 @@ test('if the Home link leads to the Home Page', () => {
   expect(pathname).toBe('/');
 });
 
-test('if the Home link leads to the About Page', () => {
+test('if the About link leads to the About Page', () => {
   const { history } = renderWithRouter(<App />);
 
   const home = screen.getByText(/About/);
@@ -50,7 +50,7 @@ test('if the Home link leads to the About Page', () => {
   expect(pathname).toBe('/about');
 });
 
-test('if the Home link leads to the Favorite Pokémons Page', () => {
+test('if the Favorites link leads to the Favorite Pokémons Page', () => {
   const { history } = renderWithRouter(<App />);
 
   const home = screen.getByText(/Favorite Pokémons/);
@@ -60,7 +60,7 @@ test('if the Home link leads to the Favorite Pokémons Page', () => {
   expect(pathname).toBe('/favorites');
 });
 
-test('if the Home link leads to the NotFound Page', () => {
+test('if there is a default NotFound Page', () => {
   const { history } = renderWithRouter(<App />);
 
   history.push('/nada');

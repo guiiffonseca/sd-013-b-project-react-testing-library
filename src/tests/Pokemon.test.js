@@ -37,27 +37,18 @@ describe('6 - Test component \'Pokemon\'', () => {
         src: `${pokemon.image}`,
         alt: `${pokemon.name}`,
       });
-      expect(pokemonName).toBeDefined();
+      expect(pokemonName).toHaveTextContent(`${pokemon.name}`);
       expect(pokemonType).toHaveTextContent(`${pokemon.type}`);
-      expect(pokemonWeight).toBeDefined();
       expect(img).toBeDefined();
       expect(img).toHaveProperty('alt', `${pokemon.name} sprite`);
       expect(img.src).toStrictEqual(`${pokemon.image}`);
-      expect(pokemonWeight).toHaveTextContent(
-        `${pokemonWeight.innerHTML}`,
+      const { averageWeight: { value, measurementUnit } } = pokemon;
+      expect(pokemonWeight.innerHTML).toStrictEqual(
+        `Average weight: ${value} ${measurementUnit}`,
       );
-      // const linkDetails = screen.getByRole('link', { name: /more details/i });
-      // userEvent.click(linkDetails);
-      // expect(linkDetails).toHaveTextContent('More details');
-      // const { location: { pathname } } = history;
-      // expect(pathname).toBe(`/pokemons/${pokemon.id}`);
-      // const Home = screen.getByRole('link', { name: /home/i });
-      // userEvent.click(Home);
+
       const nextPokemon = screen.getByRole('button', { name: /Próximo pokémon/i });
       userEvent.click(nextPokemon);
-
-      // const favoriteCheck = screen.getByRole('checkbox', { id: /favorite/i });
-      // userEvent.click(favoriteCheck);
     });
   });
   pokemons.forEach((pokemon, index) => {

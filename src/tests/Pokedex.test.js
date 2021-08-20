@@ -51,11 +51,3 @@ test('Deve existir um botao de nome All', () => {
   const pikachu = screen.getByText(/Pikachu/i);
   expect(pikachu).toBeInTheDocument();
 });
-
-// test('Teste do botao filtro', () => {
-//   renderWithRouter(<App />);
-//   const filterButton = screen.getByRole('button', {
-//     name: 'All',
-//   });
-
-// })

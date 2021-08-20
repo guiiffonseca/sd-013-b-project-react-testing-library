@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import { FavoritePokemons } from '../components';
 import App from '../App';
 
-describe('Favorite Pokemons funciona corretamente', () => {
+describe('Página Favorite Pokemons funciona corretamente', () => {
   it('Exibe `No favorite pokemon found` quando não há pokemons favoritados', () => {
     renderWithRouter(<FavoritePokemons />);
 

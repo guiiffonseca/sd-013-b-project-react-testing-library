@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Componente App funciona corretamente', () => {
+describe('Aplicação funciona corretamente', () => {
   it('Existe um conjunto de links no topo da navegação', () => {
     renderWithRouter(<App />);
 

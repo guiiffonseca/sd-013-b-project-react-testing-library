@@ -14,11 +14,6 @@ describe('"Pokédex" page testing', () => {
     );
   });
   it('contains "h2" with text "Encountered pokémons"', () => {
-    // render(
-    //   <MemoryRouter>
-    //     <App />
-    //   </MemoryRouter>,
-    // );
     const headingText = screen.getByRole('heading', {
       level: 2,
       name: /encountered pokémons/i,

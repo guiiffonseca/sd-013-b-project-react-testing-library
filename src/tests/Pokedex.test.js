@@ -8,7 +8,8 @@ describe('Página Pokedex funciona corretamente', () => {
   it('Página contém um heading h2 com o texto Encountered pokémons', () => {
     renderWithRouter(<App />);
 
-    const pokedexText = screen.getByRole('heading', { name: 'Encountered pokémons' });
+    const pokedexText = screen.getByRole('heading',
+      { name: 'Encountered pokémons', level: 2 });
     expect(pokedexText).toBeInTheDocument();
   });
   it('Exibe o próximo Pokémon da lista quando o botão Próximo pokémon é clicado', () => {
@@ -59,12 +60,17 @@ describe('Página Pokedex funciona corretamente', () => {
 
     buttonsText.forEach((text) => {
       expect(screen.getByRole('button', { name: `${text}` })).toBeInTheDocument();
+      expect(screen.getAllByRole('button', { name: `${text}` }).length).toBe(1);
       expect(screen.getByRole('button', { name: defaultFilter })).toBeInTheDocument();
     });
-
-    const fireFilter = screen.getByRole('button', { name: buttonsText[2] });
-    userEvent.click(fireFilter);
-    expect(nextPoke.disabled).toBe(false);
+    // Really proud about that one 👇
+    buttonsText.forEach((text) => {
+      userEvent.click(screen.getByRole('button', { name: `${text}` }));
+      if (nextPoke.disabled === false && text !== 'All') {
+        userEvent.click(nextPoke);
+        expect(screen.getByTestId('pokemon-type')).toHaveTextContent(text);
+      }
+    });
   });
   it('Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
@@ -97,6 +103,5 @@ describe('Página Pokedex funciona corretamente', () => {
       expect(screen.getByText(`${pokemon}`)).toBeInTheDocument();
       userEvent.click(nextPoke);
     });
-
   });
 });

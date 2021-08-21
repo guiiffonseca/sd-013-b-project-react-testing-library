@@ -18,8 +18,6 @@ describe('Teste do componente FavoritePokemons.js', () => {
     userEvent.click(moreDetails);
     const clickFavorite = screen.getByRole('checkbox');
     userEvent.click(clickFavorite);
-    const favoritePokemons = screen.getByText(/Favorite Pokémons/i);
-    userEvent.click(favoritePokemons);
     const weigth = screen.getByText(/Average weight:/i);
     expect(weigth).toBeInTheDocument();
   });

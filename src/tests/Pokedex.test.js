@@ -63,7 +63,7 @@ describe('Página Pokedex funciona corretamente', () => {
       expect(screen.getAllByRole('button', { name: `${text}` }).length).toBe(1);
       expect(screen.getByRole('button', { name: defaultFilter })).toBeInTheDocument();
     });
-    // Really proud about that one 👇
+    // Really proud about that one
     buttonsText.forEach((text) => {
       userEvent.click(screen.getByRole('button', { name: `${text}` }));
       if (nextPoke.disabled === false && text !== 'All') {

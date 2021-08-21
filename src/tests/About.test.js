@@ -4,7 +4,7 @@ import renderWithRouter from './utils/renderWithRouter';
 import About from '../components/About';
 
 describe('About.js tests.', () => {
-  test(`Ao entrar na página verifica contém um 
+  it(`Ao entrar na página verifica contém um 
   heading h2 com o texto About Pokédex.`, () => {
     renderWithRouter(<About />);
 
@@ -16,7 +16,7 @@ describe('About.js tests.', () => {
     expect(AboutPokedexText).toBeInTheDocument();
   });
 
-  test(`Ao entrar na página verifica se a página contém 
+  it(`Ao entrar na página verifica se a página contém 
   dois parágrafos com texto sobre a Pokédex`, () => {
     renderWithRouter(<About />);
 
@@ -27,12 +27,13 @@ describe('About.js tests.', () => {
     expect(infoPokedexTextP2).toBeInTheDocument();
   });
 
-  test('Ao entrar na página verifica se a página contém a imagem de uma Pokédex.', () => {
+  it('Ao entrar na página verifica se a página contém a imagem de uma Pokédex.', () => {
     renderWithRouter(<About />);
+    /* referência: https://dev.to/raphaelchaula/a-simple-image-test-in-react-3p6f */
 
     const Url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const imgPokedex = screen.getByRole('img');
 
-    const imgPokédex = screen.getByRole('img');
-    expect(imgPokédex).toHaveAttribute('src', Url);
+    expect(imgPokedex).toHaveAttribute('src', Url);
   });
 });

@@ -55,13 +55,48 @@ describe('Página Pokedex funciona corretamente', () => {
       'Normal',
       'Dragon',
     ];
+    const defaultFilter = buttonsText[0];
 
     buttonsText.forEach((text) => {
       expect(screen.getByRole('button', { name: `${text}` })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: defaultFilter })).toBeInTheDocument();
     });
 
     const fireFilter = screen.getByRole('button', { name: buttonsText[2] });
     userEvent.click(fireFilter);
     expect(nextPoke.disabled).toBe(false);
+  });
+  it('Pokédex contém um botão para resetar o filtro', () => {
+    renderWithRouter(<App />);
+
+    const defaultFilter = screen.getByRole('button', { name: 'All' });
+    const nextPoke = screen.getByRole('button', { name: /próximo pokémon/i });
+
+    expect(defaultFilter).toBeInTheDocument();
+
+    const Pokemons = [
+      'Pikachu',
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Mew',
+      'Rapidash',
+      'Snorlax',
+      'Dragonair',
+      'Pikachu',
+    ];
+
+    Pokemons.forEach((pokemon) => {
+      expect(screen.getByText(`${pokemon}`)).toBeInTheDocument();
+      userEvent.click(nextPoke);
+    });
+
+    userEvent.click(defaultFilter);
+    Pokemons.forEach((pokemon) => {
+      expect(screen.getByText(`${pokemon}`)).toBeInTheDocument();
+      userEvent.click(nextPoke);
+    });
+
   });
 });

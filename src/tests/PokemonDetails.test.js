@@ -16,6 +16,11 @@ describe('Teste do componente pokemonDetails', () => {
       level: 2,
       name: 'Summary',
     });
+    const gameLoc = screen.getByRole('heading', {
+      level: 2,
+      name: 'Game Locations of Pikachu',
+    });
+    expect(gameLoc).toBeInTheDocument();
     expect(heading).toBeInTheDocument();
     const sumary = screen.getByText(/This intelligent Pokémon/i);
     const pFavoritado = screen.getByLabelText('Pokémon favoritado?');

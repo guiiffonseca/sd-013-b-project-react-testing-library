@@ -4,23 +4,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
-
-function nextElementByButton(btnName, name, type, weight) {
-  renderWithRouter(<App />);
-
-  const btn = screen.getByRole('button', {
-    name: btnName,
-  });
-  const pokemonName = screen.getByTestId('pokemon-name');
-  const pokemonType = screen.getByTestId('pokemon-type');
-  const pokemonWeight = screen.getByTestId('pokemon-weight');
-
-  expect(btn).toBeInTheDocument();
-  userEvent.click(btn);
-  expect(pokemonName).toHaveTextContent(name);
-  expect(pokemonType).toHaveTextContent(type);
-  expect(pokemonWeight).toHaveTextContent(`Average weight: ${weight} kg`);
-}
+import nextElementByButton from './utils/nextElementByButton';
 
 describe('Testando o componente <Pokedex.js />', () => {
   test('Testa se página contém um heading h2 com o texto "Encountered pokémons"', () => {

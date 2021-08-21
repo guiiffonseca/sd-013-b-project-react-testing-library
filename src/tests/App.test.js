@@ -1,13 +1,7 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
-
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({ ...render(<Router history={ history }>{component}</Router>), history });
-};
 
 test('o primeiro link encontrado deve ter o texto Home', () => {
   render(

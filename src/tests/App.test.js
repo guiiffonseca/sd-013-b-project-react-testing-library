@@ -37,7 +37,7 @@ describe('Testando App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  test('Teste se a aplicação é redirecionada para a'
+  test('Se a aplicação é redirecionada para a'
   + 'página de About, na URL /about, ao clicar no link About da barra de navegação.',
   () => {
     const { history } = renderWithRouter(<App />);
@@ -47,7 +47,7 @@ describe('Testando App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('Teste se a aplicação é redirecionada para a'
+  test('Se a aplicação é redirecionada para a'
   + 'página de About, na URL /about, ao clicar no link About da barra de navegação.',
   () => {
     const { history } = renderWithRouter(<App />);

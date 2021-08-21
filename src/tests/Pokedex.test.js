@@ -13,20 +13,55 @@ describe('Página Pokedex funciona corretamente', () => {
   });
   it('Exibe o próximo Pokémon da lista quando o botão Próximo pokémon é clicado', () => {
     renderWithRouter(<App />);
-    const nextPokeBtn = screen.getByTestId('next-pokemon');
+    const nextPokeBtn = screen.getByRole('button', { name: /próximo pokémon/i });
 
     expect(nextPokeBtn).toBeInTheDocument();
 
-    userEvent.click(nextPokeBtn);
-    expect(screen.getByText('Charmander')).toBeInTheDocument();
+    const Pokemons = [
+      'Pikachu',
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Mew',
+      'Rapidash',
+      'Snorlax',
+      'Dragonair',
+      'Pikachu',
+    ];
 
-    userEvent.click(nextPokeBtn);
-    expect(screen.getByText('Caterpie')).toBeInTheDocument();
+    Pokemons.forEach((pokemon) => {
+      expect(screen.getByText(pokemon)).toBeInTheDocument();
+      userEvent.click(nextPokeBtn);
+    });
   });
-  it('', () => {
+  it('É mostrado apenas um Pokémon por vez', () => {
+    renderWithRouter(<App />);
 
+    const pokeImg = screen.getAllByRole('img', { name: /sprite/ });
+    expect(pokeImg.length).toBe(1);
   });
-  it('', () => {
+  it('Pokédex tem os botões de filtro', () => {
+    renderWithRouter(<App />);
 
+    const nextPoke = screen.getByRole('button', { name: /próximo pokémon/i });
+    const buttonsText = [
+      'All',
+      'Electric',
+      'Fire',
+      'Bug',
+      'Poison',
+      'Psychic',
+      'Normal',
+      'Dragon',
+    ];
+
+    buttonsText.forEach((text) => {
+      expect(screen.getByRole('button', { name: `${text}` })).toBeInTheDocument();
+    });
+
+    const fireFilter = screen.getByRole('button', { name: buttonsText[2] });
+    userEvent.click(fireFilter);
+    expect(nextPoke.disabled).toBe(false);
   });
 });

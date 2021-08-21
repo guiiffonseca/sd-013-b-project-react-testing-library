@@ -63,10 +63,15 @@ describe('Página Pokedex funciona corretamente', () => {
       expect(screen.getAllByRole('button', { name: `${text}` }).length).toBe(1);
       expect(screen.getByRole('button', { name: defaultFilter })).toBeInTheDocument();
     });
-    // Really proud about that one
+
+    const typesLength = 7;
+    const filterTypesBtns = screen.getAllByTestId('pokemon-type-button');
+    expect(filterTypesBtns.length).toBe(typesLength);
+
     buttonsText.forEach((text) => {
-      userEvent.click(screen.getByRole('button', { name: `${text}` }));
       if (nextPoke.disabled === false && text !== 'All') {
+        userEvent.click(screen.getByRole('button', { name: `${text}` }));
+        expect(screen.getByTestId('pokemon-type')).toHaveTextContent(text);
         userEvent.click(nextPoke);
         expect(screen.getByTestId('pokemon-type')).toHaveTextContent(text);
       }

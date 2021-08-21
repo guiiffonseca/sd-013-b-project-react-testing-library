@@ -26,29 +26,32 @@ describe('testa o componente Pokemon', () => {
     expect(moreDetails).toBeInTheDocument();
   });
   test('testa se contem link more details, se redireciona pra página de detalhes', () => {
-    renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
 
     const moreDetails = screen.getByRole('link', {
       name: 'More details',
     });
     expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
     userEvent.click(moreDetails);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
+
     const detailsPage = screen.getByRole('heading', {
       level: 2,
       name: 'Pikachu Details',
     });
     expect(detailsPage).toBeInTheDocument();
   });
-  test('testa se a URL contem pokemons/<id>', () => {
-    const { history } = renderWithRouter(<App />);
+  // test('testa se a URL contem pokemons/<id>', () => {
+  //   const { history } = renderWithRouter(<App />);
 
-    const moreDetails = screen.getByRole('link', {
-      name: 'More details',
-    });
-    userEvent.click(moreDetails);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');
-  });
+  //   const moreDetails = screen.getByRole('link', {
+  //     name: 'More details',
+  //   });
+  //   userEvent.click(moreDetails);
+  //   const { pathname } = history.location;
+  //   expect(pathname).toBe('/pokemons/25');
+  // });
   test('testa se existe icone de estrela nos pokemons favoritados', () => {
     renderWithRouter(<App />);
 

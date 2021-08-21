@@ -5,7 +5,7 @@ import {
   About,
   FavoritePokemons,
   NotFound,
-  Pokedx,
+  Pokedex,
   PokemonDetails,
 } from './components';
 

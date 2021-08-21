@@ -64,9 +64,9 @@ describe('Página Pokedex funciona corretamente', () => {
       expect(screen.getByRole('button', { name: defaultFilter })).toBeInTheDocument();
     });
 
-    const typesLength = 7;
+    const typesBtnsLength = 7;
     const filterTypesBtns = screen.getAllByTestId('pokemon-type-button');
-    expect(filterTypesBtns.length).toBe(typesLength);
+    expect(filterTypesBtns.length).toBe(typesBtnsLength);
 
     buttonsText.forEach((text) => {
       if (nextPoke.disabled === false && text !== 'All') {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
@@ -24,8 +25,20 @@ describe('Componente Pokemon funciona corretamente', () => {
     expect(pokeWeight).toHaveTextContent('Average weight: 6.0 kg');
     expect(pokeImg.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
-  it('', () => {});
-  it('', () => {});
-  it('', () => {});
-  it('', () => {});
+
+  it('Existe um ícone de estrela nos Pokémons favoritados', () => {
+    renderWithRouter(<App />);
+
+    const moreDetailsLink = screen.getByText('More details');
+
+    userEvent.click(moreDetailsLink);
+
+    const favoriteOptionCheckbox = screen
+      .getByRole('checkbox', { name: /pokémon favoritado?/i });
+
+    userEvent.click(favoriteOptionCheckbox);
+
+    const favoriteIcon = screen.getByRole('img', { name: /marked as favorite/ });
+    expect(favoriteIcon.src).toBe('http://localhost/star-icon.svg');
+  });
 });

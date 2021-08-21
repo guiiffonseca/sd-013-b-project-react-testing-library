@@ -5,23 +5,18 @@ import { MemoryRouter } from 'react-router-dom';
 import { NotFound } from '../components';
 
 describe('Testando o componente <NotFound.js />', () => {
-  /* test('Teste se página contém um heading h2 com o texto "Page requested not found 😭"',
-    () => {
-      render(
-        <MemoryRouter>
-          <NotFound />
-        </MemoryRouter>,
-      );
-      const imgs = screen.getAllByRole('img');
-      const emoji = imgs[0];
-      console.log(emoji);
-      const pageNotFoundText = screen.getByRole('heading', {
-        level: 2,
-        name: `Page requested not found ${imgs[0].getAttribute(children)}`,
-      });
-
-      expect(pageNotFoundText).toBeInTheDocument();
-    }); */
+  test('Testa se existe h2 com o texto "Page requested not found"', () => {
+    render(
+      <MemoryRouter>
+        <NotFound />
+      </MemoryRouter>,
+    );
+    const notFountText = screen.getByRole('heading', {
+      name: /Page requested not found/i,
+      level: 2,
+    });
+    expect(notFountText).toBeInTheDocument();
+  });
 
   test('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif.', () => {
     render(

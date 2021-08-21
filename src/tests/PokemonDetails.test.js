@@ -46,5 +46,25 @@ describe('PokemonDetails funciona corretamente', () => {
     expect(maps[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 
-  it('', () => {});
+  it('Usuário pode favoritar um pokémon através da página de detalhes', () => {
+    renderWithRouter(<App />);
+
+    const moreDetailsLink = screen.getByText(/more details/i);
+    userEvent.click(moreDetailsLink);
+
+    const favoriteOption = screen.getByLabelText('Pokémon favoritado?');
+    expect(favoriteOption).toBeInTheDocument();
+
+    const optionIsCheckebox = screen.getByRole('checkbox', { checked: false });
+    expect(optionIsCheckebox).toBeInTheDocument();
+
+    userEvent.click(optionIsCheckebox);
+
+    const isFavoriteImg = screen.getByRole('img', { name: /is marked as favorite/ });
+    expect(isFavoriteImg).toBeInTheDocument();
+
+    userEvent.click(optionIsCheckebox);
+
+    expect(isFavoriteImg).not.toBeInTheDocument();
+  });
 });

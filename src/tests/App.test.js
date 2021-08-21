@@ -63,6 +63,6 @@ describe('Testando App.js', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/alberto');
     const notFound = screen.getAllByText('Page requested not found');
-    expect(notFound).toBeInTheDocument();
+    expect(notFound).toBeDefined();
   });
 });

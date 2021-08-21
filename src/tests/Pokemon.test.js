@@ -55,10 +55,8 @@ describe('testa o componente Pokemon', () => {
   test('testa se existe icone de estrela nos pokemons favoritados', () => {
     renderWithRouter(<App />);
 
-    const moreDetails = screen.getByRole('link', {
-      name: 'More details',
-    });
-    userEvent.click(moreDetails);
+    const details = screen.getByText(/more details/i);
+    userEvent.click(details);
     const favoriteInput = screen.getByLabelText(/pokémon favoritado/i);
     userEvent.click(favoriteInput);
     const favoriteIcon = screen.getByAltText(/marked as favorite/i);

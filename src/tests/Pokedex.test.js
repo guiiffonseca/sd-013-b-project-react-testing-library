@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('testa o componente Pokedex', () => {
-  test('teste se a pagina contem um h2 com o texto Encountered pokémons', () => {
+  test('testa se a pagina contem um h2 com o texto Encountered pokémons', () => {
     renderWithRouter(<App />);
 
     const heading = screen.getByRole('heading', {
@@ -14,7 +14,7 @@ describe('testa o componente Pokedex', () => {
     });
     expect(heading).toBeInTheDocument();
   });
-  test('teste se é exibido o pokémon ao clicar no botão próximo pokemon', () => {
+  test('testa se é exibido o pokémon ao clicar no botão próximo pokemon', () => {
     renderWithRouter(<App />);
 
     const nextPokemonBtn = screen.getByRole('button', {
@@ -40,7 +40,7 @@ describe('testa o componente Pokedex', () => {
     const testId = screen.getAllByTestId('pokemon-type-button');
     expect(testId.length).toEqual(btn);
   });
-  test('teste se contém um botão de filtro', () => {
+  test('testa se contém um botão de filtro', () => {
     renderWithRouter(<App />);
 
     const buttonFilter = screen.getByRole('button', {
@@ -48,7 +48,7 @@ describe('testa o componente Pokedex', () => {
     });
     expect(buttonFilter).toBeInTheDocument();
   });
-  test('teste se contém um botão All', () => {
+  test('testa se contém um botão All', () => {
     renderWithRouter(<App />);
 
     const buttonAll = screen.getByRole('button', {

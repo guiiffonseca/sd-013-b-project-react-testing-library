@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './util/renderWithRouter';
 import { About } from '../components';
 
-describe('tests the component about and its elements', () => {
+describe('tests the component About and its elements', () => {
   beforeEach(() => renderWithRouter(<About />), 0);
 
   it('should have a Pokédex information', () => {

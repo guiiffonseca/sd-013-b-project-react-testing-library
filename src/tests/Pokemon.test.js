@@ -34,6 +34,6 @@ test('Teste se é renderizado um card com as informações de determinado pokém
   expect(screen.getByText('Summary'));
   userEvent.click(screen.getByRole('checkbox', { checked: false }));
   expect(screen.getByRole('checkbox', { checked: true })).toBeInTheDocument();
-  const imgFavorite = screen.getByAltText(/pikachu is marked/i);
+  const imgFavorite = screen.getByAltText('Pikachu is marked as favorite');
   expect(imgFavorite.src).toContain('/star-icon.svg');
 });

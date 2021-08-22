@@ -14,12 +14,13 @@ describe('Testa se o App.js possui links por nome e redirecionamento.', () => {
     expect(home).toBeDefined();
     expect(favorite).toBeDefined();
     expect(about).toBeDefined();
-    // expect(homePath).toBe('/');
 
     userEvent.click(favorite);
     expect(history.location.pathname).toBe('/favorites');
+
     userEvent.click(home);
     expect(history.location.pathname).toBe('/');
+
     userEvent.click(about);
     expect(history.location.pathname).toBe('/about');
 

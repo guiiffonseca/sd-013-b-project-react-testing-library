@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
-describe('Testa o topo da aplicação', () => {
+describe('Teste o componente <App.js />', () => {
   test('O primeiro link deve possuir o texto "Home"', () => {
     const { history } = renderWithRouter(
       <BrowserRouter>

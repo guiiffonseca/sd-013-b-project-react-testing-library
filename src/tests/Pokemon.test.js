@@ -13,8 +13,7 @@ const pikachu = {
     measurementUnit: 'kg',
   },
   image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  moreInfo:
-    'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
   foundAt: [
     {
       location: 'Kanto Viridian Forest',
@@ -26,7 +25,8 @@ const pikachu = {
     },
   ],
   summary:
-    'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+    `This intelligent Pokémon roasts hard berries
+    with electricity to make them tender enough to eat.`,
 };
 
 describe('Testando a componente Pokemon', () => {

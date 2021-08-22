@@ -46,7 +46,7 @@ class App extends Component {
     return (
       <Pokedex
         pokemons={ pokemons }
-        isPokemonFavoriteById={ isPokemonFavoriteById }
+        isPokemonFavoriteById={ { 151: true } }
       />
     );
   }

@@ -7,9 +7,11 @@ import pokemons from '../data';
 import App from '../App';
 
 describe('5. Teste o componente <Pokedex.js />', () => {
-  test('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
+  beforeEach(() => {
     renderWithRouter(<App />);
+  });
 
+  test('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
     const title = screen.getByRole('heading', {
       level: 2,
       name: /Encountered pokémons/i,
@@ -19,8 +21,6 @@ describe('5. Teste o componente <Pokedex.js />', () => {
 
   test(`Teste se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon
   é clicado.`, () => {
-    renderWithRouter(<App />);
-
     const btnNext = screen.getByRole('button', { name: /próximo pokémon/i });
     expect(btnNext).toBeInTheDocument();
     // O botão deve conter o texto Próximo pokémon;
@@ -47,13 +47,11 @@ describe('5. Teste o componente <Pokedex.js />', () => {
   });
 
   test('Teste se é mostrado apenas um Pokémon por vez.', () => {
-    renderWithRouter(<App />);
-    const pokemonLoad = screen.getAllByTestId('pokemon-name');
-    expect(pokemonLoad).toHaveLength(1);
+    const pokemonsLoad = screen.getAllByTestId('pokemon-name');
+    expect(pokemonsLoad).toHaveLength(1);
   });
 
   test('Teste se a Pokédex tem os botões de filtro.', () => {
-    renderWithRouter(<App />);
     // Deve existir um botão de filtragem para cada tipo de Pokémon, sem repetição.
     const buttonsType = screen.getAllByTestId('pokemon-type-button');
     let cont = 0;
@@ -96,8 +94,6 @@ describe('5. Teste o componente <Pokedex.js />', () => {
   });
 
   test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
-    renderWithRouter(<App />);
-
     // O texto do botão deve ser All;
     const buttonAll = screen.getByRole('button', { name: 'All' });
     expect(buttonAll).toBeInTheDocument();

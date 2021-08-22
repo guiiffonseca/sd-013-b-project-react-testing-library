@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
@@ -18,6 +19,8 @@ test('', () => {
 
   const buttonAll = screen.getByTestId('pokemon-all-button');
   expect(buttonAll).toHaveTextContent('All');
+  expect(buttonAll).toBeInTheDocument();
+
   const nextPokemon = screen.getByTestId('next-pokemon');
   expect(nextPokemon).toBeInTheDocument();
 
@@ -25,4 +28,11 @@ test('', () => {
   const numberOfButtons = 7;
   expect(filterBurrtons.length).toBe(numberOfButtons);
   expect(filterBurrtons[0]).toHaveTextContent('Electric');
+
+  userEvent.click(nextPokemon);
+  const PokemonName = screen.getByTestId('pokemon-name');
+  expect(PokemonName).toHaveTextContent('Charmander');
+
+  userEvent.click(buttonAll);
+  expect(PokemonName).toHaveTextContent('Pikachu');
 });

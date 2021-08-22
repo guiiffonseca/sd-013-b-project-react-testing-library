@@ -37,8 +37,11 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     expect(pokemonLoad).toHaveTextContent(/pikachu/i);
   });
 
-  // test('Teste se é mostrado apenas um Pokémon por vez.', () => {
-  // });
+  test('Teste se é mostrado apenas um Pokémon por vez.', () => {
+    renderWithRouter(<App />);
+    const pokemonLoad = screen.getAllByTestId('pokemon-name');
+    expect(pokemonLoad).toHaveLength(1);
+  });
   
   // test('', () => {});
 });

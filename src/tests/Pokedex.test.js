@@ -46,6 +46,8 @@ describe('Página Pokedex funciona corretamente', () => {
     renderWithRouter(<App />);
 
     const nextPoke = screen.getByRole('button', { name: /próximo pokémon/i });
+    expect(nextPoke).toBeEnabled();
+
     const buttonsText = [
       'All',
       'Electric',

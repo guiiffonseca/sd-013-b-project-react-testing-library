@@ -20,7 +20,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
   é clicado.`, () => {
     renderWithRouter(<App />);
 
-    const btnNext = screen.getByRole('button', { name: /próximo pokémon/i});
+    const btnNext = screen.getByRole('button', { name: /próximo pokémon/i });
     expect(btnNext).toBeInTheDocument();
     // O botão deve conter o texto Próximo pokémon;
     expect(btnNext).toHaveTextContent('Próximo pokémon');
@@ -58,10 +58,22 @@ describe('5. Teste o componente <Pokedex.js />', () => {
         };
       });
     });
-    // espero ter apenas 7 botões no total da contagem acima
+    // espero ter ao todo 7 botões, no total da contagem acima
     expect(cont).toBe(7);
-    
+
     // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
+    const firePokemons = ['Charmander', 'Rapidash'];    
+    const buttonFire = screen.getByRole('button', { name: /fire/i });
+    const pokemonLoad = screen.getByTestId('pokemon-name');
+    const btnNext = screen.getByRole('button', { name: /próximo pokémon/i });
+
+    userEvent.click(buttonFire);
+    expect(buttonFire).toHaveTextContent(/fire/i);    
+    
+    for (let i = 0; i < 2; i ++) {
+      expect(pokemonLoad).toHaveTextContent(firePokemons[i]);
+      userEvent.click(btnNext);
+    }
 
     // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
 

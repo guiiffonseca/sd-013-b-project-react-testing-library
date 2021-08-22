@@ -43,5 +43,28 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     expect(pokemonLoad).toHaveLength(1);
   });
   
-  // test('', () => {});
+  test('Teste se a Pokédex tem os botões de filtro.', () => {
+    renderWithRouter(<App />);
+    // Deve existir um botão de filtragem para cada tipo de Pokémon, sem repetição.
+    const buttonsType = screen.getAllByTestId('pokemon-type-button');
+    let cont = 0;
+    // console.log(buttonsType[0].textContent);
+    buttonsType.forEach((button) => {
+      const button1TextContent = button.textContent;
+      buttonsType.forEach((button2) => {
+        const button2TextContent = button2.textContent;
+        if (button1TextContent === button2TextContent) {
+          cont += 1;
+        };
+      });
+    });
+    // espero ter apenas 7 botões no total da contagem acima
+    expect(cont).toBe(7);
+    
+    // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
+
+    // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
+
+    // O botão All precisa estar sempre visível.
+  });
 });

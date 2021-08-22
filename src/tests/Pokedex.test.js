@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
+import { Pokedex } from '../components';
 
 describe('5. Teste o componente <Pokedex.js />', () => {
   test('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
@@ -85,5 +86,24 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     // O botão All precisa estar sempre visível.
     const buttonAll = screen.getByRole('button', { name: /all/i });
     expect(buttonAll).toBeInTheDocument();
+  });
+
+  test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    renderWithRouter(<App />); 
+
+    // O texto do botão deve ser All;
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    expect(buttonAll).toBeInTheDocument();
+
+    // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado;
+    userEvent.click(buttonAll);
+    const buttonNext = screen.getByRole('button', { name: /próximo pokémon/i });
+    
+    pokemons.forEach((pokemon) => {
+      const pokemonLoad = screen.getByTestId('pokemon-name');
+      // espero que o nome que esteja aparecendo na tela seja o mesmo nome que está no data.js, na 1 posição
+      expect(pokemonLoad === pokemon.name);
+      userEvent.click(buttonNext);
+    });
   });
 });

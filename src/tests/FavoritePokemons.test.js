@@ -19,16 +19,22 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
 
   test('Teste se é exibido todos os cards de pokémons favoritados', () => {
     const charmanderId = 4;
+    const rapidashId = 78;
 
-    const favoritePokemon = pokemons.filter((pokemon) => pokemon.id === charmanderId);
+    const favoritePokemons = pokemons.filter(
+      (pokemon) => pokemon.id === charmanderId || pokemon.id === rapidashId,
+    );
 
-    renderWithRouter(<FavoritePokemons pokemons={ favoritePokemon } />);
+    renderWithRouter(<FavoritePokemons pokemons={ favoritePokemons } />);
 
     const charmanderName = screen.getByText('Charmander');
     expect(charmanderName).toBeInTheDocument();
-    const pokemonName = screen.getByTestId('pokemon-name');
-    const pokemonType = screen.getByTestId('pokemon-type');
-    const pokemonWeight = screen.getByTestId('pokemon-weight');
+    const rapidashName = screen.getByText('Rapidash');
+    expect(rapidashName).toBeInTheDocument();
+
+    const pokemonName = screen.getAllByTestId('pokemon-name');
+    const pokemonType = screen.getAllByTestId('pokemon-type');
+    const pokemonWeight = screen.getAllByTestId('pokemon-weight');
     expect(pokemonName).toBeTruthy();
     expect(pokemonType).toBeTruthy();
     expect(pokemonWeight).toBeTruthy();

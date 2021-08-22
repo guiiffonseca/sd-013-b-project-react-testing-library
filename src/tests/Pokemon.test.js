@@ -20,7 +20,6 @@ describe('Testa o componente Pokemon', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
-  /*
   test('verifica se há um link com id do pokemon e se redireciona para a página correta',
     () => {
       const { history } = renderWithRouter(<App />);
@@ -61,5 +60,4 @@ describe('Testa o componente Pokemon', () => {
     expect(starImage).toBeInTheDocument();
     expect(starImage).toHaveAttribute('src', '/star-icon.svg');
   });
-  */
 });

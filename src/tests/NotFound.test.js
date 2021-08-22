@@ -5,7 +5,7 @@ import renderWithRouter from '../utils/renderWithRouter';
 import { NotFound } from '../components';
 
 describe('Testando NotFound ', () => {
-  beforeEach(()=> {
+  beforeEach(() => {
     renderWithRouter(<NotFound />);
   });
 

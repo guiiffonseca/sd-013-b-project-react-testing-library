@@ -35,8 +35,8 @@ describe('Aplicação funciona corretamente', () => {
     const { location: { pathname } } = history;
     const aboutText = screen.getByText(/about pokédex/i);
 
-    expect(aboutText).toBeInTheDocument();
     expect(pathname).toBe('/about');
+    expect(aboutText).toBeInTheDocument();
   });
 
   it('Clicar em Favorite Pokémons redireciona a aplicação à Pokémons Favoritados', () => {

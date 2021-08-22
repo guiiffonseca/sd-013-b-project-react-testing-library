@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
-import userEvent from '@testing-library/user-event';
 
 test('se o primeiro link contem o texto "Home" ', () => {
   render(
@@ -25,13 +24,7 @@ test('se o primeiro link contem o texto "About" ', () => {
   const About = screen.getByRole('link', {
     name: /About/i,
   });
-  userEvent.click(About);
-
-  const AboutPokedex = screen.getByRole('heading', {
-    level: 2,
-    name: /About Pokédex/i,
-  });
-  expect(AboutPokedex).toBeInTheDocument();
+  expect(About).toBeInTheDocument();
 });
 
 test('se o primeiro link contem o texto "Favorite Pokémons" ', () => {
@@ -43,11 +36,22 @@ test('se o primeiro link contem o texto "Favorite Pokémons" ', () => {
   const FavoritePokemon = screen.getByRole('link', {
     name: /Favorite Pokémons/i,
   });
-  userEvent.click(FavoritePokemon);
-
-  const pageFavortePokemon = screen.getByRole('heading', {
-    level: 2,
-    name: /Favorite Pokémons/i,
-  });
-  expect(pageFavortePokemon).toBeInTheDocument();
+  expect(FavoritePokemon).toBeInTheDocument();
 });
+// test('se o primeiro link contem o texto "Favorite Pokémons" ', () => {
+//   render(
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>,
+//   );
+//   const FavoritePokemon = screen.getByRole('link', {
+//     name: /Favorite Pokémons/i,
+//   });
+//   userEvent.click(FavoritePokemon);
+
+//   const pageFavortePokemon = screen.getByRole('heading', {
+//     level: 2,
+//     name: /Favorite Pokémons/i,
+//   });
+//   expect(pageFavortePokemon).toBeInTheDocument();
+// });

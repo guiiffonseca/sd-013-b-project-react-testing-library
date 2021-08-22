@@ -38,20 +38,3 @@ test('se o primeiro link contem o texto "Favorite Pokémons" ', () => {
   });
   expect(FavoritePokemon).toBeInTheDocument();
 });
-// test('se o primeiro link contem o texto "Favorite Pokémons" ', () => {
-//   render(
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>,
-//   );
-//   const FavoritePokemon = screen.getByRole('link', {
-//     name: /Favorite Pokémons/i,
-//   });
-//   userEvent.click(FavoritePokemon);
-
-//   const pageFavortePokemon = screen.getByRole('heading', {
-//     level: 2,
-//     name: /Favorite Pokémons/i,
-//   });
-//   expect(pageFavortePokemon).toBeInTheDocument();
-// });

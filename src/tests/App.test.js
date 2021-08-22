@@ -34,8 +34,8 @@ describe('App.js tests.', () => {
     a pagina inicial na URL "/"`, () => {
     const { history } = renderWithRouter(<App />);
 
-    const linkHomeText = screen.getByText('Home');
-    userEvent.click(linkHomeText);
+    const homeTextLink = screen.getByText('Home');
+    userEvent.click(homeTextLink);
 
     expect(history.location.pathname).toBe('/');
   });

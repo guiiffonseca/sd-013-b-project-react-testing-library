@@ -7,8 +7,8 @@ import App from '../App';
 describe('teste', () => {
   const pokemons = [/Pikachu/, /Charmander/, /Caterpie/, /Ekans/,
     /Alakazam/, /Mew/, /Rapidash/, /Snorlax/, /Dragonair/, /Pikachu/];
-  const pokemonsType = ['Electric', 'Fire',
-    'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+  const pokemonsType = [/Electric/, /Fire/,
+    /Bug/, /Poison/, /Psychic/, /Normal/, /Dragon/];
 
   it(`Ao entrar na página verifica se contém um
    heading h2 com o texto "Encountered pokémons".`, () => {
@@ -57,13 +57,13 @@ describe('teste', () => {
       userEvent.click(pokemonTypeButton);
 
       const pokemonType = screen.getByTestId('pokemon-type');
-      expect(pokemonType.innerHTML).toBe(type);
+      expect(pokemonType).toHaveTextContent(type);
     });
 
     /* TESTA SE O TEXTO DO BOTÃO CORRESPONDE AO NOME DO TIPO DO POKEMON E SE O BOTÃO "All" ESTAR SEMPRE VISIVEL */
     pokemonsType.forEach((type, index) => {
       const pokemonTypeButton = screen.getAllByTestId('pokemon-type-button');
-      expect(pokemonTypeButton[index].innerHTML).toBe(type);
+      expect(pokemonTypeButton[index]).toHaveTextContent(type);
 
       const buttonAll = screen.getByRole('button', { name: 'All' });
       expect(buttonAll).toBeInTheDocument();

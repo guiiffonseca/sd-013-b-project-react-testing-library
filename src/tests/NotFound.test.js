@@ -22,8 +22,10 @@ describe('NotFound.js tests.', () => {
     /* referência: https://dev.to/raphaelchaula/a-simple-image-test-in-react-3p6f */
 
     const Url = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const imgNotFound = screen.getAllByRole('img');
+    const imgNotFound = screen.getByRole('img', {
+      name: 'Pikachu crying because the page requested was not found',
+    });
 
-    expect(imgNotFound[1]).toHaveAttribute('src', Url);
+    expect(imgNotFound).toHaveAttribute('src', Url);
   });
 });

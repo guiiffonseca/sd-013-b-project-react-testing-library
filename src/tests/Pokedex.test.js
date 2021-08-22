@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
@@ -26,6 +25,4 @@ test('', () => {
   const numberOfButtons = 7;
   expect(filterBurrtons.length).toBe(numberOfButtons);
   expect(filterBurrtons[0]).toHaveTextContent('Electric');
-
-
 });

@@ -14,7 +14,9 @@ describe('Testa implementações do About.js', () => {
   test('Testa se a página contém dois p com texto', () => {
     render(<About />);
     const firstP = screen.getByText(/This application simulates a Pokédex/i);
+    const secondP = screen.getByText(/One can filter Pokémons by typer/i);
     expect(firstP).toBeInTheDocument();
+    expect(secondP).toBeInTheDocument();
   });
   test('Testa se contem imagem', () => {
     render(<About />);

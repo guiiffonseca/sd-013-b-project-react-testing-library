@@ -3,6 +3,7 @@ import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
 import renderWithRouter from './utils/renderWithRouter';
+import pokemons from '../data';
 import App from '../App';
 
 describe('5. Teste o componente <Pokedex.js />', () => {
@@ -76,7 +77,13 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     }
 
     // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
+    // pegando o que está aparecendo na tela atualmente, ou seja, o teste é uma continuação do que foi feito acima, ou seja, o tipo que está na tela é: Fire
+    const pokemonType = screen.getByTestId('pokemon-type');
+    const buttonType = screen.getByRole('button', { name: /fire/i });
+    expect(buttonType.textContent).toBe(pokemonType.textContent);
 
     // O botão All precisa estar sempre visível.
+    const buttonAll = screen.getByRole('button', { name: /all/i });
+    expect(buttonAll).toBeInTheDocument();
   });
 });

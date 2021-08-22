@@ -14,8 +14,8 @@ describe('Testa o componente Pokemon', () => {
     );
 
     expect(screen.getByText(/Pikachu/)).toBeInTheDocument();
-    expect(screen.getAllByText('Electric')[0]).toBeInTheDocument();
-    expect(screen.getByText(/Average weight/)).toBeInTheDocument();
-    expect(screen.getByAltText('Pikachu sprite')).toBeInTheDocument();
+    expect(screen.getAllByText(/Electric/)[0]).toBeInTheDocument();
+    expect(screen.getByText(/Average weight:/)).toBeInTheDocument();
+    expect(screen.getByAltText(/Pikachu sprite/)).toBeInTheDocument();
   });
 });

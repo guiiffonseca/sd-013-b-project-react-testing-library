@@ -27,9 +27,17 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     expect(btnNext).toHaveTextContent('Próximo pokémon');
     // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
     const pokemonLoad = screen.getByTestId('pokemon-name');
-    const pokemonsTest = ['Charmander', 'Caterpie', 'Ekans', 'Alakazam', 'Mew',
-    'Rapidash', 'Snorlax', 'Dragonair'];
-    for (let i = 0; i < 8; i++) {
+    const pokemonsTest = [
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Mew',
+      'Rapidash',
+      'Snorlax',
+      'Dragonair',
+    ];
+    for (let i = 0; i < pokemonsTest.length; i += 1) {
       userEvent.click(btnNext);
       expect(pokemonLoad).toHaveTextContent(pokemonsTest[i]);
     }
@@ -49,7 +57,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     // Deve existir um botão de filtragem para cada tipo de Pokémon, sem repetição.
     const buttonsType = screen.getAllByTestId('pokemon-type-button');
     let cont = 0;
-    // console.log(buttonsType[0].textContent);
+    const buttonsTypeTotal = 7;
     buttonsType.forEach((button) => {
       const button1TextContent = button.textContent;
       buttonsType.forEach((button2) => {
@@ -60,7 +68,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
       });
     });
     // espero ter ao todo 7 botões, no total da contagem acima
-    expect(cont).toBe(7);
+    expect(cont).toBe(buttonsTypeTotal);
 
     // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
     const firePokemons = ['Charmander', 'Rapidash'];
@@ -71,7 +79,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     userEvent.click(buttonFire);
     expect(buttonFire).toHaveTextContent(/fire/i);
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < firePokemons.length; i += 1) {
       expect(pokemonLoad).toHaveTextContent(firePokemons[i]);
       userEvent.click(btnNext);
     }

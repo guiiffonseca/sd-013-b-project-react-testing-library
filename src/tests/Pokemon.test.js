@@ -13,9 +13,9 @@ describe('Testa o componente Pokemon', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText('Pikachu')).toBeInTheDocument();
+    expect(screen.getByText(/Pikachu/)).toBeInTheDocument();
     expect(screen.getAllByText('Electric')[0]).toBeInTheDocument();
-    expect(screen.getByText('Average weight: 6.0 kg')).toBeInTheDocument();
+    expect(screen.getByText(/Average weight/)).toBeInTheDocument();
     expect(screen.getByAltText('Pikachu sprite')).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });

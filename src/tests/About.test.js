@@ -1,15 +1,11 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
+import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
 test('se existem dois paragrafos na rota "About" ', () => {
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  renderWithRouter(<App />);
   const About = screen.getByRole('link', {
     name: /About/i,
   });
@@ -29,11 +25,7 @@ test('se existem dois paragrafos na rota "About" ', () => {
 });
 
 test('se existe uma imagem na rota "About" da pokedex ', () => {
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  renderWithRouter(<App />);
   const About = screen.getByRole('link', {
     name: /About/i,
   });

@@ -26,12 +26,19 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     expect(btnNext).toHaveTextContent('Próximo pokémon');
     // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
     const pokemonLoad = screen.getByTestId('pokemon-name');
-    const pokemonsTest = ['Charmander', 'Caterpie', 'Ekans'];
-    for(let i = 0; i < 3; i++) {
+    const pokemonsTest = ['Charmander', 'Caterpie', 'Ekans', 'Alakazam','Mew',
+    'Rapidash', 'Snorlax', 'Dragonair'];
+    for(let i = 0; i < 8; i++) {
       userEvent.click(btnNext);
       expect(pokemonLoad).toHaveTextContent(pokemonsTest[i]);
-    }
-
-// O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
+    };
+    // O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
+    userEvent.click(btnNext);
+    expect(pokemonLoad).toHaveTextContent(/pikachu/i);
   });
+
+  // test('Teste se é mostrado apenas um Pokémon por vez.', () => {
+  // });
+  
+  // test('', () => {});
 });

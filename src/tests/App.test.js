@@ -9,7 +9,7 @@ import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
 describe('Teste o componente <App.js />', () => {
-  test('O primeiro link deve possuir o texto "Home"', () => {
+  test('Se o primeiro link deve possuir o texto "Home"', () => {
     const { history } = renderWithRouter(
       <BrowserRouter>
         <App />
@@ -30,7 +30,7 @@ describe('Teste o componente <App.js />', () => {
     expect(homePageText).toBeInTheDocument();
   });
 
-  test('O segundo link deve possuir o texto "About"', () => {
+  test('Se o segundo link deve possuir o texto "About"', () => {
     const { history } = renderWithRouter(
       <BrowserRouter>
         <App />
@@ -51,7 +51,7 @@ describe('Teste o componente <App.js />', () => {
     expect(AboutPageText).toBeInTheDocument();
   });
 
-  test('O terceiro link deve possuir o texto "Favorite Pokémons"', () => {
+  test('Se o terceiro link deve possuir o texto "Favorite Pokémons"', () => {
     const { history } = renderWithRouter(
       <BrowserRouter>
         <App />

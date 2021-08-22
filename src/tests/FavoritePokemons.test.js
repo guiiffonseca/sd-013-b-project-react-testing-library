@@ -10,14 +10,14 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
 describe('Teste o componente <FavoritePokemons.js />', () => {
-  test('Teste se é exibido na tela a mensagem No favorite pokemon found', () => {
+  test('Se é exibido na tela a mensagem No favorite pokemon found', () => {
     renderWithRouter(<FavoritePokemons />);
 
     const infoPokemons = screen.getByText('No favorite pokemon found');
     expect(infoPokemons).toBeInTheDocument();
   });
 
-  test('Teste se é exibido todos os cards de pokémons favoritados', () => {
+  test('Se é exibido todos os cards de pokémons favoritados', () => {
     const charmanderId = 4;
     const rapidashId = 78;
 

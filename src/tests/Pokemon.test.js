@@ -40,5 +40,9 @@ describe('Componente Pokemon funciona corretamente', () => {
 
     const favoriteIcon = screen.getByRole('img', { name: /marked as favorite/ });
     expect(favoriteIcon.src).toContain('star-icon.svg');
+
+    userEvent.click(favoriteOptionCheckbox);
+
+    expect(favoriteIcon).not.toBeInTheDocument();
   });
 });

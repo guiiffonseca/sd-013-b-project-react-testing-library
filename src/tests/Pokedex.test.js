@@ -69,7 +69,14 @@ describe('Pokedex.js', () => {
     funcPokemon('Pikachu');
   });
 
-  test('testa se a Pokédex tem os botões de "filtro"', () => {
+  test('testa se na Pokédex tem os botões de "filtro"', () => {
+    renderWithRouter(<App />);
+    const nomePokemons = 7;
+    const nome = screen.getAllByTestId('pokemon-type-button');
+    expect(nome.length).toBe(nomePokemons);
+  });
+
+  test('testa os tipos de botões de "filtro"', () => {
     renderWithRouter(<App />);
 
     const buttonFilter = (params) => {

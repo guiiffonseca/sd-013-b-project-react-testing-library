@@ -3,7 +3,6 @@ import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router';
 import App from '../App';
-import pokemons from '../data';
 
 function renderWithRouter(component) {
   const history = createMemoryHistory();

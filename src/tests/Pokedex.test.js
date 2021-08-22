@@ -82,6 +82,10 @@ const isPokemonFavoriteByIdMock = {
   151: false,
 };
 
+function getPokemonName() {
+  return screen.getByTestId('pokemon-name');
+}
+
 describe(' Teste o componente <Pokedex.js />', () => {
   test('contém um heading h2 com o texto Encountered pokémons', () => {
     render(
@@ -99,8 +103,10 @@ describe(' Teste o componente <Pokedex.js />', () => {
     });
     expect(h2PokedexPage).toBeInTheDocument();
   });
+});
 
-  test('é exibido o próximo Pokémon da lista quando clicar Próximo pokémon.', () => {
+describe('Teste se é exibido o próximo Pokémon da lista quando clicar Próximo', () => {
+  test('botão Próximo pokémon e exibir todos os pokenos', () => {
     render(
       <MemoryRouter>
         <Pokedex
@@ -113,14 +119,19 @@ describe(' Teste o componente <Pokedex.js />', () => {
     const buttonProximoPokemon = screen.getByRole('button', {
       name: /próximo pokémon/i,
     });
-    const namePokemon = screen.getByTestId('pokemon-name');
+    expect(buttonProximoPokemon).toBeInTheDocument();
+
+    const namePokemon = getPokemonName();
+    // const namePokemon = screen.getByTestId('pokemon-name');
     expect(namePokemon).toHaveTextContent(pokemonsMock[0].name);
     for (let index = 0; index < pokemonsMock.length; index += 1) {
       userEvent.click(buttonProximoPokemon);
     }
     expect(namePokemon).toHaveTextContent(pokemonsMock[0].name);
   });
+});
 
+describe('Teste se é mostrado apenas um Pokémon por vez.', () => {
   test('é mostrado apenas um Pokémon por vez.', () => {
     render(
       <MemoryRouter>
@@ -131,10 +142,12 @@ describe(' Teste o componente <Pokedex.js />', () => {
       </MemoryRouter>,
     );
 
-    const namePokemon = screen.getAllByTestId('pokemon-name');
-    expect(namePokemon.length).toBe(1);
+    const allNamePokemon = screen.getAllByTestId('pokemon-name');
+    expect(allNamePokemon.length).toBe(1);
   });
+});
 
+describe('Teste se a Pokédex tem os botões de filtro.', () => {
   test('se a Pokédex tem os botões de filtro', () => {
     render(
       <MemoryRouter>
@@ -164,7 +177,7 @@ describe(' Teste o componente <Pokedex.js />', () => {
       name: /fire/i,
     });
     userEvent.click(buttonFire);
-    const namePokemon = screen.getByTestId('pokemon-name');
+    const namePokemon = getPokemonName();
     expect(namePokemon).toHaveTextContent(firePokemon[0].name);
     const buttonProximoPokemon = screen.getByRole('button', {
       name: /próximo pokémon/i,
@@ -203,7 +216,8 @@ describe(' Teste o componente <Pokedex.js />', () => {
     const buttonProximoPokemon = screen.getByRole('button', {
       name: /próximo pokémon/i,
     });
-    const namePokemon = screen.getByTestId('pokemon-name');
+    const namePokemon = getPokemonName();
+    // const namePokemon = screen.getByTestId('pokemon-name');
     expect(namePokemon).toHaveTextContent(pokemonsMock[0].name);
     for (let index = 0; index < pokemonsMock.length; index += 1) {
       userEvent.click(buttonProximoPokemon);

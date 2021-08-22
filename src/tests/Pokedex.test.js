@@ -45,5 +45,11 @@ describe('Teste o componente <Pokedex.js />', () => {
       name: 'All',
     });
     expect(getAllPokemons).toBeInTheDocument();
+
+    userEvent.click(getAllPokemons);
+    const pokemonName = screen.getByTestId('pokemon-name');
+    const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonName.textContent).toBe('Pikachu');
+    expect(pokemonType.textContent).toBe('Electric');
   });
 });

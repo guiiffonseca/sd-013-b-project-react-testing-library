@@ -26,6 +26,7 @@ describe('Teste se um card com as informações pokémon é renderizado', () => 
     renderWithRouter(<App />);
     const average = screen.getByTestId('pokemon-weight');
     expect(average).toBeInTheDocument();
+    const detalhes = screen.getByText(/average weight: 6.0 kg/i)
   });
 
   test('A imagem do Pokémon deve ser exibida', () => {
@@ -83,5 +84,45 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados', () =>
     const image = screen.getAllByRole('img');
     expect(image[1]).toHaveAttribute('alt', 'Pikachu is marked as favorite');
     expect(image[1]).toHaveAttribute('src', '/star-icon.svg');
+  });
+});
+
+
+describe('Teste se um card com as informações pokémon é renderizado', () => {
+  test('O nome correto do Pokémon deve ser mostrado na tela', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push(POKEMONS_PATHS);
+    const idName = screen.getByTestId('pokemon-name');
+    expect(idName).toBeInTheDocument();
+  });
+
+  test('O tipo correto do pokémon deve ser mostrado na tela', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push(POKEMONS_PATHS);
+    const tipoDocumento = screen.getByTestId('pokemon-type');
+    expect(tipoDocumento).toBeInTheDocument();
+  });
+
+  test('O peso médio do pokémon deve ser exibido com um texto', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push(POKEMONS_PATHS);
+    const average = screen.getByTestId('pokemon-weight');
+    expect(average).toBeInTheDocument();
+    const avera = screen.getByText(/average weight: 6.0 kg/i)
+  });
+
+  test('A imagem do Pokémon deve ser exibida', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push(POKEMONS_PATHS);
+    const image = screen.getAllByRole('img');
+    expect(image[0]).toHaveAttribute('alt', 'Pikachu sprite');
+    expect(image[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+  });
+
+  test('Teste se o tipo do pokemons aparece', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/pokemons/4');
+    const tipo = screen.getByText(/fire/i);
+    expect(tipo).toBeInTheDocument();
   });
 });

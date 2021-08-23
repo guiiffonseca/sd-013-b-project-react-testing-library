@@ -25,11 +25,13 @@ describe('Testa o componente FavoritePokemons', () => {
   });
   test('Teste se é exibido todos os cards de pokémons favoritados', () => {
     const PIKACHU_ID = 25;
-    const CHARMANDER_ID = 4;
+    const CATERPIE_ID = 10;
+    const EKANS_ID = 23;
     const filteredPokemons = pokemons
-      .filter(({ id }) => id === PIKACHU_ID || id === CHARMANDER_ID);
+      .filter(({ id }) => id === PIKACHU_ID || id === CATERPIE_ID || EKANS_ID);
     renderWithRouter(<FavoritePokemons pokemons={ filteredPokemons } />);
-    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
-    expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+    expect(screen.getByText('Pikachu')).toBeInTheDocument();
+    expect(screen.getByText('Caterpie')).toBeInTheDocument();
+    expect(screen.getByText('Ekans')).toBeInTheDocument();
   });
 });

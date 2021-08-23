@@ -47,9 +47,16 @@ describe('Teste o componente <Pokedex.js />', () => {
     expect(getAllPokemons).toBeInTheDocument();
 
     userEvent.click(getAllPokemons);
-    const pokemonName = screen.getByTestId('pokemon-name');
-    const pokemonType = screen.getByTestId('pokemon-type');
-    expect(pokemonName.textContent).toBe('Pikachu');
-    expect(pokemonType.textContent).toBe('Electric');
+    const actualPokemonName = screen.getByTestId('pokemon-name');
+    const actualPokemonType = screen.getByTestId('pokemon-type');
+    expect(actualPokemonName.textContent).toBe('Pikachu');
+    expect(actualPokemonType.textContent).toBe('Electric');
+
+    const getFirePokemons = screen.getByRole('button', {
+      name: 'Fire',
+    });
+    userEvent.click(getFirePokemons);
+    expect(actualPokemonName.textContent).toBe('Charmander');
+    expect(actualPokemonType.textContent).toBe('Fire');
   });
 });

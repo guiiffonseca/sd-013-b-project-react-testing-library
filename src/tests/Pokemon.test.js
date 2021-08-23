@@ -1,10 +1,9 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
-import renderWithRouter from './utils/renderWithRouter';
-// import renderer from 'react-test-renderer';
-
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+
+import renderWithRouter from './utils/renderWithRouter';
+import App from '../App';
 
 const POKEMON_ID = '25';
 const POKEMON_NAME = 'Pikachu';

@@ -4,29 +4,26 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
-describe('App.js tests.', () => {
-  it('Ao entrar na página verifica se o primeiro link contem o texto "Home" ', () => {
+describe('Requisito 1 - App.js tests.', () => {
+  it('Ao entrar na página verifica se o primeiro link exibe o texto "Home" ', () => {
     renderWithRouter(<App />);
 
-    const linkHomeText = screen.getByText('Home');
-
+    const linkHomeText = screen.getByRole('link', { name: 'Home' });
     expect(linkHomeText).toBeInTheDocument();
   });
 
-  it('Ao entrar na página verifica se o segundo link contem o texto "About" ', () => {
+  it('Ao entrar na página verifica se o segundo link exibe o texto "About" ', () => {
     renderWithRouter(<App />);
 
-    const linkAboutText = screen.getByText('About');
-
+    const linkAboutText = screen.getByRole('link', { name: 'About' });
     expect(linkAboutText).toBeInTheDocument();
   });
 
-  it(`Ao entrar na página verifica se o segundo link contem o 
+  it(`Ao entrar na página verifica se o terceiro link exibe o 
     texto "Favorite Pokémons"`, () => {
     renderWithRouter(<App />);
 
-    const linkFavoriteText = screen.getByText('Favorite Pokémons');
-
+    const linkFavoriteText = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(linkFavoriteText).toBeInTheDocument();
   });
 
@@ -34,9 +31,8 @@ describe('App.js tests.', () => {
     a pagina inicial na URL "/"`, () => {
     const { history } = renderWithRouter(<App />);
 
-    const homeTextLink = screen.getByText('Home');
-    userEvent.click(homeTextLink);
-
+    const linkHomeText = screen.getByRole('link', { name: 'Home' });
+    userEvent.click(linkHomeText);
     expect(history.location.pathname).toBe('/');
   });
 
@@ -44,9 +40,8 @@ describe('App.js tests.', () => {
     a pagina inicial na URL "/about"`, () => {
     const { history } = renderWithRouter(<App />);
 
-    const linkAboutText = screen.getByText('About');
+    const linkAboutText = screen.getByRole('link', { name: 'About' });
     userEvent.click(linkAboutText);
-
     expect(history.location.pathname).toBe('/about');
   });
 
@@ -54,18 +49,20 @@ describe('App.js tests.', () => {
     a pagina inicial na URL "/favorites"`, () => {
     const { history } = renderWithRouter(<App />);
 
-    const linkFavoriteText = screen.getByText('Favorite Pokémons');
+    const linkFavoriteText = screen.getByRole('link', { name: 'Favorite Pokémons' });
     userEvent.click(linkFavoriteText);
-
     expect(history.location.pathname).toBe('/favorites');
   });
 
-  test(`Verifica se ao clicar no link "About" da barra de navegação é redirecionado para
-    a pagina inicial na URL "/favorites"`, () => {
+  test(`Verifica se a aplicação é redirecionada para a página 
+  "Not Found" ao entrar em uma URL desconhecida.`, () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/rota-nao-existente');
-    const pageNotFound = screen.getByText('Page requested not found');
+    const pageNotFound = screen.getByRole('heading', {
+      level: 2,
+      name: 'Page requested not found Crying emoji',
+    });
 
     expect(pageNotFound).toBeInTheDocument();
   });

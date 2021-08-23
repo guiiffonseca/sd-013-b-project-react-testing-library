@@ -4,14 +4,14 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
-describe('teste', () => {
+describe('Requisito 5 - Pokedex.js tests', () => {
   const pokemons = [/Pikachu/, /Charmander/, /Caterpie/, /Ekans/,
     /Alakazam/, /Mew/, /Rapidash/, /Snorlax/, /Dragonair/, /Pikachu/];
   const pokemonsType = [/Electric/, /Fire/,
     /Bug/, /Poison/, /Psychic/, /Normal/, /Dragon/];
 
   it(`Ao entrar na página verifica se contém um
-   heading h2 com o texto "Encountered pokémons".`, () => {
+   "heading h2" com o texto "Encountered pokémons".`, () => {
     renderWithRouter(<App />);
 
     const encounteredText = screen.getByRole('heading', {
@@ -64,6 +64,10 @@ describe('teste', () => {
     pokemonsType.forEach((type, index) => {
       const pokemonTypeButton = screen.getAllByTestId('pokemon-type-button');
       expect(pokemonTypeButton[index]).toHaveTextContent(type);
+      userEvent.click(pokemonTypeButton[index]);
+
+      const pokemonType = screen.getByTestId('pokemon-type');
+      expect(pokemonType).toHaveTextContent(type);
 
       const buttonAll = screen.getByRole('button', { name: 'All' });
       expect(buttonAll).toBeInTheDocument();
@@ -80,7 +84,8 @@ describe('teste', () => {
     const buttonText = screen.getByRole('button', { name: 'Próximo pokémon' });
     userEvent.click(buttonName);
     pokemons.forEach((pokemon) => {
-      expect(screen.getByText(pokemon)).toBeInTheDocument();
+      const pokemonName = screen.getByTestId('pokemon-name');
+      expect(pokemonName).toHaveTextContent(pokemon);
       userEvent.click(buttonText);
     });
   });

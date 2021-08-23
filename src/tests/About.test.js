@@ -3,16 +3,15 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './utils/renderWithRouter';
 import About from '../components/About';
 
-describe('About.js tests.', () => {
-  it(`Ao entrar na página verifica contém um 
-  heading h2 com o texto About Pokédex.`, () => {
+describe('Requisito 2 - About.js tests.', () => {
+  it(`Ao entrar na página verifica se contém um 
+  "heading h2" com o texto "About Pokédex".`, () => {
     renderWithRouter(<About />);
 
     const AboutPokedexText = screen.getByRole('heading', {
       level: 2,
       name: 'About Pokédex',
     });
-
     expect(AboutPokedexText).toBeInTheDocument();
   });
 

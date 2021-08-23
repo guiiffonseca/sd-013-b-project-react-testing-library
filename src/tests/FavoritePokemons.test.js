@@ -5,10 +5,11 @@ import renderWithRouter from './utils/renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
-describe('FavoritePokemons.js tests.', () => {
+describe('Requisito 3 - FavoritePokemons.js tests.', () => {
   it(`Ao entrar na página verifica se é exibido na tela a mensagem 
   "No favorite pokemon found", se a pessoa não tiver pokémons favoritos.`, () => {
     renderWithRouter(<FavoritePokemons />);
+
     const NoFavoriteText = screen.getByText('No favorite pokemon found');
     expect(NoFavoriteText).toBeInTheDocument();
   });
@@ -16,9 +17,6 @@ describe('FavoritePokemons.js tests.', () => {
   it(`Ao entrar na página verifica se é exibido 
   todos os cards de pokémons favoritados.`, () => {
     renderWithRouter(<App />);
-
-    const buttonNextPokemon = screen.getByTestId('next-pokemon');
-    userEvent.click(buttonNextPokemon);
 
     const linkDetailsText = screen.getByRole('link', { name: 'More details' });
     userEvent.click(linkDetailsText);

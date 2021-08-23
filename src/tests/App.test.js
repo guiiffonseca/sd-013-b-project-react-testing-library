@@ -57,7 +57,7 @@ describe('App test', () => {
       expect(pageFavorite).toBeInTheDocument();
     });
 
-  test('Deve redirecionar para Not Found se entrar em uma URL desconhecida', () => {
+  test('Redirecionar para Not Found se entrar em uma URL desconhecida', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/rota-nao-existente');

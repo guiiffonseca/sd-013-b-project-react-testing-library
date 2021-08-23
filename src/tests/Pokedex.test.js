@@ -72,7 +72,7 @@ describe('testando o componente Podeked', () => {
   test('se o texto do botão correspode tipo', () => {
     renderWithRouter(<App />);
     const button = screen.getByRole('button', { name: 'Fire' });
-    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute('data-testid', 'pokemon-type-button');
     console.log(button);
   });
 });

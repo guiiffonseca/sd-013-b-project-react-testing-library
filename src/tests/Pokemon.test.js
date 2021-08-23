@@ -10,19 +10,20 @@ import App from '../App';
 
 describe('Teste o componente <Pokemon.js />', () => {
   test('Se é renderizado um card com as informações de determinado pokémon', () => {
+    const moreDetails = 'More details';
     renderWithRouter(<App />);
 
     const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
     const linkMoreDetails = screen.getByRole('link', {
-      name: 'More details',
+      name: moreDetails,
     });
 
-    expect(pokemonName).toBeInTheDocument();
-    expect(pokemonType).toBeInTheDocument();
-    expect(pokemonWeight).toBeInTheDocument();
-    expect(linkMoreDetails).toBeInTheDocument();
+    expect(pokemonName.textContent).toBe('Pikachu');
+    expect(pokemonType.textContent).toBe('Electric');
+    expect(pokemonWeight.textContent).toBe('Average weight: 6.0 kg');
+    expect(linkMoreDetails.textContent).toBe(moreDetails);
   });
 
   test('Se ao clicar no link é feito o redirecionamento para página de detalhes', () => {

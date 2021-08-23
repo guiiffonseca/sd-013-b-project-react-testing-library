@@ -33,7 +33,7 @@ describe('Testa componente Pokedex', () => {
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
     expect(screen.queryByText('Charmander')).not.toBeInTheDocument();
   });
-
+  /*
   test('verifica se aparecem os botões de filtro na tela', () => {
     renderWithRouter(<App />);
     const allButtons = screen.getAllByRole('button');
@@ -50,7 +50,7 @@ describe('Testa componente Pokedex', () => {
 
     expect(screen.getByText('All')).toBeInTheDocument();
   });
-
+  */
   test('verifica se aparecem os botões de filtro na tela', () => {
     renderWithRouter(<App />);
     const allButtons = screen.getAllByRole('button');

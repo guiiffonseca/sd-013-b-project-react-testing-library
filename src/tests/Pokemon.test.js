@@ -50,5 +50,6 @@ describe('Teste o componente Pokemon.js', () => {
     //  history.push('/');
     const favoriteStar = screen.getByAltText(/Pikachu is marked as favorite/i);
     expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar).toHaveAttribute('src', '/star-icon.svg');
   });
 });

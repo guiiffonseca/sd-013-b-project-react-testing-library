@@ -6,6 +6,8 @@ import renderWithRouter from './utils/renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
 
+const pokemonLoad = screen.getByTestId('pokemon-name');
+
 describe('5. Teste o componente <Pokedex.js />', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
@@ -26,7 +28,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     // O botão deve conter o texto Próximo pokémon;
     expect(btnNext).toHaveTextContent('Próximo pokémon');
     // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
-    const pokemonLoad = screen.getByTestId('pokemon-name');
+    // const pokemonLoad = screen.getByTestId('pokemon-name');
     const pokemonsTest = [
       'Charmander',
       'Caterpie',
@@ -71,7 +73,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
     const firePokemons = ['Charmander', 'Rapidash'];
     const buttonFire = screen.getByRole('button', { name: /fire/i });
-    const pokemonLoad = screen.getByTestId('pokemon-name');
+    // const pokemonLoad = screen.getByTestId('pokemon-name');
     const btnNext = screen.getByRole('button', { name: /próximo pokémon/i });
 
     userEvent.click(buttonFire);
@@ -103,7 +105,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     const buttonNext = screen.getByRole('button', { name: /próximo pokémon/i });
 
     pokemons.forEach((pokemon) => {
-      const pokemonLoad = screen.getByTestId('pokemon-name');
+      // const pokemonLoad = screen.getByTestId('pokemon-name');
       // espero que o nome que esteja aparecendo na tela seja o mesmo nome que está no data.js, na 1 posição
       expect(pokemonLoad === pokemon.name);
       userEvent.click(buttonNext);

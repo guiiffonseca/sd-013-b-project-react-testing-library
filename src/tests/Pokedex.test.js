@@ -5,6 +5,8 @@ import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
 
 describe('Verifica o componente Pokedex', () => {
+  const pokemonNameDataTestId = 'pokemon-name';
+  const pokemonTypeDataTestId = 'pokemon-type-button';
   it('Verifica se há heading h2 com Encountered pokémons', () => {
     renderWithRouter(<App />);
     const headingFind = screen.getByRole('heading', {
@@ -27,8 +29,8 @@ describe('Verifica o componente Pokedex', () => {
     const nextButton = screen.getByRole('button', {
       name: /Próximo pokémon/i,
     });
+    const pokemonName = screen.getByTestId(pokemonNameDataTestId);
     userEvent.click(nextButton);
-    const pokemonName = screen.getByTestId('pokemon-name');
     expect(pokemonName.textContent).toBe('Charmander');
     userEvent.click(nextButton);
     expect(pokemonName.textContent).toBe('Caterpie');
@@ -49,7 +51,8 @@ describe('Verifica o componente Pokedex', () => {
     userEvent.click(nextButton);
     userEvent.click(nextButton);
     userEvent.click(nextButton);
-    const pokemonName = screen.getByTestId('pokemon-name');
+    //  const pokemonName = screen.getByTestId('pokemon-name');
+    const pokemonName = screen.getByTestId(pokemonNameDataTestId);
     expect(pokemonName.textContent).toBe('Dragonair');
     userEvent.click(nextButton);
     expect(pokemonName.textContent).toBe('Pikachu');
@@ -57,14 +60,15 @@ describe('Verifica o componente Pokedex', () => {
 
   it('Se é mostrado apenas um Pokémon por vez', () => {
     renderWithRouter(<App />);
-    const pokemonName = screen.getAllByTestId('pokemon-name');
+    //  const pokemonName = screen.getAllByTestId('pokemon-name');
+    const pokemonName = screen.getAllByTestId(pokemonNameDataTestId);
     expect(pokemonName.length).toBe(1);
   });
 
   it('Se existe apenas um botão de filtragem para cada tipo de Pokémon', () => {
     renderWithRouter(<App />);
     const CATEGORIES_COUNT = 7;
-    const categoriesButtons = screen.getAllByTestId('pokemon-type-button');
+    const categoriesButtons = screen.getAllByTestId(pokemonTypeDataTestId);
     expect(categoriesButtons.length).toBe(CATEGORIES_COUNT);
   });
 
@@ -73,7 +77,7 @@ describe('Verifica o componente Pokedex', () => {
     const nextButton = screen.getByRole('button', {
       name: /Próximo pokémon/i,
     });
-    const categoriesButtons = screen.getAllByTestId('pokemon-type-button');
+    const categoriesButtons = screen.getAllByTestId(pokemonTypeDataTestId);
     expect(categoriesButtons[0].textContent).toBe('Electric');
     userEvent.click(nextButton);
     expect(categoriesButtons[1].textContent).toBe('Fire');
@@ -91,7 +95,7 @@ describe('Verifica o componente Pokedex', () => {
       name: /Próximo pokémon/i,
     });
     const reset = screen.getByText('All');
-    const categoriesButtons = screen.getAllByTestId('pokemon-type-button');
+    const categoriesButtons = screen.getAllByTestId(pokemonTypeDataTestId);
     expect(categoriesButtons[0].textContent).toBe('Electric');
     userEvent.click(nextButton);
     expect(categoriesButtons[1].textContent).toBe('Fire');

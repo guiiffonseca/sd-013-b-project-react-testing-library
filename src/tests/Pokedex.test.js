@@ -50,7 +50,7 @@ describe('Testa componente Pokedex', () => {
     expect(allButtons[7]).toHaveTextContent('Dragon');
 
     userEvent.click(allButtons[2]);
-    expect(screen.getByText('Charmander')).toBeInTheDocument();
+    expect(screen.getByTestId('pokemon-type')).toHaveTextContent('Fire');
     userEvent.click(nextPoke);
     expect(screen.getByText('Rapidash')).toBeInTheDocument();
 

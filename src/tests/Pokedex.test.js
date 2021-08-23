@@ -37,19 +37,19 @@ describe('Testa componente Pokedex', () => {
   test('verifica se aparecem os botões de filtro na tela', () => {
     renderWithRouter(<App />);
     const allButtons = screen.getAllByTestId('pokemon-type-button');
-    const lenghtOfArray = 9;
+    const lenghtOfArray = 7;
     expect(allButtons).toHaveLength(lenghtOfArray);
 
     const nextPoke = screen.getByText(/Próximo/);
-    expect(allButtons[1]).toHaveTextContent('Electric');
-    expect(allButtons[2]).toHaveTextContent('Fire');
-    expect(allButtons[3]).toHaveTextContent('Bug');
-    expect(allButtons[4]).toHaveTextContent('Poison');
-    expect(allButtons[5]).toHaveTextContent('Psychic');
-    expect(allButtons[6]).toHaveTextContent('Normal');
-    expect(allButtons[7]).toHaveTextContent('Dragon');
+    expect(allButtons[0]).toHaveTextContent('Electric');
+    expect(allButtons[1]).toHaveTextContent('Fire');
+    expect(allButtons[2]).toHaveTextContent('Bug');
+    expect(allButtons[3]).toHaveTextContent('Poison');
+    expect(allButtons[4]).toHaveTextContent('Psychic');
+    expect(allButtons[5]).toHaveTextContent('Normal');
+    expect(allButtons[6]).toHaveTextContent('Dragon');
 
-    userEvent.click(allButtons[2]);
+    userEvent.click(allButtons[1]);
     expect(screen.getByTestId('pokemon-type')).toHaveTextContent('Fire');
     userEvent.click(nextPoke);
     expect(screen.getByText('Rapidash')).toBeInTheDocument();

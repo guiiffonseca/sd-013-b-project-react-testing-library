@@ -36,7 +36,7 @@ describe('Testa componente Pokedex', () => {
 
   test('verifica se aparecem os botões de filtro na tela', () => {
     renderWithRouter(<App />);
-    const allButtons = screen.getAllByRole('button');
+    const allButtons = screen.getAllByTestId('pokemon-type-button');
     const lenghtOfArray = 9;
     expect(allButtons).toHaveLength(lenghtOfArray);
 

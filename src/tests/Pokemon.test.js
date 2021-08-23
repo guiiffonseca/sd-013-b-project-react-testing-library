@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utility/renderWithRouter';
 import App from '../App';
 
+const moreDetails = 'More details';
+
 test('Verify if the pokémon card rederized has the pokemons info', () => {
   renderWithRouter(<App />);
 
@@ -24,7 +26,7 @@ test('Verify if the pokeCard has a link with details', () => {
   renderWithRouter(<App />);
 
   const pokeLink = screen.getByRole('link', {
-    name: 'More details',
+    name: moreDetails,
   });
   expect(pokeLink).toHaveAttribute('href', '/pokemons/25');
 });
@@ -33,7 +35,7 @@ test('Verify if when "More details" is clicked, the page redirect correctly', ()
   const { history } = renderWithRouter(<App />);
 
   const pokeLink = screen.getByRole('link', {
-    name: 'More details',
+    name: moreDetails,
   });
   userEvent.click(pokeLink);
   const summaryText = screen.getByText(/Summary/i);
@@ -46,7 +48,7 @@ test('Verify if the star icon appears in favorited pokemons', () => {
   renderWithRouter(<App />);
 
   const pokeLink = screen.getByRole('link', {
-    name: 'More details',
+    name: moreDetails,
   });
   userEvent.click(pokeLink);
   const checkFavorite = screen.getByRole('checkbox');

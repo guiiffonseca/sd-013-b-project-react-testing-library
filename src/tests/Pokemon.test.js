@@ -59,12 +59,26 @@ describe('Teste o componente <Pokemon.js />', () => {
       '/star-icon.svg',
     );
 
+    const spriteDetails = screen.getByAltText('Pikachu sprite');
+    expect(spriteDetails).toBeInTheDocument();
+    expect(spriteDetails).toHaveAttribute(
+      'src',
+      'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    );
+
     history.push('/');
     const favoritedIconMainPage = screen.getByAltText('Pikachu is marked as favorite');
     expect(favoritedIconMainPage).toBeInTheDocument();
     expect(favoritedIconMainPage).toHaveAttribute(
       'src',
       '/star-icon.svg',
+    );
+
+    const spriteMainPage = screen.getByAltText('Pikachu sprite');
+    expect(spriteMainPage).toBeInTheDocument();
+    expect(spriteMainPage).toHaveAttribute(
+      'src',
+      'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     );
   });
 });

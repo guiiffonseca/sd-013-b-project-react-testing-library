@@ -41,7 +41,7 @@ describe('Testa componente Pokedex', () => {
     expect(allButtons).toHaveLength(lenghtOfArray);
 
     const fireButton = screen.getByText('Fire');
-    const nextPoke = screen.getByTestId('next-pokemon');
+    const nextPoke = screen.getByText(/Próximo/);
     expect(fireButton).toHaveTextContent('Fire');
     userEvent.click(fireButton);
     expect(screen.getByText('Charmander')).toBeInTheDocument();
@@ -58,7 +58,7 @@ describe('Testa componente Pokedex', () => {
     expect(allButtons).toHaveLength(lenghtOfArray);
 
     const fireButton = screen.getByText('Fire');
-    const nextPoke = screen.getByTestId('next-pokemon');
+    const nextPoke = screen.getByText(/Próximo/);
     const allButton = screen.getByText('All');
     expect(fireButton).toHaveTextContent('Fire');
     userEvent.click(fireButton);

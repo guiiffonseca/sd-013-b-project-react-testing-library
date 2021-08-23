@@ -8,9 +8,10 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
+const moreDetails = 'More details';
+
 describe('Teste o componente <Pokemon.js />', () => {
   test('Se é renderizado um card com as informações de determinado pokémon', () => {
-    const moreDetails = 'More details';
     renderWithRouter(<App />);
 
     const pokemonName = screen.getByTestId('pokemon-name');
@@ -31,7 +32,7 @@ describe('Teste o componente <Pokemon.js />', () => {
     const pikachuUrl = '/pokemons/25';
 
     const linkMoreDetails = screen.getByRole('link', {
-      name: 'More details',
+      name: moreDetails,
     });
     userEvent.click(linkMoreDetails);
 
@@ -39,7 +40,7 @@ describe('Teste o componente <Pokemon.js />', () => {
       level: 2,
       name: 'Pikachu Details',
     });
-    expect(pokemonDetails).toBeInTheDocument();
+    expect(pokemonDetails.textContent).toBe('Pikachu Details');
     expect(history.location.pathname).toBe(pikachuUrl);
   });
 
@@ -51,9 +52,17 @@ describe('Teste o componente <Pokemon.js />', () => {
     const clickFavoriteButton = screen.getByText('Pokémon favoritado?');
     userEvent.click(clickFavoriteButton);
 
-    const favoritedIcon = screen.getByAltText('Pikachu is marked as favorite');
-    expect(favoritedIcon).toBeInTheDocument();
-    expect(favoritedIcon).toHaveAttribute(
+    const favoritedIconDetails = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoritedIconDetails).toBeInTheDocument();
+    expect(favoritedIconDetails).toHaveAttribute(
+      'src',
+      '/star-icon.svg',
+    );
+
+    history.push('/');
+    const favoritedIconMainPage = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoritedIconMainPage).toBeInTheDocument();
+    expect(favoritedIconMainPage).toHaveAttribute(
       'src',
       '/star-icon.svg',
     );

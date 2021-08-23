@@ -95,4 +95,24 @@ describe('Testando os botões de filtro', () => {
       expect(getPoke).toHaveTextContent(button);
     });
   });
+
+  it('Testa se existe na tela o botão de resetar', () => {
+    const resetButton = screen.getByRole('button', {
+      name: /All/i,
+    });
+    expect(resetButton).toBeInTheDocument();
+
+    userEvent.click(resetButton);
+
+    const nextButton = screen.getByRole('button', {
+      name: /Próximo pokémon/i,
+    });
+    expect(nextButton).toBeInTheDocument();
+
+    pokemons.forEach(({ name }) => {
+      const getPoke = screen.getByText(name);
+      expect(getPoke).toHaveTextContent(name);
+      userEvent.click(nextButton);
+    });
+  });
 });

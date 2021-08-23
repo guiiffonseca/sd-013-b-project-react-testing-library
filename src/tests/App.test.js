@@ -11,6 +11,11 @@ describe('Testa o App.js', () => {
     // expect(screen.getByText(/Home/i)).toBeInTheDocument();
     // expect(screen.getByText(/About/i)).toBeInTheDocument();
     // expect(screen.getByText(/Favorite Pokémons/i)).toBeInTheDocument();
+    //
+    // explicação:
+    // o within tá buscando o elemento que seja uma barra de navegação, para
+    // ai sim buscar os elemetos com a tag link dentro desta barra
+    //
     const nav = within(screen.getByRole('navigation')).getAllByRole('link');
     expect(nav[0].textContent).toBe('Home');
     expect(nav[1].textContent).toBe('About');

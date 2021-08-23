@@ -10,6 +10,20 @@ describe('Testa a pagina de pokedex', () => {
     expect(heading).toBeInTheDocument();
   });
 
+  it('testa o botão de próximo pokémon', () => {
+    renderWithRouter(<App />);
+    const nextButton = screen.getByRole('button', { name: 'Próximo pokémon' });
+    const pokeName = screen.getByTestId('pokemon-name');
+    const type = screen.getByTestId('pokemon-type');
+
+    expect(nextButton).toBeInTheDocument();
+
+    fireEvent.click(nextButton);
+
+    expect(pokeName).toBeInTheDocument();
+    expect(type).toBeInTheDocument();
+  });
+
   it('Testa os botoes de filtrar pelo tipo de pokemon', () => {
     renderWithRouter(<App />);
     const allButton = screen.getByRole('button', { name: 'All' });

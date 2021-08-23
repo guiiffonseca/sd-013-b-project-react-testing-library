@@ -49,7 +49,7 @@ describe('Testa o PokemonDetails.js', () => {
       expect(maps[0]).toHaveAttribute('alt', `${pokemons[0].name} location`);
     });
   });
-  test('Teste se é exibidoum checkbox que permite favoritar.', () => {
+  test('Teste se é exibido um checkbox que permite favoritar.', () => {
     const checkbox = screen.getByLabelText('Pokémon favoritado?');
     expect(checkbox.getAttribute('type')).toBe('checkbox');
   });

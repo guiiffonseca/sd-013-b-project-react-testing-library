@@ -21,7 +21,7 @@ import pokemons from '../data';
 describe('Testa o componente FavoritePokemons', () => {
   test('Teste se é exibido No favorite pokemon found caso não tenha favoritos', () => {
     renderWithRouter(<FavoritePokemons pokemons={ [] } />);
-    expect(screen.getByText(/No favorite/i)).toBeInTheDocument();
+    expect(screen.getByText('No favorite pokemon found')).toBeInTheDocument();
   });
   test('Teste se é exibido todos os cards de pokémons favoritados', () => {
     const PIKACHU_ID = 25;

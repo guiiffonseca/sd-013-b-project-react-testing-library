@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Teste do component <App.js />', () => {
+describe('Testes do component <App.js />', () => {
   test('Se na aplicação existe um link para a página Home', () => {
     renderWithRouter(<App />);
 

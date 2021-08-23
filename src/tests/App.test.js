@@ -43,4 +43,12 @@ describe('Testa a renderização do componente App', () => {
     expect(pathname).toBe('/favorites');
     expect(found).toBeInTheDocument();
   });
+
+  it('Testa se redireciona para "Not Found" ao entrar em URL desconhecida', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/notfoundurl');
+    const found = screen.getByText('Page requested not found');
+
+    expect(found).toBeInTheDocument();
+  });
 });

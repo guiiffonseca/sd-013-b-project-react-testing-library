@@ -78,6 +78,4 @@ describe('Test the component <Pokedex.js />', () => {
     // Click in the all button:
     userEvent.click(allButton);
   });
-
-
 });

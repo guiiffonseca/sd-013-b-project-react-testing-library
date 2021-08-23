@@ -1,6 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -28,8 +27,13 @@ describe('Testes do component <PokemonDetails.js />', () => {
   });
 
   test('Se o usuário pode favoritar um pokémon através da página de detalhes', () => {
-    userEvent.click(screen.getByRole('checkbox', { checked: false }));
-    expect(screen.getByRole('checkbox', { checked: true })).toBeInTheDocument();
-    expect(screen.getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
+    expect(screen.getByLabelText('Pokémon favoritado?')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('checkbox'));
+
+    const favoriteStar = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoriteStar).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('checkbox'));
+    expect(favoriteStar).not.toBeInTheDocument();
   });
 });

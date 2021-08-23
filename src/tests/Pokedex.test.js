@@ -19,7 +19,8 @@ describe('Testa o componente Pokedex', () => {
       pokemons={ [pokemons[0], pokemons[1]] }
       isPokemonFavoriteById={ { 25: true, 4: true } }
     />);
-    const btn = screen.getByTestId('next-pokemon');
+    // const btn = screen.getByTestId('next-pokemon');
+    const btn = screen.getByText(/próximo/i);
     fireEvent.click(btn);
     expect(screen.getByText('Charmander')).toBeInTheDocument();
     fireEvent.click(btn);

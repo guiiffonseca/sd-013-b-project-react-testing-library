@@ -23,7 +23,6 @@ describe('Testes do component <PokemonDetails.js />', () => {
   });
 
   test('Se existe uma seção com os mapas contendo as localizações do pokémon', () => {
-
     expect(screen.getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
     expect(screen.getAllByAltText('Pikachu location')[0].src).toContain('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
   });

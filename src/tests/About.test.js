@@ -1,2 +1,7 @@
-// Início do Projetoo
-test('', () => {});
+// import React from 'react';
+// import { render } from '@testing-library/react';
+// import About from '../components/About';
+
+// describe('Teste o componente About', () => {
+//   test('', () => {});
+// });

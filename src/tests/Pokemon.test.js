@@ -1,13 +1,16 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import renderWithRouter from './utils/renderWithRouter';
+// import renderer from 'react-test-renderer';
 
 import App from '../App';
 
+const POKEMON_ID = '25';
 const POKEMON_NAME = 'Pikachu';
 const POKEMON_TYPE = 'Electric';
 const POKEMON_WEIGHT = 'Average weight:';
 const POKEMON_MEASUREMENT = 'kg';
+const POKEMON_LINK = 'http://localhost/pokemons/';
 
 describe('6. Teste o componente <Pokemon.js />', () => {
   beforeEach(() => {
@@ -34,5 +37,14 @@ describe('6. Teste o componente <Pokemon.js />', () => {
     expect(pokemonImage).toBeInTheDocument();
     expect(pokemonImage).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(pokemonImage).toHaveAttribute('alt', `${POKEMON_NAME} sprite`);
+  });
+
+  test(`Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para
+  exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id> é o
+  id do Pokémon exibido;`, () => {
+    const moreDetailsLink = screen.getByText(/more details/i);
+    expect(moreDetailsLink).toBeInTheDocument();
+    /* source: https://www.ti-enxame.com/pt/reactjs/como-testar-o-href-da-ancora-com-react-testing-library/812065590/ */
+    expect(moreDetailsLink.href).toBe(`${POKEMON_LINK}${POKEMON_ID}`);
   });
 });

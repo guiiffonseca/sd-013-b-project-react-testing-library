@@ -15,23 +15,19 @@ describe('Teste o componente <Pokemon.js />', () => {
     const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
+    const linkMoreDetails = screen.getByRole('link', {
+      name: 'More details',
+    });
 
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonType).toBeInTheDocument();
     expect(pokemonWeight).toBeInTheDocument();
-  });
-
-  test('Se o card do Pokémon contém um link de navegação para exibir detalhes', () => {
-    renderWithRouter(<App />);
-
-    const linkMoreDetails = screen.getByRole('link', {
-      name: 'More details',
-    });
     expect(linkMoreDetails).toBeInTheDocument();
   });
 
   test('Se ao clicar no link é feito o redirecionamento para página de detalhes', () => {
-    renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
+    const pikachuUrl = '/pokemons/25';
 
     const linkMoreDetails = screen.getByRole('link', {
       name: 'More details',
@@ -43,16 +39,6 @@ describe('Teste o componente <Pokemon.js />', () => {
       name: 'Pikachu Details',
     });
     expect(pokemonDetails).toBeInTheDocument();
-  });
-
-  test('Se a URL exibida no navegador muda para /pokemon/<id>', () => {
-    const { history } = renderWithRouter(<App />);
-    const pikachuUrl = '/pokemons/25';
-
-    const linkMoreDetails = screen.getByRole('link', {
-      name: 'More details',
-    });
-    userEvent.click(linkMoreDetails);
     expect(history.location.pathname).toBe(pikachuUrl);
   });
 

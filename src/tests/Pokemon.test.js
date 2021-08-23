@@ -4,6 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 const POKEMONS_PATHS = '/pokemons/25';
+const TYPE = 'pokemon-type';
 
 describe('Teste se um card com as informações pokémon é renderizado', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
@@ -16,7 +17,7 @@ describe('Teste se um card com as informações pokémon é renderizado', () => 
 
   test('O tipo correto do pokémon deve ser mostrado na tela', () => {
     renderWithRouter(<App />);
-    const tipoDocumento = screen.getByTestId('pokemon-type');
+    const tipoDocumento = screen.getByTestId(TYPE);
     expect(tipoDocumento).toBeInTheDocument();
     const tipoNome = screen.getAllByText(/electric/i);
     expect(tipoNome[1]).toBeInTheDocument();
@@ -26,7 +27,8 @@ describe('Teste se um card com as informações pokémon é renderizado', () => 
     renderWithRouter(<App />);
     const average = screen.getByTestId('pokemon-weight');
     expect(average).toBeInTheDocument();
-    const detalhes = screen.getByText(/average weight: 6.0 kg/i)
+    const detalhes = screen.getByText(/average weight: 6.0 kg/i);
+    expect(detalhes).toBeInTheDocument();
   });
 
   test('A imagem do Pokémon deve ser exibida', () => {
@@ -39,7 +41,7 @@ describe('Teste se um card com as informações pokémon é renderizado', () => 
   test('teste de tipo', () => {
     const { history } = renderWithRouter(<App />);
     history.push(POKEMONS_PATHS);
-    const tipoDocumento = screen.getByTestId('pokemon-type');
+    const tipoDocumento = screen.getByTestId(TYPE);
     expect(tipoDocumento).toBeInTheDocument();
     const tipoNome = screen.getAllByText(/electric/i);
     expect(tipoNome[0]).toBeInTheDocument();
@@ -87,7 +89,6 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados', () =>
   });
 });
 
-
 describe('Teste se um card com as informações pokémon é renderizado', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
     const { history } = renderWithRouter(<App />);
@@ -99,7 +100,7 @@ describe('Teste se um card com as informações pokémon é renderizado', () => 
   test('O tipo correto do pokémon deve ser mostrado na tela', () => {
     const { history } = renderWithRouter(<App />);
     history.push(POKEMONS_PATHS);
-    const tipoDocumento = screen.getByTestId('pokemon-type');
+    const tipoDocumento = screen.getByTestId(TYPE);
     expect(tipoDocumento).toBeInTheDocument();
   });
 
@@ -108,7 +109,8 @@ describe('Teste se um card com as informações pokémon é renderizado', () => 
     history.push(POKEMONS_PATHS);
     const average = screen.getByTestId('pokemon-weight');
     expect(average).toBeInTheDocument();
-    const avera = screen.getByText(/average weight: 6.0 kg/i)
+    const avera = screen.getByText(/average weight: 6.0 kg/i);
+    expect(avera).toBeInTheDocument();
   });
 
   test('A imagem do Pokémon deve ser exibida', () => {

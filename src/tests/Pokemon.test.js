@@ -4,6 +4,7 @@ import renderWithRouter from './utils/renderWithRouter';
 // import renderer from 'react-test-renderer';
 
 import App from '../App';
+import userEvent from '@testing-library/user-event';
 
 const POKEMON_ID = '25';
 const POKEMON_NAME = 'Pikachu';
@@ -11,6 +12,7 @@ const POKEMON_TYPE = 'Electric';
 const POKEMON_WEIGHT = 'Average weight:';
 const POKEMON_MEASUREMENT = 'kg';
 const POKEMON_LINK = 'http://localhost/pokemons/';
+const MORE_DETAILS_LINK = /more details/i;
 
 describe('6. Teste o componente <Pokemon.js />', () => {
   beforeEach(() => {
@@ -42,9 +44,20 @@ describe('6. Teste o componente <Pokemon.js />', () => {
   test(`Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para
   exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id> é o
   id do Pokémon exibido;`, () => {
-    const moreDetailsLink = screen.getByText(/more details/i);
+    const moreDetailsLink = screen.getByText(MORE_DETAILS_LINK);
     expect(moreDetailsLink).toBeInTheDocument();
     /* source: https://www.ti-enxame.com/pt/reactjs/como-testar-o-href-da-ancora-com-react-testing-library/812065590/ */
     expect(moreDetailsLink.href).toBe(`${POKEMON_LINK}${POKEMON_ID}`);
+  });
+
+  test(`Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento
+  da aplicação para a página de detalhes de Pokémon.`, () => {
+    const moreDetailsLink = screen.getByText(MORE_DETAILS_LINK);
+    userEvent.click(moreDetailsLink);
+    const title = screen.getByRole('heading', {
+      level: 2,
+      name: `${POKEMON_NAME} Details`,
+    });
+    expect(title.textContent).toEqual(`${POKEMON_NAME} Details`);
   });
 });

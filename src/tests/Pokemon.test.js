@@ -17,7 +17,7 @@ describe('Testando Pokemon', () => {
 
   test(` ${message}
   com o nome correto do Pokémon deve ser mostrado na tela`, () => {
-    renderWithRouter(<Pokemon pokemon={ data[0] } isFavorite />);
+    renderWithRouter(<Pokemon pokemon={ data[0] } isFavorite={ false } />);
     const pokemonName = screen.getByTestId(byName);
     expect(pokemonName).toBeDefined();
     expect(pokemonName.textContent).toBe('Pikachu');
@@ -78,5 +78,4 @@ describe('Testando Pokemon', () => {
     expect(favoriteImg).toBeDefined();
     expect(favoriteImg.src).toMatch(/\/star-icon.svg/i);
   });
-
 });

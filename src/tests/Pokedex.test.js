@@ -40,7 +40,7 @@ describe('Testa componente Pokedex', () => {
     const lenghtOfArray = 9;
     expect(allButtons).toHaveLength(lenghtOfArray);
 
-    const fireButton = screen.getByText('Fire');
+    const fireButton = screen.getAllByRole('button')[2];
     const nextPoke = screen.getByText(/Próximo/);
     expect(fireButton).toHaveTextContent('Fire');
     userEvent.click(fireButton);

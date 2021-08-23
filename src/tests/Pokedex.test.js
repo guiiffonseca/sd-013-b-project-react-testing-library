@@ -21,9 +21,9 @@ describe('Testa o componente Pokedex', () => {
     />);
     const btn = screen.getByTestId('next-pokemon');
     fireEvent.click(btn);
-    expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+    expect(screen.getByText('Charmander')).toBeInTheDocument();
     fireEvent.click(btn);
-    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+    expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
   test('Teste se é mostrado apenas um pokemon por vez', () => {
     renderWithRouter(<Pokedex

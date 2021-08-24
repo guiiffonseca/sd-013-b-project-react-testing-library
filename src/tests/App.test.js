@@ -3,7 +3,6 @@ import { screen, render, within } from '@testing-library/react';
 import { BrowserRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
-
 import App from '../App';
 
 describe('Requisito 1 - App.js test', () => {

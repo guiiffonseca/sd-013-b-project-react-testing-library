@@ -1,6 +1,6 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
@@ -15,11 +15,11 @@ describe('Testa se renderiza um card com informações do pokemon', () => {
     const sprite = screen.getByAltText(/sprite/i);
 
     expect(name).toBeInTheDocument();
-    expect(name).toHaveTextContent(/pikachu/i);
+    expect(name).toHaveTextContent('Pikachu');
     expect(type).toBeInTheDocument();
-    expect(type).toHaveTextContent(/electric/i);
+    expect(type).toHaveTextContent('Electric');
     expect(weight).toBeInTheDocument();
-    expect(weight).toHaveTextContent(/weight: 6.0 kg/i);
+    expect(weight).toHaveTextContent('Average weight: 6.0 kg');
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(sprite).toHaveAttribute('alt', 'Pikachu sprite');

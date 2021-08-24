@@ -96,9 +96,9 @@ class App extends Component {
       <div className="App">
         <h1>Pokédex</h1>
         <nav>
-          <Link className="link" to="/">{`Home`}</Link>
-          <Link className="link" to="/about">{`About`}</Link>
-          <Link className="link" to="/favorites">{`Favorite Pokémons`}</Link>
+          <Link className="link" to="/" data-testid="link">{`Home`}</Link>
+          <Link className="link" to="/about" data-testid="link">{`About`}</Link>
+          <Link className="link" to="/favorites" data-testid="link">{`Favorite Pokémons`}</Link>
         </nav>
         {this.renderRoutes()}
       </div>

@@ -8,7 +8,7 @@ describe('Requisito 1 - Testando o componente <APP.js />', () => {
     renderWithRouter(<App />);
   });
 
-  it('Testa se há um <Link /> com o texto "Home"', () => {
+  it('Testa se há um <Link /> com  texto "Home"', () => {
     const linkHome = screen.getByText('Home');
     expect(linkHome).toBeInTheDocument();
   });

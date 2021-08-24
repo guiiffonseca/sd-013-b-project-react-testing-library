@@ -1,18 +1,12 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/react';
+import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
 test('', () => {
-  const customHistory = createMemoryHistory();
-  render(
-    <Router history={ customHistory }>
-      <App />
-    </Router>,
-  );
+  const { history } = renderWithRouter(<App />);
 
-  customHistory.push('/pageNotFound');
+  history.push('/pageNotFound');
 
   const PageNotFoundText = screen.getByRole('heading', {
     level: 2,

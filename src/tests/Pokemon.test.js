@@ -7,7 +7,6 @@ import App from '../App';
 describe('Testa se renderiza um card com informações do pokemon', () => {
   test('Deveria exibir as informações do pokemon', () => {
     renderWithRouter(<App />);
-
     const name = screen.getByTestId('pokemon-name');
     const type = screen.getByTestId('pokemon-type');
     const weight = screen.getByTestId('pokemon-weight');

@@ -3,25 +3,32 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 describe('Testa se renderiza um card com informações do pokemon', () => {
   test('Deveria exibir as informações do pokemon', () => {
     renderWithRouter(<App />);
-    const name = screen.getByTestId('pokemon-name');
-    const type = screen.getByTestId('pokemon-type');
-    const weight = screen.getByTestId('pokemon-weight');
-    const img = screen.getByRole('img');
-    const sprite = screen.getByAltText(/sprite/i);
+    pokemons.forEach((pokemon) => {
+      const { name, type, averageWeight: { value, measurementUnit }, image } = pokemon;
 
-    expect(name).toBeInTheDocument();
-    expect(name).toHaveTextContent('Pikachu');
-    expect(type).toBeInTheDocument();
-    expect(type).toHaveTextContent('Electric');
-    expect(weight).toBeInTheDocument();
-    expect(weight).toHaveTextContent('Average weight: 6.0 kg');
-    expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-    expect(sprite).toHaveAttribute('alt', 'Pikachu sprite');
+      const pokemonName = screen.getByTestId('pokemon-name');
+      const pokemonType = screen.getByTestId('pokemon-type');
+      const pokemonWeight = screen.getByTestId('pokemon-weight');
+      const pokemonImg = screen.getByRole('img');
+      const pokemonSprite = screen.getByAltText(/sprite/i);
+      const btn = screen.getByText(/próximo pokémon/i);
+
+      expect(pokemonName).toBeInTheDocument();
+      expect(pokemonName).toHaveTextContent(name);
+      expect(pokemonType).toBeInTheDocument();
+      expect(pokemonType).toHaveTextContent(type);
+      expect(pokemonWeight).toBeInTheDocument();
+      expect(pokemonWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
+      expect(pokemonImg).toBeInTheDocument();
+      expect(pokemonImg).toHaveAttribute('src', image);
+      expect(pokemonSprite).toHaveAttribute('alt', `${name} sprite`);
+      userEvent.click(btn);
+    });
   });
 });
 

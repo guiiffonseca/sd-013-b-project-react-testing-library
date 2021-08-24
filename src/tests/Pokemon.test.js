@@ -11,7 +11,9 @@ const POKEMON_ID = '25';
 const POKEMON_NAME = 'Pikachu';
 const POKEMON_TYPE = 'Electric';
 const POKEMON_WEIGHT = 'Average weight:';
-const POKEMON_MEASUREMENT = 'kg';
+// const POKEMON_MEASUREMENT = 'kg';
+const POKEMON_MEASUREMENT_UNIT = pokemons[0].averageWeight.measurementUnit;
+const POKEMON_MEASUREMENT_VALUE = pokemons[0].averageWeight.value;
 const POKEMON_LINK = 'http://localhost/pokemons/';
 const MORE_DETAILS_LINK = /more details/i;
 
@@ -30,8 +32,9 @@ describe('6. Teste o componente <Pokemon.js />', () => {
     // O tipo correto do pokémon deve ser mostrado na tela.
     expect(pokemonType).toHaveTextContent(POKEMON_TYPE);
 
-    // O peso médio do pokémon deve ser exibido com um texto no formato Average weight: <value> <measurementUnit>; onde <value> e <measurementUnit> são, respectivamente, o peso médio do pokémon e sua unidade de medida.
-    expect(pokemonWeight).toHaveTextContent(POKEMON_WEIGHT && POKEMON_MEASUREMENT);
+    // O peso médio do pokémon deve ser exibido com um texto no formato Average weighjt: <value> <measurementUnit>; onde <value> e <measurementUnit> são, respectivamente, o peso médio do pokémon e sua unidade de medida.
+    expect(pokemonWeight).toHaveTextContent(POKEMON_WEIGHT
+      && POKEMON_MEASUREMENT_VALUE && POKEMON_MEASUREMENT_UNIT);
 
     // A imagem do Pokémon deve ser exibida. Ela deve conter um atributo src com a URL da imagem e um atributo alt com o texto <name> sprite, onde <name> é o nome do pokémon;
     expect(pokemonImage).toBeInTheDocument();

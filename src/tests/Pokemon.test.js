@@ -31,7 +31,7 @@ describe('Testa o componente Pokemon', () => {
 
     const name = screen.getByText('Pikachu');
     const type = screen.getByText('Electric');
-    const weight = screen.getByTestId('pokemon-weight');
+    const weight = screen.getByText(`Average weight: ${poke.averageWeight.value} ${poke.averageWeight.measurementUnit}`);
     const image = screen.getByAltText('Pikachu sprite');
 
     expect(name).toBeInTheDocument();

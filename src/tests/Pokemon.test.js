@@ -34,7 +34,7 @@ describe('6. Teste o componente <Pokemon.js />', () => {
 
     // O peso médio do pokémon deve ser exibido com um texto no formato Average weighjt: <value> <measurementUnit>; onde <value> e <measurementUnit> são, respectivamente, o peso médio do pokémon e sua unidade de medida.
     expect(pokemonWeight).toHaveTextContent(
-      `${POKEMON_WEIGHT} ${POKEMON_MEASUREMENT_VALUE} ${POKEMON_MEASUREMENT_UNIT}`
+      `${POKEMON_WEIGHT} ${POKEMON_MEASUREMENT_VALUE} ${POKEMON_MEASUREMENT_UNIT}`,
     );
 
     // A imagem do Pokémon deve ser exibida. Ela deve conter um atributo src com a URL da imagem e um atributo alt com o texto <name> sprite, onde <name> é o nome do pokémon;

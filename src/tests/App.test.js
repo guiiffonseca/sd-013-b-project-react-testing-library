@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('Requisito 1 - Testando  componente <APP.js />', () => {
+describe('Requisito 1 - Testando o componente <APP.js />', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
   });

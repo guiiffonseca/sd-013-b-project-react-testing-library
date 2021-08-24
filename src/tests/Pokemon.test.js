@@ -15,8 +15,8 @@ describe('Testa se renderiza um card com informações do pokemon', () => {
       const pokemonType = screen.getByTestId('pokemon-type');
       const weight = screen.getByTestId('pokemon-weight');
       const pokemonImg = screen.getByRole('img');
-      const pokemonSprite = screen.getByAltText(/sprite/i);
-      const btn = screen.getByText(/próximo pokémon/i);
+      //   const pokemonSprite = screen.getByAltText(/sprite/i);
+      const btn = screen.getByText(/Próximo pokémon/i);
 
       expect(pokemonName).toBeInTheDocument();
       expect(pokemonName).toHaveTextContent(name);
@@ -26,32 +26,32 @@ describe('Testa se renderiza um card com informações do pokemon', () => {
       expect(weight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
       expect(pokemonImg).toBeInTheDocument();
       expect(pokemonImg).toHaveAttribute('src', image);
-      expect(pokemonSprite).toHaveAttribute('alt', `${name} sprite`);
+      expect(pokemonImg).toHaveAttribute('alt', `${name} sprite`);
       userEvent.click(btn);
     });
   });
-});
-test('Deveria exibir link e redirecionar para detalhes desde pokemon', () => {
-  const { history } = renderWithRouter(<App />);
-  const { id } = pokemons[0];
-  const details = screen.getByText('More details');
-  expect(details).toBeInTheDocument();
+  // });
+  test('Deveria exibir link e redirecionar para detalhes desde pokemon', () => {
+    const { history } = renderWithRouter(<App />);
+    const { id } = pokemons[0];
+    const details = screen.getByText('More details');
+    expect(details).toBeInTheDocument();
 
-  userEvent.click(details);
-  // const { pathname } = history.location;
-  expect(history.location.pathname).toBe(`/pokemons/${id}`);
+    userEvent.click(details);
+    // const { pathname } = history.location;
+    expect(history.location.pathname).toBe(`/pokemons/${id}`);
+  });
+  // });
+  // describe('Testa favoritos e suas funcionalidades', () => {
+  test('Deveria existir estrela nos pokemons favoritados', () => {
+    renderWithRouter(<App />);
+    const details = screen.getByText('More details');
+    userEvent.click(details);
+    const checkBox = screen.getByRole('checkbox');
+    userEvent.click(checkBox);
+    // const star = screen.getAllByRole('img')[1];
+    const star = screen.getByAltText('Pikachu is marked as favorite');
+    expect(star).toBeInTheDocument();
+    expect(star).toHaveAttribute('src', '/star-icon.svg');
+  });
 });
-// });
-// describe('Testa favoritos e suas funcionalidades', () => {
-test('Deveria existir estrela nos pokemons favoritados', () => {
-  renderWithRouter(<App />);
-  const details = screen.getByText('More details');
-  userEvent.click(details);
-  const checkBox = screen.getByRole('checkbox');
-  userEvent.click(checkBox);
-  // const star = screen.getAllByRole('img')[1];
-  const star = screen.getByAltText(/marked as favorite/i);
-  expect(star).toBeInTheDocument();
-  expect(star).toHaveAttribute('src', '/star-icon.svg');
-});
-// });

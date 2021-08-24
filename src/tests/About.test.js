@@ -32,7 +32,6 @@ describe('Requisito 2 - about.js test', () => {
 
     const aboutInfo = screen.getByText(/This application/i);
     expect(aboutInfo).toBeInTheDocument();
-
     const aboutText = screen.getByText(/One can filter/i);
     expect(aboutText).toBeInTheDocument();
   });

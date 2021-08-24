@@ -2,9 +2,9 @@ import React from 'react';
 import { screen, render, within } from '@testing-library/react';
 import { BrowserRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
 
 import App from '../App';
-import userEvent from '@testing-library/user-event';
 
 describe('Requisito 1 - App.js test', () => {
   test('testando a renderização dos links da nav', () => {

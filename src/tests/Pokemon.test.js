@@ -13,7 +13,7 @@ describe('Testa se renderiza um card com informações do pokemon', () => {
 
       const pokemonName = screen.getByTestId('pokemon-name');
       const pokemonType = screen.getByTestId('pokemon-type');
-      const pokemonWeight = screen.getByTestId('pokemon-weight');
+      const weight = screen.getByTestId('pokemon-weight');
       const pokemonImg = screen.getByRole('img');
       const pokemonSprite = screen.getByAltText(/sprite/i);
       const btn = screen.getByText(/próximo pokémon/i);
@@ -22,8 +22,8 @@ describe('Testa se renderiza um card com informações do pokemon', () => {
       expect(pokemonName).toHaveTextContent(name);
       expect(pokemonType).toBeInTheDocument();
       expect(pokemonType).toHaveTextContent(type);
-      expect(pokemonWeight).toBeInTheDocument();
-      expect(pokemonWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
+      expect(weight).toBeInTheDocument();
+      expect(weight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
       expect(pokemonImg).toBeInTheDocument();
       expect(pokemonImg).toHaveAttribute('src', image);
       expect(pokemonSprite).toHaveAttribute('alt', `${name} sprite`);

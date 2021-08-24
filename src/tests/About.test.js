@@ -32,8 +32,10 @@ describe('Requisito 2 - about.js test', () => {
 
     const aboutInfo = screen.getByText(/This application/i);
     expect(aboutInfo).toBeInTheDocument();
+
     const aboutText = screen.getByText(/One can filter/i);
     expect(aboutText).toBeInTheDocument();
+
     const aboutImg = screen.getByRole('img', {
       src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
     });

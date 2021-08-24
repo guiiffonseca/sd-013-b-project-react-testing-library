@@ -48,9 +48,9 @@ describe('Testa favoritos e suas funcionalidades', () => {
     userEvent.click(details);
     const checkBox = screen.getByRole('checkbox');
     userEvent.click(checkBox);
-    const star = screen.getAllByRole('img')[1];
-    const marked = screen.getByAltText(/marked as favorite/i);
-    expect(marked).toBeInTheDocument();
+    // const star = screen.getAllByRole('img')[1];
+    const star = screen.getByAltText(/marked as favorite/i);
+    expect(star).toBeInTheDocument();
     expect(star).toHaveAttribute('src', '/star-icon.svg');
   });
 });

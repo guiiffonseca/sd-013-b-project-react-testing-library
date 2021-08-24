@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import About from '../components/About';
+import { About } from '../components';
 
 describe('teste do componente About e as informações sobre a Pokédex', () => {
   test('Teste se contém um h2 na tela com o texto About Pokédex ', () => {

@@ -1,38 +1,38 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
 
-describe('tests for the App component', () => {
-  it('Tests whether the Pokédex main page is rendered in the URL path /', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect( getByText('Encountered pokémons')).toBeInTheDocument();
+describe('Teste se a aplicação é redirecionada para', () => {
+  it('a página inicial, na URL /', () => {
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/Home/i));
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
+    const aboutAll = screen.getByText(/Encountered pokémons/);
+    expect(aboutAll).toBeInTheDocument();
   });
-
-  it('test redirect with home link', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const linkHome = screen.getByText(/Home/i);
-    expect(linkHome).toBeInTheDocument();
-
-    fireEvent.click(linkHome);
-    expect(history.location.pathname).toBe('/');
+  it('a página de About, na URL /about', () => {
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/About/i));
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/about');
+    const aboutAll = screen.getByText(/About Pokédex/);
+    expect(aboutAll).toBeInTheDocument();
   });
-
-  it('test redirect with about link', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const linkAbout = getByText(/About/i);
-    expect(linkAbout).toBeInTheDocument();
-
-    fireEvent.click(linkAbout);
-    expect(history.location.pathname).toBe('/about');
+  it('a página de Pokémons Favoritados, na URL /favorites', () => {
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/Favorite Pokémons/i));
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites');
+    const aboutAll = screen.getByText(/Favorite pokémons/);
+    expect(aboutAll).toBeInTheDocument();
   });
-
-  it('test redirect with favorite link', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const linkFavorite = getByText(/Favorite Pokémon/i);
-    expect(linkFavorite).toBeInTheDocument();
-
-    fireEvent.click(linkFavorite);
-    expect(history.location.pathname).toBe('/favorites');
+  it('a página Not Found ao entrar em uma URL desconhecida.', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/pagina/que-nao-existe/');
+    const noMatch = screen.getByText(/Page requested not found/i);
+    expect(noMatch).toBeInTheDocument();
   });
 });

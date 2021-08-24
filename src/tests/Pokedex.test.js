@@ -18,8 +18,8 @@ test('', () => {
   expect(buttons.length).toBe(numberOoFilters);
 
   const buttonAll = screen.getByTestId('pokemon-all-button');
-  expect(buttonAll).toHaveTextContent('All');
   expect(buttonAll).toBeInTheDocument();
+  expect(buttonAll).toHaveTextContent('All');
 
   const nextPokemon = screen.getByTestId('next-pokemon');
   expect(nextPokemon).toBeInTheDocument();

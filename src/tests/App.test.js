@@ -11,7 +11,7 @@ describe('tests for the App component', () => {
 
   it('test redirect with home link', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const linkHome = getByText(/Home/i);
+    const linkHome = screen.getByText(/Home/i);
     expect(linkHome).toBeInTheDocument();
 
     fireEvent.click(linkHome);

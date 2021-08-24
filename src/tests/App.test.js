@@ -6,12 +6,12 @@ import App from '../App';
 describe('tests for the App component', () => {
   it('Tests whether the Pokédex main page is rendered in the URL path /', () => {
     const { getByText } = renderWithRouter(<App />);
-    expect( getByText('Encountered pokémons')).toBeInTheDocument();
+    expect( screen.getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   it('test redirect with home link', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const linkHome = getByText(/Home/i);
+    const linkHome = screen.getByText(/Home/i);
     expect(linkHome).toBeInTheDocument();
 
     fireEvent.click(linkHome);
@@ -20,7 +20,7 @@ describe('tests for the App component', () => {
 
   it('test redirect with about link', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const linkAbout = getByText(/About/i);
+    const linkAbout = screen.getByText(/About/i);
     expect(linkAbout).toBeInTheDocument();
 
     fireEvent.click(linkAbout);
@@ -29,7 +29,7 @@ describe('tests for the App component', () => {
 
   it('test redirect with favorite link', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const linkFavorite = getByText(/Favorite Pokémon/i);
+    const linkFavorite = screen.getByText(/Favorite Pokémon/i);
     expect(linkFavorite).toBeInTheDocument();
 
     fireEvent.click(linkFavorite);

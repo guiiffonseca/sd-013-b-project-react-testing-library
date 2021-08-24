@@ -42,4 +42,14 @@ describe('Testa os links do arquivo App.js', () => {
     expect(renderFavorites).toBeInTheDocument();
     expect(pathname).toBe('/favorites');
   });
+
+  it('', () => {
+    // Renderizar a pag resgatando do history
+    const { history } = renderWithRouter(<App />);
+    history.push('/urlsemregistro');
+    // 1. Acessar os elementos da tela
+    const renderNotFound = screen.getByRole('heading', { name: /Not Found/i });
+    // 3. Criar o teste
+    expect(renderNotFound).toBeInTheDocument();
+  });
 });

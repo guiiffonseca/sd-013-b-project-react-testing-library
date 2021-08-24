@@ -79,4 +79,14 @@ describe('6. Teste o componente <Pokemon.js />', () => {
     const { pathname } = history.entries[1];
     expect(pathname).toMatch(`/pokemons/${id}`);
   });
+
+  test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
+    // O ícone deve ser uma imagem com o atributo src contendo o caminho /star-icon.svg;
+    const iconFavorite = screen.getByAltText(/is marked as favorite/i);
+    expect(iconFavorite).toHaveAttribute('src', '/star-icon.svg');
+
+    // A imagem deve ter o atributo alt igual a <pokemon> is marked as favorite, onde <pokemon> é o nome do Pokémon exibido.
+    expect(iconFavorite).toHaveAttribute('alt', `${POKEMON_NAME} is marked as favorite`);
+  });
 });

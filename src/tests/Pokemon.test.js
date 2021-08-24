@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
+import { Pokemon } from '../components';
+import pokemons from '../data';
 
 const POKEMON_ID = '25';
 const POKEMON_NAME = 'Pikachu';
@@ -14,12 +16,9 @@ const POKEMON_LINK = 'http://localhost/pokemons/';
 const MORE_DETAILS_LINK = /more details/i;
 
 describe('6. Teste o componente <Pokemon.js />', () => {
-  beforeEach(() => {
-    renderWithRouter(<App />);
-  });
-
   test(`'Teste se é renderizado um card com as informações de determinado 
   pokémon.'`, () => {
+    renderWithRouter(<App />);
     const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
@@ -43,6 +42,7 @@ describe('6. Teste o componente <Pokemon.js />', () => {
   test(`Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para
   exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id> é o
   id do Pokémon exibido;`, () => {
+    renderWithRouter(<App />);
     const moreDetailsLink = screen.getByText(MORE_DETAILS_LINK);
     expect(moreDetailsLink).toBeInTheDocument();
     /* source: https://www.ti-enxame.com/pt/reactjs/como-testar-o-href-da-ancora-com-react-testing-library/812065590/ */
@@ -51,12 +51,32 @@ describe('6. Teste o componente <Pokemon.js />', () => {
 
   test(`Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento
   da aplicação para a página de detalhes de Pokémon.`, () => {
+    renderWithRouter(<App />);
     const moreDetailsLink = screen.getByText(MORE_DETAILS_LINK);
     userEvent.click(moreDetailsLink);
+
     const title = screen.getByRole('heading', {
       level: 2,
       name: `${POKEMON_NAME} Details`,
     });
     expect(title.textContent).toEqual(`${POKEMON_NAME} Details`);
+  });
+
+  test(`Teste também se a URL exibida no navegador muda para /pokemon/<id>,
+  onde <id> é o id do Pokémon cujos detalhes se deseja ver`, () => {
+    const { history } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
+    const { id } = pokemons[0];
+    const moreDetailsLink = screen.getByRole('link', { name: MORE_DETAILS_LINK });
+    userEvent.click(moreDetailsLink);
+
+    // inspiration by @raugusto96
+    // const { location: { pathname } } = history;
+    // expect(pathname).toBe(`/pokemons/${id}`);
+
+    // mesma solução acima ^
+    // source: https://www.tabnine.com/code/javascript/functions/history/createMemoryHistory?snippet=5f64b37bf93c3aaf60e072e0
+    // const pathname = history.entries[1].pathname; /* porem o linter exige que seja desestruturado */
+    const { pathname } = history.entries[1];
+    expect(pathname).toMatch(`/pokemons/${id}`);
   });
 });

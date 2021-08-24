@@ -64,7 +64,7 @@ describe('6. Teste o componente <Pokemon.js />', () => {
 
   test(`Teste também se a URL exibida no navegador muda para /pokemon/<id>,
   onde <id> é o id do Pokémon cujos detalhes se deseja ver`, () => {
-    const { history } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
+    const { history } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
     const { id } = pokemons[0];
     const moreDetailsLink = screen.getByRole('link', { name: MORE_DETAILS_LINK });
     userEvent.click(moreDetailsLink);

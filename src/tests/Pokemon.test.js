@@ -31,32 +31,27 @@ describe('Testa se renderiza um card com informações do pokemon', () => {
     });
   });
 });
+test('Deveria exibir link e redirecionar para detalhes desde pokemon', () => {
+  const { history } = renderWithRouter(<App />);
+  const { id } = pokemons[0];
+  const details = screen.getByText('More details');
+  expect(details).toBeInTheDocument();
 
-describe('Testa link Detalhes e suas funcionalidades', () => {
-  test('Deveria exibir link para detalhes desde pokemon', () => {
-    renderWithRouter(<App />);
-    const details = screen.getByText(/details/i);
-    expect(details).toBeInTheDocument();
-  });
-  test('Deveria redirecionar a pagina de detalhes', () => {
-    const { history } = renderWithRouter(<App />);
-    const details = screen.getByText(/details/i);
-    userEvent.click(details);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');
-  });
-  // });
-
-  // describe('Testa favoritos e suas funcionalidades', () => {
-  test('Deveria existir estrela nos pokemons favoritados', () => {
-    renderWithRouter(<App />);
-    const details = screen.getByText(/details/i);
-    userEvent.click(details);
-    const checkBox = screen.getByRole('checkbox');
-    userEvent.click(checkBox);
-    // const star = screen.getAllByRole('img')[1];
-    const star = screen.getByAltText(/marked as favorite/i);
-    expect(star).toBeInTheDocument();
-    expect(star).toHaveAttribute('src', '/star-icon.svg');
-  });
+  userEvent.click(details);
+  // const { pathname } = history.location;
+  expect(history.location.pathname).toBe(`/pokemons/${id}`);
 });
+// });
+// describe('Testa favoritos e suas funcionalidades', () => {
+test('Deveria existir estrela nos pokemons favoritados', () => {
+  renderWithRouter(<App />);
+  const details = screen.getByText('More details');
+  userEvent.click(details);
+  const checkBox = screen.getByRole('checkbox');
+  userEvent.click(checkBox);
+  // const star = screen.getAllByRole('img')[1];
+  const star = screen.getByAltText(/marked as favorite/i);
+  expect(star).toBeInTheDocument();
+  expect(star).toHaveAttribute('src', '/star-icon.svg');
+});
+// });

@@ -16,6 +16,7 @@ describe('Requisito 1 - App.js test', () => {
     const nav = screen.getByRole('navigation');
     const navLinks = within(nav).getAllByRole('link');
     const navLength = 3;
+
     expect(navLinks.length).toBe(navLength);
 
     const home = screen.getByRole('link', {

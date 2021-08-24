@@ -39,9 +39,9 @@ describe('Testa link Detalhes e suas funcionalidades', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
-});
+  // });
 
-describe('Testa favoritos e suas funcionalidades', () => {
+  // describe('Testa favoritos e suas funcionalidades', () => {
   test('Deveria existir estrela nos pokemons favoritados', () => {
     renderWithRouter(<App />);
     const details = screen.getByText(/details/i);

@@ -6,7 +6,7 @@ import App from '../App';
 describe('tests for the App component', () => {
   it('Tests whether the Pokédex main page is rendered in the URL path /', () => {
     const { getByText } = renderWithRouter(<App />);
-    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    expect( getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   it('test redirect with home link', () => {

@@ -4,7 +4,7 @@ import renderWithRouter from './util/renderWithRouter';
 import { About } from '../components';
 
 describe('tests the component About and its elements', () => {
-  beforeEach(() => renderWithRouter(<About />), 0);
+  beforeEach(() => renderWithRouter(<About />));
 
   it('should have a Pokédex information', () => {
     const information = screen.getByText(/This application simulates/);

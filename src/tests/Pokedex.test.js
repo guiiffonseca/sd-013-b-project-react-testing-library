@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -51,6 +51,10 @@ describe('Test 5 - testing Pokedex', () => {
     renderWithRouter(<App />);
 
     const allButton = screen.getByText(/All/i);
+    const pokemonName = screen.getByTestId('pokemon-name');
+
     expect(allButton).toBeInTheDocument();
+    fireEvent.click(allButton);
+    expect(pokemonName).toHaveTextContent('Pikachu');
   });
 });

@@ -6,6 +6,7 @@ import App from '../App';
 
 describe('Pokemon.js', () => {
   const route = '/pokemons/25';
+  const tipoPikachu = 2;
   test('testa se é renderizado um card com informações de um pokémon', () => {
     const { history } = renderWithRouter(<App />);
     history.push(route);
@@ -14,7 +15,7 @@ describe('Pokemon.js', () => {
     expect(nome).toBeInTheDocument();
 
     const typePikachu = screen.getAllByText(/electric/i);
-    expect(typePikachu.length).toBe(2);
+    expect(typePikachu.length).toBe(tipoPikachu);
 
     const typo = screen.getByTestId('pokemon-type');
     expect(typo).toBeInTheDocument();

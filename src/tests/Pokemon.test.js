@@ -30,7 +30,7 @@ describe('Pokemon.js', () => {
   });
 
   test(`testa se a URL exibida no navegador muda para /pokemon/<id>, onde <id> 
-    é o id do Pokémon cujos detalhes se deseja ver`, () => {
+    é o id do Pokémons cujos detalhes se deseja ver`, () => {
     const { history } = renderWithRouter(<App />);
 
     const detailsLink = screen.getByRole('link', {

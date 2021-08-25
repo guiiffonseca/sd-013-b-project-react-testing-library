@@ -7,7 +7,7 @@ import pokemons from '../data';
 
 const { id, name, foundAt } = pokemons[0];
 const LOCATION_NAME = 'Kanto Viridian Forest';
-const LOCATION_MAP = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+// const LOCATION_MAP = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
 
 describe('7. Teste o componente <PokemonDetails.js />', () => {
   beforeEach(() => {
@@ -52,7 +52,7 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
 
     // Todas as localizações do Pokémon devem ser mostradas na seção de detalhes;
     const allMapLocations = screen.queryAllByAltText(`${name} location`); // todos os mapas/imagens
-    const totalMaps = foundAt.map((foundAt) => foundAt.map); // quantidade total de img dos map no banco
+    const totalMaps = foundAt.map((found) => found.map); // quantidade total de img dos map no banco
     // console.log(totalMaps);
     expect(allMapLocations[0]).toBeInTheDocument();
     expect(allMapLocations.length).toEqual(totalMaps.length);
@@ -64,7 +64,7 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
 
     // A imagem da localização deve ter um atributo src com a URL da localização;
     expect(allMapLocations[0]).toHaveAttribute('src', foundAt[0].map);
-    
+
     // A imagem da localização deve ter um atributo alt com o texto <name> location, onde <name> é o nome do Pokémon;
     expect(allMapLocations[0]).toHaveAttribute('alt', `${name} location`);
   });

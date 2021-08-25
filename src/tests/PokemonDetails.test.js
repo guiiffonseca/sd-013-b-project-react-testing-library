@@ -61,7 +61,7 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
     // Devem ser exibidos, o nome da localização e uma imagem do mapa em cada localização;
     const locationName = screen.getByText(foundAt[0].location);
     expect(locationName.textContent).toStrictEqual(foundAt[0].location); // DINÂMICO
-    expect(locationName.textContent).toStrictEqual(LOCATION_NAME); // ESTÁTICO
+    expect(locationName.textContent).toStrictEqual(LOCATION_NAME); // ESTÁTICO quebrará se trocar o índice '0'
 
     // A imagem da localização deve ter um atributo src com a URL da localização;
     expect(allMapLocations[0]).toHaveAttribute('src', foundAt[0].map);
@@ -74,7 +74,8 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
   test('Teste se o usuário pode favoritar um pokémon através da página de detalhes.',
     () => {
       // A página deve exibir um checkbox que permite favoritar o Pokémon;
-      // const checkbox = screen.getByRole('checkbox', { checked: false }); // peguei um checkbox que não está marcado, mas não gostei disso
+      // abaixo pega um checkbox que não está marcado, mas não gostei disso.
+      // const checkbox = screen.getByRole('checkbox', { checked: false });
       const checkbox = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
       expect(checkbox).not.toBeChecked();
 

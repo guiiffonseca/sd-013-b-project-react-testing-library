@@ -14,7 +14,7 @@ describe('Pokedex test', () => {
 
   test('A página deve conter o texto "Encountered pokémons"', () => {
     const EncounteredText = screen.getByRole('heading', {
-      name: /Encountered pokémons/i,
+      name: 'Encountered pokémons',
       level: 2,
     });
     expect(EncounteredText).toBeInTheDocument();

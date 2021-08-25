@@ -5,7 +5,9 @@ import renderWithRouter from './utils/renderWithRouter';
 
 import pokemons from '../data';
 
-const { id, name } = pokemons[0];
+const { id, name, foundAt } = pokemons[0];
+const LOCATION_NAME = 'Kanto Viridian Forest';
+const LOCATION_MAP = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
 
 describe('7. Teste o componente <PokemonDetails.js />', () => {
   beforeEach(() => {
@@ -39,17 +41,32 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
     expect(resume).toBeInTheDocument();
   });
 
-  test(`Teste se existe na página uma seção com os mapas contendo as localizações do
+  test.only(`Teste se existe na página uma seção com os mapas contendo as localizações do
   pokémon`, () => {
     // Na seção de detalhes deverá existir um heading h2 com o texto Game Locations of <name>; onde <name> é o nome do Pokémon exibido.
+    const gameLocations = screen.getByRole('heading', {
+      level: 2,
+      name: `Game Locations of ${name}`,
+    });
+    expect(gameLocations).toHaveTextContent(`Game Locations of ${name}`);
 
     // Todas as localizações do Pokémon devem ser mostradas na seção de detalhes;
+    const allMapLocations = screen.queryAllByAltText(`${name} location`); // todos os mapas/imagens
+    const totalMaps = foundAt.map((foundAt) => foundAt.map); // quantidade total de img dos map no banco
+    // console.log(totalMaps);
+    expect(allMapLocations[0]).toBeInTheDocument();
+    expect(allMapLocations.length).toEqual(totalMaps.length);
 
     // Devem ser exibidos, o nome da localização e uma imagem do mapa em cada localização;
+    const locationName = screen.getByText(foundAt[0].location);
+    expect(locationName.textContent).toStrictEqual(foundAt[0].location); // DINÂMICO
+    expect(locationName.textContent).toStrictEqual(LOCATION_NAME); // ESTÁTICO
 
     // A imagem da localização deve ter um atributo src com a URL da localização;
-
+    expect(allMapLocations[0]).toHaveAttribute('src', foundAt[0].map);
+    
     // A imagem da localização deve ter um atributo alt com o texto <name> location, onde <name> é o nome do Pokémon;
+    expect(allMapLocations[0]).toHaveAttribute('alt', `${name} location`);
   });
 
   test('Teste se o usuário pode favoritar um pokémon através da página de detalhes.',

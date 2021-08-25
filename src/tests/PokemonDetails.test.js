@@ -4,10 +4,11 @@ import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 
 import pokemons from '../data';
+import userEvent from '@testing-library/user-event';
 
 const { id, name, foundAt } = pokemons[0];
 const LOCATION_NAME = 'Kanto Viridian Forest';
-// const LOCATION_MAP = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+const LOCATION_MAP = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
 
 describe('7. Teste o componente <PokemonDetails.js />', () => {
   beforeEach(() => {
@@ -41,7 +42,7 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
     expect(resume).toBeInTheDocument();
   });
 
-  test.only(`Teste se existe na página uma seção com os mapas contendo as localizações do
+  test(`Teste se existe na página uma seção com os mapas contendo as localizações do
   pokémon`, () => {
     // Na seção de detalhes deverá existir um heading h2 com o texto Game Locations of <name>; onde <name> é o nome do Pokémon exibido.
     const gameLocations = screen.getByRole('heading', {
@@ -64,7 +65,8 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
 
     // A imagem da localização deve ter um atributo src com a URL da localização;
     expect(allMapLocations[0]).toHaveAttribute('src', foundAt[0].map);
-
+    expect(allMapLocations[0]).toHaveAttribute('src', LOCATION_MAP); // ESTÁTICO quebrará se trocar o índice '0'
+    
     // A imagem da localização deve ter um atributo alt com o texto <name> location, onde <name> é o nome do Pokémon;
     expect(allMapLocations[0]).toHaveAttribute('alt', `${name} location`);
   });
@@ -72,9 +74,23 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
   test('Teste se o usuário pode favoritar um pokémon através da página de detalhes.',
     () => {
       // A página deve exibir um checkbox que permite favoritar o Pokémon;
+      // const checkbox = screen.getByRole('checkbox', { checked: false }); // peguei um checkbox que não está marcado, mas não gostei disso
+      const checkbox = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
+      expect(checkbox).not.toBeChecked();
 
       // Cliques alternados no checkbox devem adicionar e remover respectivamente o Pokémon da lista de favoritos;
+      userEvent.click(checkbox);
+      expect(checkbox).toBeChecked();
+
+      const isMarkedFavorite = screen.getByAltText(`${name} is marked as favorite`);
+      expect(isMarkedFavorite).toBeInTheDocument();
+
+      userEvent.click(checkbox);
+      expect(checkbox).not.toBeChecked();
+      expect(isMarkedFavorite).not.toBeInTheDocument();
 
       // O label do checkbox deve conter o texto Pokémon favoritado?;
+      const checkboxLabel = screen.getByLabelText('Pokémon favoritado?');
+      expect(checkboxLabel).toBeInTheDocument();
     });
 });

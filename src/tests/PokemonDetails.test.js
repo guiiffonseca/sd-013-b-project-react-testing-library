@@ -1,10 +1,10 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 
 import pokemons from '../data';
-import userEvent from '@testing-library/user-event';
 
 const { id, name, foundAt } = pokemons[0];
 const LOCATION_NAME = 'Kanto Viridian Forest';
@@ -66,7 +66,7 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
     // A imagem da localização deve ter um atributo src com a URL da localização;
     expect(allMapLocations[0]).toHaveAttribute('src', foundAt[0].map);
     expect(allMapLocations[0]).toHaveAttribute('src', LOCATION_MAP); // ESTÁTICO quebrará se trocar o índice '0'
-    
+
     // A imagem da localização deve ter um atributo alt com o texto <name> location, onde <name> é o nome do Pokémon;
     expect(allMapLocations[0]).toHaveAttribute('alt', `${name} location`);
   });

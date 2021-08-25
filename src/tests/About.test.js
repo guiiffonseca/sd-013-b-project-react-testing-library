@@ -17,7 +17,7 @@ test('Verifica se a página contém as informações sobre a Pokédex.', () => {
 
 test('Página contém h2 com texto About Pokédex', () => {
   renderWithRouter(<About />);
-  const linkElement = screen.getByRole('heading');
+  const linkElement = screen.getByRole('heading', { level: 2 });
   expect(linkElement).toBeInTheDocument();
   expect(linkElement.innerHTML).toBe('About Pokédex');
 });

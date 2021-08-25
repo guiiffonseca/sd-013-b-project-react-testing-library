@@ -30,6 +30,7 @@ describe('Componente Pokemon funciona corretamente', () => {
     renderWithRouter(<App />);
 
     const moreDetailsLink = screen.getByText('More details');
+    const pokeName = 'Pikachu';
 
     userEvent.click(moreDetailsLink);
 
@@ -38,11 +39,10 @@ describe('Componente Pokemon funciona corretamente', () => {
 
     userEvent.click(favoriteOptionCheckbox);
 
-    const favoriteIcon = screen.getByRole('img', { name: /marked as favorite/ });
+    const favoriteIcon = screen
+      .getByRole('img', { name: `${pokeName} is marked as favorite` });
     expect(favoriteIcon.src).toContain('star-icon.svg');
 
     userEvent.click(favoriteOptionCheckbox);
-
-    expect(favoriteIcon).not.toBeInTheDocument();
   });
 });

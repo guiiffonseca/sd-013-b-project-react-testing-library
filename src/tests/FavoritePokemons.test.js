@@ -4,6 +4,7 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../utils/renderWithRouter';
 import pokemons from '../data';
 
+// Codigo refeito depois de fazer um CR no projeto do Lucas Caribé
 describe('Testando FavoritePokemons.js', () => {
   test('a página deve exibir uma mensagem caso não haja pokémon favorito', () => {
     renderWithRouter(<FavoritePokemons pokemons={ [] } />);

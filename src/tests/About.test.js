@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../utils/renderWithRouter';
 import About from '../components/About';
 
+// Codigo refeito depois de fazer um CR no projeto do Lucas Caribé
 describe('Testando o About.js', () => {
   test('a página deve conter as informações sobre a Pokédex', () => {
     renderWithRouter(<About />);

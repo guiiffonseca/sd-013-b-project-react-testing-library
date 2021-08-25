@@ -3,6 +3,7 @@ import { screen, within, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../utils/renderWithRouter';
 import App from '../App';
 
+// Codigo refeito depois de fazer um CR no projeto do Lucas Caribé
 function testLink(linkText, headerText) {
   const { history } = renderWithRouter(<App />);
   const link = screen.getByText(linkText);

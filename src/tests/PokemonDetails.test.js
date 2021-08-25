@@ -1,70 +1,77 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, screen } from '@testing-library/react';
+
 import App from '../App';
+
 import renderWithRouter from '../components/renderWithRouter';
 
-describe('tests for the PokemonDetails component', () => {
-  const mew = '/pokemons/151';
-  const mewLocation = 'Mew location';
+describe('Testando PokemonDetails', () => {
+  beforeEach(() => {
+    const { history } = renderWithRouter(<App />);
 
-  it('Test if the selected Pokémons information is shown on the screen', () => {
-    const { getByText, queryByText, history } = renderWithRouter(<App />);
-    history.push(mew);
-
-    const name = getByText('Mew Details');
-    const moreDetails = queryByText('More Details');
-
-    expect(name).toBeInTheDocument();
-    expect(moreDetails).not.toBeInTheDocument();
+    history.push('/pokemons/25');
   });
 
-  it('Test if page contains a heading with the text Summary', () => {
-    const { getByRole, getByText, history } = renderWithRouter(<App />);
-    history.push(mew);
+  test('se as informações detalhadas do Pokémon selecionado são mostradas', () => {
+    const header = screen.getByRole('heading', {
+      level: 2,
+      name: 'Pikachu Details',
+    });
+    const summary = screen.getByRole('heading', { level: 2, name: 'Summary' });
+    const pokemonDetails = screen.getByText(
+      'This intelligent Pokémon roasts hard berries with electricity to make'
+        + ' them tender enough to eat.',
+    );
+    const link = screen.queryByText('More details');
 
-    const title = getByRole('heading', { level: 2, name: 'Summary' });
-    expect(title).toBeInTheDocument();
-
-    const resume = getByText(/those people who are pure of heart/i);
-    expect(resume).toBeInTheDocument();
+    expect(header).toBeInTheDocument();
+    expect(summary).toBeInTheDocument();
+    expect(pokemonDetails).toBeInTheDocument();
+    expect(link).not.toBeInTheDocument();
   });
 
-  it('Testa se contém uma seção com os mapas e a localização do pokémon', () => {
-    const { getByRole, getByAltText, getByText, history } = renderWithRouter(<App />);
-    history.push(mew);
+  test('se existe uma seção com os mapas contendo as localizações do pokémon', () => {
+    const locationsHeader = screen.getByRole('heading', {
+      level: 2,
+      name: 'Game Locations of Pikachu',
+    });
 
-    const title = getByRole('heading', { level: 2, name: 'Game Locations of Mew' });
-    expect(title).toBeInTheDocument();
+    const locations = [
+      screen.getByText('Kanto Viridian Forest'),
+      screen.getByText('Kanto Power Plant'),
+    ];
 
-    const resume = getByAltText(mewLocation);
-    expect(resume).toBeInTheDocument();
+    const locationImages = screen.getAllByAltText('Pikachu location');
+    const expectedImages = [
+      'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+      'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+    ];
 
-    const local = getByText('Faraway Island');
-    expect(local).toBeInTheDocument();
+    expect(locationsHeader).toBeInTheDocument();
+
+    locations.forEach((location) => {
+      expect(location).toBeInTheDocument();
+    });
+
+    locationImages.forEach((image, index) => {
+      expect(image.src).toBe(expectedImages[index]);
+    });
   });
 
-  it('Test if there is a section with maps containing the pokemons locations', () => {
-    const { getByAltText, history } = renderWithRouter(<App />);
-    history.push(mew);
+  test('se o usuário pode favoritar um pokémon através da página de detalhes', () => {
+    const favoritePokemon = screen.getByRole('checkbox');
+    const favoriteLabel = screen.getByLabelText('Pokémon favoritado?');
 
-    const imgLocal = getByAltText(mewLocation);
-    expect(imgLocal)
-      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/e/e4/Hoenn_Faraway_Island_Map.png');
-    expect(imgLocal)
-      .toHaveAttribute('alt', mewLocation);
-  });
+    expect(favoriteLabel).toBeInTheDocument();
 
-  it('Test if the user can bookmark a pokemon through the details page', () => {
-    const { getByRole, getByAltText, history } = renderWithRouter(<App />);
-    history.push(mew);
+    fireEvent.click(favoritePokemon);
 
-    const favorite = getByRole('checkbox', { name: 'Pokémon favoritado?' });
-    userEvent.click(favorite);
+    const star = screen.getByAltText('Pikachu is marked as favorite');
 
-    const star = getByAltText('Mew is marked as favorite');
-    expect(star)
-      .toHaveAttribute('src', '/star-icon.svg');
-    expect(star)
-      .toHaveAttribute('alt', 'Mew is marked as favorite');
+    expect(star).toBeInTheDocument();
+
+    fireEvent.click(favoritePokemon);
+
+    expect(star).not.toBeInTheDocument();
   });
 });

@@ -1,63 +1,154 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
-import App from '../App';
+import { screen, fireEvent } from '@testing-library/react';
+
+import Pokedex from '../components/Pokedex';
+
 import renderWithRouter from '../components/renderWithRouter';
+
 import pokemons from '../data';
 
-describe('tests for the NotFound component', () => {
-  it('Test if page contains a heading with the text Encountered pokémons', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const heading = getByText('Encountered pokémons');
+function checkDuplicateFilters(filters) {
+  const filterTable = {};
 
-    expect(heading).toBeInTheDocument();
-    expect(heading.tagName).toBe('H2');
-  });
-
-  it('test the next pokemon button', () => {
-    const { getByRole, getByText } = renderWithRouter(<App />);
-    const nextPokemon = getByRole('button', { name: 'Próximo pokémon' });
-    expect(nextPokemon).toBeInTheDocument();
-
-    const pikachu = getByText('Pikachu');
-    expect(pikachu).toBeInTheDocument();
-
-    userEvent.click(nextPokemon);
-
-    const charmander = getByText('Charmander');
-    expect(charmander).toBeInTheDocument();
-
-    for (let index = 1; index < pokemons.length; index += 1) {
-      const currentPokemon = getByText(pokemons[index].name);
-      expect(currentPokemon).toBeInTheDocument();
-      userEvent.click(nextPokemon);
+  const foundDuplicates = filters.some(({ textContent }) => {
+    if (filterTable[textContent]) {
+      return true;
     }
+
+    filterTable[textContent] = 1;
+
+    return false;
   });
 
-  it('Test if only one Pokémon is shown at a time', () => {
-    const { getAllByTestId } = renderWithRouter(<App />);
-    const pokemonShown = getAllByTestId('pokemon-name');
-    expect(pokemonShown.length).toBe(1);
+  return foundDuplicates;
+}
+
+describe('Testando Pokedex.js', () => {
+  const pokemonNameTestId = 'pokemon-name';
+  const nextPokemonTestId = 'next-pokemon';
+  const pokemonTypeTestId = 'pokemon-type-button';
+
+  test('se página contém um heading h2 com um texto específico', () => {
+    renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ { 25: true } } />,
+    );
+
+    const header = screen.getByRole('heading', { level: 2 });
+
+    expect(header.textContent).toBe('Encountered pokémons');
   });
 
-  it('Test if the Pokédex contains a button to reset the filter', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const buttonReset = getByText('All');
-    expect(buttonReset).toBeInTheDocument();
+  test('se é exibido o próximo Pokémon da lista quando o botão é clicado', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ [pokemons[0], pokemons[1], pokemons[2]] }
+        isPokemonFavoriteById={ { 25: true, 4: true, 10: true } }
+      />,
+    );
 
-    userEvent.click(buttonReset);
+    const nextPokemon = screen.getByTestId(nextPokemonTestId);
+    expect(nextPokemon.textContent).toBe('Próximo pokémon');
 
-    const defaultPokemon = getByText('Pikachu');
-    expect(defaultPokemon).toBeInTheDocument();
+    fireEvent.click(nextPokemon);
+
+    const pokemonName = screen.getByTestId(pokemonNameTestId);
+
+    expect(pokemonName.textContent).toBe('Charmander');
+
+    fireEvent.click(nextPokemon);
+
+    expect(pokemonName.textContent).toBe('Caterpie');
+
+    fireEvent.click(nextPokemon);
+
+    expect(pokemonName.textContent).toBe('Pikachu');
   });
 
-  it('Test whether a filter button is created for each type of Pokémon', () => {
-    const allTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    const { getAllByTestId, getByRole } = renderWithRouter(<App />);
-    allTypes.forEach((currentType, index) => {
-      const pokemonType = getAllByTestId('pokemon-type-button')[index];
-      expect(pokemonType).toBeInTheDocument();
-      const current = getByRole('button', { name: currentType });
-      expect(current).toBeInTheDocument();
-    });
+  test('se é mostrado apenas um Pokémon por vez', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ [pokemons[0], pokemons[1], pokemons[2]] }
+        isPokemonFavoriteById={ { 25: true, 4: true, 10: true } }
+      />,
+    );
+
+    const ONE_POKEMON = 1;
+    const pokemon = screen.getAllByTestId(pokemonNameTestId);
+
+    expect(pokemon.length).toBe(ONE_POKEMON);
+  });
+
+  test('se a Pokédex tem os botões de filtro', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ { 25: true, 4: true, 10: true } }
+      />,
+    );
+
+    const FILTER_COUNT = 7;
+    const filterButtons = screen.getAllByTestId(pokemonTypeTestId);
+
+    expect(filterButtons.length).toBe(FILTER_COUNT);
+    expect(checkDuplicateFilters(filterButtons)).toBeFalsy();
+  });
+
+  test('se a Pokédex circula apenas pelos pokemon do tipo selecionado', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ { 25: true, 4: true, 78: true } }
+      />,
+    );
+
+    const filterButtons = screen.getAllByTestId(pokemonTypeTestId);
+    const fireButton = filterButtons[1];
+
+    expect(fireButton.textContent).toBe('Fire');
+
+    const nextPokemon = screen.getByTestId(nextPokemonTestId);
+
+    fireEvent.click(fireButton);
+
+    const pokemonName = screen.getByTestId(pokemonNameTestId);
+
+    expect(pokemonName.textContent).toBe('Charmander');
+
+    fireEvent.click(nextPokemon);
+
+    expect(pokemonName.textContent).toBe('Rapidash');
+
+    fireEvent.click(nextPokemon);
+
+    expect(pokemonName.textContent).toBe('Charmander');
+  });
+
+  test('se a Pokédex contém um botão para resetar o filtro', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ { 25: true, 4: true, 78: true } }
+      />,
+    );
+
+    const filterButtons = screen.getAllByTestId(pokemonTypeTestId);
+    const fireButton = filterButtons[1];
+    const resetFilter = screen.getByText('All');
+
+    const nextPokemon = screen.getByTestId(nextPokemonTestId);
+
+    fireEvent.click(fireButton);
+
+    const pokemonName = screen.getByTestId(pokemonNameTestId);
+
+    expect(pokemonName.textContent).toBe('Charmander');
+
+    fireEvent.click(resetFilter);
+
+    expect(pokemonName.textContent).toBe('Pikachu');
+
+    fireEvent.click(nextPokemon);
+
+    expect(pokemonName.textContent).toBe('Charmander');
   });
 });

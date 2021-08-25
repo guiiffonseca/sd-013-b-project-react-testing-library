@@ -1,47 +1,76 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../components/renderWithRouter';
+import { fireEvent, screen } from '@testing-library/react';
+
+import App from '../App';
 import Pokemon from '../components/Pokemon';
+
+import renderWithRouter from '../components/renderWithRouter';
+
 import pokemons from '../data';
 
-describe('tests for the Pokemon component', () => {
-  test('Test whether a card with the information for a Pokémon is rendered', () => {
-    const { getByTestId, getByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemons[0] } />,
+describe('Testando Pokemon.js', () => {
+  const moreDetailsText = 'More details';
+
+  test('se é renderizado um card com as informações de determinado pokémon', () => {
+    const testPokemon = pokemons[0];
+    const { averageWeight: testPokemonWeight } = testPokemon;
+
+    renderWithRouter(<Pokemon pokemon={ testPokemon } isFavorite={ false } />);
+
+    const pokemonName = screen.getByTestId('pokemon-name');
+    const pokemonType = screen.getByTestId('pokemon-type');
+    const pokemonWeight = screen.getByTestId('pokemon-weight');
+    const pokemonImage = screen.getByAltText(`${testPokemon.name} sprite`);
+
+    expect(pokemonName.textContent).toBe(testPokemon.name);
+    expect(pokemonType.textContent).toBe(testPokemon.type);
+    expect(pokemonWeight.textContent).toBe(
+      `Average weight: ${testPokemonWeight.value} ${testPokemonWeight.measurementUnit}`,
     );
-
-    const pokemonName = getByTestId('pokemon-name');
-    expect(pokemonName.textContent).toBe('Pikachu');
-
-    const pokemonType = getByTestId('pokemon-type');
-    expect(pokemonType.textContent).toBe('Electric');
-
-    const pokemonWeight = getByTestId('pokemon-weight');
-    expect(pokemonWeight.textContent).toBe('Average weight: 6.0 kg');
-
-    const pokemonImage = getByAltText('Pikachu sprite');
-    expect(pokemonImage).toHaveAttribute('src',
-      'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(pokemonImage.src).toBe(
+      'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    );
   });
 
-  test('Test if the Pokémon card on the Pokédex contains a navigation link', () => {
-    const { history, getByText } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
-    const navLink = getByText(/More Details/i);
-    expect(navLink).toBeInTheDocument();
+  test('se é renderizado um link de mais detalhes', () => {
+    const { history } = renderWithRouter(<App />);
 
-    userEvent.click(navLink);
+    const detailsLink = screen.getByRole('link', { name: moreDetailsText });
+    const linkRegex = new RegExp('.*/pokemons/25');
 
-    const { pathname } = history.location;
+    expect(detailsLink.textContent).toBe(moreDetailsText);
+    expect(detailsLink.href).toMatch(linkRegex);
+
+    fireEvent.click(detailsLink);
+
+    const {
+      location: { pathname },
+    } = history;
+    const header = screen.getByRole('heading', {
+      level: 2,
+      name: 'Pikachu Details',
+    });
+
+    expect(header.textContent).toBe('Pikachu Details');
     expect(pathname).toBe('/pokemons/25');
   });
 
-  test('Test if there is a star icon on favorite Pokemons', () => {
-    const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemons[0] } isFavorite />,
-    );
+  test('se existe um ícone de estrela nos Pokémons favoritados', () => {
+    const { history } = renderWithRouter(<App />);
 
-    const favoritePokemon = getByAltText(/Pikachu is marked as favorite/);
-    expect(favoritePokemon).toHaveAttribute('src',
-      '/star-icon.svg');
+    const detailsLink = screen.getByRole('link', { name: moreDetailsText });
+
+    fireEvent.click(detailsLink);
+
+    const favoritePokemon = screen.getByRole('checkbox');
+
+    fireEvent.click(favoritePokemon);
+
+    history.push('/');
+
+    const star = screen.getByAltText('Pikachu is marked as favorite');
+
+    expect(star).toBeInTheDocument();
+    expect(star.src).toMatch(/\/star-icon.svg/);
   });
 });

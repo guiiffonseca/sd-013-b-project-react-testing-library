@@ -1,8 +1,6 @@
 import React from 'react';
-import { getByText, render, screen } from '@testing-library/react';
-import renderWithRouter from './renderWithRouter';
+import { render, screen } from '@testing-library/react';
 import NotFound from '../components/NotFound';
-import pokemons from '../data';
 
 describe('Teste o componente NotFound', () => {
   test('Se há um h2 com o texto Page requested not found 😭', () => {

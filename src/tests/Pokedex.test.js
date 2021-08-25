@@ -82,5 +82,6 @@ describe('Testa o componente Pokedex', () => {
     renderWithRouter(<App />);
     const buttonAll = screen.getByRole('button', { name: /All/i });
     expect(buttonAll).toBeInTheDocument();
+    fireEvent.click(buttonAll);
   });
 });

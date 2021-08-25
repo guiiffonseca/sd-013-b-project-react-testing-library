@@ -4,9 +4,6 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Teste o componente About', () => {
-  test('Teste se a página contém as informações sobre a Pokédex', () => {});
-  //   renderWithRouter(<About />);
-  //   const info = getByText
   test('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
     render(<About />);
     const h2 = screen.getByText(/About Pokédex/);

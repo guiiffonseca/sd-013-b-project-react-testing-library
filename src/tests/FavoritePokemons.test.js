@@ -5,14 +5,14 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
 describe('Testa se o component Favorite Pokemons contem informações de Pokemon.', () => {
-  it('Se a página contem um Heading h2 com o texto Favorite Pokemons', () => {
+  it('Se a página contem um parágrafo com o texto not found', () => {
     renderWithRouter(<FavoritePokemons />);
 
     const pNotFound = screen.getByText(/No favorite pokemon found/);
     expect(pNotFound).toBeInTheDocument();
   });
 
-  it('Se a página contem um Heading h2 com o texto Favorite Pokemons', () => {
+  it('Se a página contem um parágrafo com o nome do Pokemon', () => {
     const ekans = [pokemons[3]];
     renderWithRouter(<FavoritePokemons pokemons={ ekans } />);
 

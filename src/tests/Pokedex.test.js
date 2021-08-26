@@ -58,19 +58,13 @@ describe('Testa o componente Pokedex.js', () => {
     expect(title).toBeInTheDocument();
   });
 
-  test('deve conter o próximo Pokémon da lista ao clicar em /"Próximo/"', () => {
+  test('deve conter o próximo Pokémon da lista, exibindo apenas um por vez', () => {
     const nextButton = screen.getByTestId('next-pokemon');
 
     expect(nextButton).toHaveTextContent(/próximo pokémon/i);
 
     clickNextAndCheckName(pokemons);
   });
-
-  // test('Deve mostrar apenas um Pokémon por vez', () => {
-  //   const foundPokemons = screen.getAllByTestId(pokemonName);
-
-  //   expect(foundPokemons).toHaveLength(1);
-  // });
 
   test('Deve conter botões de filtro', () => {
     const allTypes = pokemons.reduce((types, { type }) => [...types, type], []);

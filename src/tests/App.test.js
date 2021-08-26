@@ -10,22 +10,6 @@ describe('Testa o componente App.js', () => {
   test('O topo da aplicação contém um conjunto fixo de links de navegação.', () => {
     render(<MemoryRouter><App /></MemoryRouter>);
 
-    // const home = screen.getByRole('link', {
-    //   name: /home/i,
-    // });
-
-    // const about = screen.getByRole('link', {
-    //   name: /about/i,
-    // });
-
-    // const favorite = screen.getByRole('link', {
-    //   name: /favorite/i,
-    // });
-
-    // expect(home).toBeInTheDocument();
-    // expect(about).toBeInTheDocument();
-    // expect(favorite).toBeInTheDocument();
-
     const links = screen.getAllByRole('link');
 
     expect(links[0].textContent).toMatch(/home/i);

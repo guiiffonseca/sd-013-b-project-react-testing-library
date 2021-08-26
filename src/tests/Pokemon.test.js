@@ -9,16 +9,13 @@ describe('Test 6- Pokemon page', () => {
     renderWithRouter(<App />);
 
     const pokemonName = screen.getByTestId('pokemon-name');
+    expect(pokemonName).toHaveTextContent('Pikachu');
     const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toHaveTextContent('Electric');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
-    const pokemonImg = screen.getByAltText(/sprite/i);
-
-    expect(pokemonName).not.toHaveTextContent('');
-    expect(pokemonType).not.toHaveTextContent('');
-    expect(pokemonWeight).toHaveTextContent(/weight/);
-    expect(pokemonWeight).toHaveTextContent(/[0-9]/);
-    expect(pokemonWeight).toHaveTextContent(/kg/);
-    expect(pokemonImg.src).not.toBe('');
+    expect(pokemonWeight.textContent).toContain('Average weight: 6.0 kg');
+    const pokemonSprite = screen.getByAltText('Pikachu sprite');
+    expect(pokemonSprite.src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   it('Test if More details id works proprerly', () => {
@@ -36,17 +33,16 @@ describe('Test 6- Pokemon page', () => {
   it('Test if favorite icon appears on the screen', () => {
     renderWithRouter(<App />);
 
-    const detailLink = screen.getByRole('link', { name: 'More details' });
-    expect(detailLink).toBeInTheDocument();
+    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    expect(moreDetails).toBeInTheDocument();
 
-    userEvent.click(detailLink);
+    userEvent.click(moreDetails);
 
-    const favoriteMarker = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
+    const checkbox = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
+    userEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
 
-    userEvent.click(favoriteMarker);
-    expect(favoriteMarker).toBeChecked();
-
-    const favoriteIcon = screen.getByAltText('Pikachu is marked as favorite');
-    expect(favoriteIcon.src).toContain('star-icon.svg');
+    const favoritePokemon = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoritePokemon.src).toContain('star-icon.svg');
   });
 });

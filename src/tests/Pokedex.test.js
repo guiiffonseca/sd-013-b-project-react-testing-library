@@ -21,7 +21,7 @@ describe('Pokedex test', () => {
     expect(EncounteredText).toBeInTheDocument();
   });
 
-  test('Verifica se é renderizado o botão com txto "Próximo pokémon"', () => {
+  test('Verifica se é renderizado o botão com texto "Próximo pokémon"', () => {
     const proximo = screen.getByText(nextPokemon);
     expect(proximo).toBeInTheDocument();
   });

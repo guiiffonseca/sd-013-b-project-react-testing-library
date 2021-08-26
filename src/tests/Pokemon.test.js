@@ -3,10 +3,14 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 describe('Pokemon.js', () => {
   const route = '/pokemons/25';
   const tipoPikachu = 2;
+  const unit = pokemons[0].averageWeight.measurementUnit;
+  const value = pokemons[0].averageWeight.value;
+  const  average = 'Average weight:';
   test('testa se é renderizado um card com informações de um pokémon', () => {
     const { history } = renderWithRouter(<App />);
     history.push(route);
@@ -21,7 +25,7 @@ describe('Pokemon.js', () => {
     expect(typo).toBeInTheDocument();
 
     const pesoMedio = screen.getByTestId('pokemon-weight');
-    expect(pesoMedio).toBeInTheDocument();
+    expect(pesoMedio).toHaveTextContent(`${average } ${value} ${unit}`);
   });
 
   test('A imagem do Pokémon deve ser exibida', () => {

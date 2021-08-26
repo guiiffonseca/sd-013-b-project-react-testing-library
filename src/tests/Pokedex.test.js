@@ -36,7 +36,7 @@ describe('Testa o componente <Pokedex />', () => {
   test('A pokédex possui botões de filtro', () => {
     const filters = screen.getAllByTestId('pokemon-type-button');
     const pkTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    expect(filterButtons.length).toBe(types.length);
+    expect(filters.length).toBe(pkTypes.length);
 
     filters.forEach((button, index) => {
       expect(button).toBeInTheDocument();

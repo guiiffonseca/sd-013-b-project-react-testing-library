@@ -21,23 +21,12 @@ describe('Test 6- Pokemon page', () => {
   it('Test if More details id works proprerly', () => {
     renderWithRouter(<App />);
 
-    const moreDetails = screen.getByText(/More details/i);
-    expect(moreDetails).toBeInTheDocument();
-    expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
-  });
+    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
+    expect(moreDetailsLink).toBeInTheDocument();
 
-  it('Test if More details redirection works proprerly', () => {
-    renderWithRouter(<App />);
+    userEvent.click(moreDetailsLink);
 
-    const moreDetails = screen.getByText(/More details/i);
-
-    userEvent.click(moreDetails);
-
-    const moreDetailsPage = screen.getByRole('heading', {
-      level: 2,
-      name: 'Summary',
-    });
-
+    const moreDetailsPage = screen.getByRole('heading', { level: 2, name: 'Summary' });
     expect(moreDetailsPage).toBeInTheDocument();
   });
 

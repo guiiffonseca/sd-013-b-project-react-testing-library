@@ -3,8 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-// import pokemons from '../data';
-// import { Pokedex } from '../components';
 
 describe('Pokedex test', () => {
   test('página possui texto "Encountered pokémons"', () => {

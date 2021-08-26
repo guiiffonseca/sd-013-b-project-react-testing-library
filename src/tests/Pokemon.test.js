@@ -39,7 +39,7 @@ describe('About the component Pokemon.js', () => {
     fireEvent.click(favoriteCheckbox);
     const homeLink = screen.getByText(/home/i);
     fireEvent.click(homeLink);
-    const favoriteIcon = screen.getByTestId('favorite-icon');
+    const favoriteIcon = screen.getByAltText('Pikachu is marked as favorite');
     expect(favoriteIcon).toBeInTheDocument();
     expect(favoriteIcon.src).toBe('http://localhost/star-icon.svg');
     expect(favoriteIcon.alt).toBe('Pikachu is marked as favorite');

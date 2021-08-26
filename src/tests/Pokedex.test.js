@@ -4,12 +4,12 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('About the component Pokedex.js', () => {
-  const getNextButton = () => screen.getByTestId('next-pokemon');
+  const getNextButton = () => screen.getByText(/Próximo pokémon/i);
   const getPokemonType = () => screen.getByTestId('pokemon-type');
   it('verifies if theres a heading with the correct text', () => {
     renderWithRouter(<App />);
 
-    const actualHeading = screen.getByTestId('heading').textContent;
+    const actualHeading = screen.getByText(/Encountered/i).textContent;
     const expetedHeading = 'Encountered pokémons';
 
     expect(actualHeading).toBe(expetedHeading);
@@ -66,7 +66,7 @@ describe('About the component Pokedex.js', () => {
   it('verifies if page has a button to reset filters~', () => {
     renderWithRouter(<App />);
 
-    const allButton = screen.getByTestId('all-pokemon');
+    const allButton = screen.getByText(/All/i);
     expect(allButton).toBeInTheDocument();
 
     fireEvent.click(allButton);

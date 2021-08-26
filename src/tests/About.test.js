@@ -30,7 +30,9 @@ describe('About the component About.js', () => {
 
     fireEvent.click(aboutLink);
 
-    const paragraphs = screen.getAllByTestId('paragraph');
+    const p1 = screen.getByText(/This application/i);
+    const p2 = screen.getByText(/One can filter/i);
+    const paragraphs = [p1, p2];
     const expectedLength = 2;
     expect(paragraphs.length).toBe(expectedLength);
   });

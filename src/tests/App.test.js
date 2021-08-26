@@ -7,10 +7,10 @@ describe('About the component App.js', () => {
   it('verifies if there are 3 links', () => {
     renderWithRouter(<App />);
 
-    const listaDeNav = screen.getAllByTestId('link');
+    const listaDeNav = screen.getAllByRole('link');
     const expectedLength = 3;
 
-    expect(listaDeNav.length).toBe(expectedLength);
+    expect(listaDeNav.length - 1).toBe(expectedLength);
   });
 
   it('verifies text written in the 3 links', () => {

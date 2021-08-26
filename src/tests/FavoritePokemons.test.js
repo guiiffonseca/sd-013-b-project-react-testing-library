@@ -14,7 +14,7 @@ describe('Test do componente <FavoritePokemons />', () => {
 
   test('Todos os cards de Pokémon são exibidos', () => {
     renderWithRouter(<App />);
-    const pokeDetails = screen.getAByRole('link', {
+    const pokeDetails = screen.getByRole('link', {
       name: /more details/i,
     });
     userEvent.click(pokeDetails);

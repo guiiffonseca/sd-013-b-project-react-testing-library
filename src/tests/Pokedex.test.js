@@ -19,6 +19,7 @@ test('Contém um heading h2 com o texto Encountered pokémons', () => {
 test('Próximo pokémon é exibido quando o botão Próximo pokémon é clicado', () => {
   renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ { } } />);
   const nextPokemonButton = screen.getByTestId(nextPokemon);
+  expect(nextPokemonButton.innerHTML).toBe('Próximo pokémon');
   for (let i = 0; i < pokemons.length; i += 1) {
     const currentPokemon = screen.getByTestId(pokemonName);
     expect(currentPokemon).toBeInTheDocument();

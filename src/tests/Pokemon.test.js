@@ -28,9 +28,9 @@ describe('Testa se o component Pokédex contem informações sobre a Pokédex.',
     const img = screen.getByAltText(/Mew sprite/i);
     expect(img).toHaveAttribute('src', url);
 
-    const url = '/star-icon.svg';
-    const img = screen.getByAltText(/Mew is marked as favorite`/i);
-    expect(img).toHaveAttribute('src', url);
+    const urll = '/star-icon.svg';
+    const imge = screen.getByAltText(/Mew is marked as favorite`/i);
+    expect(imge).toHaveAttribute('src', urll);
   });
 
   it('Se a página contem um link para informações do pokémon', () => {

@@ -79,5 +79,4 @@ describe('Testa o componente Pokemon.js', () => {
 
     expect(star).toHaveAttribute('src', '/star-icon.svg');
   });
-
 });

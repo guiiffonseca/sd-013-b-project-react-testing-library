@@ -35,7 +35,6 @@ describe('Teste o componente Pokemon.js', () => {
     history.push('/pokemons/25');
     const imgPokemon = screen.getByRole('img', { name: 'Pikachu sprite' });
     expect(imgPokemon).toBeInTheDocument();
-    // console.log(imgPokemon.src);
     expect(imgPokemon.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 });

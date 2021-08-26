@@ -43,6 +43,7 @@ describe('Test 6- Pokemon page', () => {
     expect(Checkbox).toBeInTheDocument();
 
     userEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
 
     const favoritePokemon = screen.getByAltText('Pikachu is marked as favorite');
     expect(favoritePokemon).toHaveAttribute('src', 'star-icon.svg');

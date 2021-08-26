@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
+import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Teste o componente Pokemon.js', () => {
@@ -13,6 +14,17 @@ describe('Teste o componente Pokemon.js', () => {
     userEvent.click(linkToDetails);
     const verifyText = screen.getByRole('heading', { level: 2, name: /summary/i });
     expect(verifyText).toBeInTheDocument();
+
+    const nome = pokemons[0].name;
+    const pokemonName = screen.getByTestId('pokemon-name');
+    expect(pokemonName).toBeInTheDocument();
+    expect(pokemonName.innerHTML).toBe(nome);
+
+    const unt = pokemons[0].averageWeight.measurementUnit;
+    const weight = pokemons[0].averageWeight.value;
+    const average = screen.getByTestId('pokemon-weight');
+    expect(average).toBeInTheDocument();
+    expect(average.innerHTML).toBe(`Average weight: ${weight} ${unt}`);
 
     const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType.innerHTML).toBe('Electric');

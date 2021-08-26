@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import event from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './RenderWithRouter';
+import renderWithRouter from './renderWithRouter';
 
 describe('testando links na tela principal', () => {
   it('verifica se botões home, About e favorite estão na tela', () => {

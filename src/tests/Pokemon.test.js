@@ -40,7 +40,7 @@ describe('Test 6- Pokemon page', () => {
     userEvent.click(moreDetails);
 
     const checkbox = screen.getByRole('checkbox');
-    expect(Checkbox).toBeInTheDocument();
+    expect(checkbox).toBeInTheDocument();
 
     userEvent.click(checkbox);
     expect(checkbox).toBeChecked();

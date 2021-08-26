@@ -66,7 +66,6 @@ describe('App test', () => {
       level: 2,
       name: /page requested not found/i,
     });
-
     expect(pageNotFound).toBeInTheDocument();
   });
 });

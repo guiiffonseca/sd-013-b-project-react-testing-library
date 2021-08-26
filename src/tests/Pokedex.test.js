@@ -76,7 +76,7 @@ describe('Pokedex test', () => {
     });
     expect(bugButton).toBeInTheDocument();
     userEvent.click(bugButton);
-    expect(pokemonName).toHaveTextContent('Caterpie');
+    expect(pokemonName).toHaveTextContent(/Caterpie/i);
   });
 
   test('Verificar se os filtros são resetados', () => {

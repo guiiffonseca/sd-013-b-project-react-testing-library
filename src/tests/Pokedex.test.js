@@ -16,8 +16,7 @@ describe('Requisito 5 - Testa o componenete <Pokedex />', () => {
       isPokemonFavoriteById={ isPokemonFavorite }
     />);
   });
-  // const allPokemonsName = pokemons.map((pokemon) => pokemon.name);
-  // Desenvolvido com a ajuda do David Gonzaga
+
   it('Testa se há um <h2> com o texto "Encountered pokémons"', () => {
     const takeH2 = screen.getByRole('heading', { name: /encountered pokémons/i });
     expect(takeH2).toBeInTheDocument();

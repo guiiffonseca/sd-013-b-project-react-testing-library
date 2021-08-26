@@ -27,6 +27,10 @@ describe('Testa se o component Pokédex contem informações sobre a Pokédex.',
     const url = 'https://cdn2.bulbagarden.net/upload/4/43/Spr_5b_151.png';
     const img = screen.getByAltText(/Mew sprite/i);
     expect(img).toHaveAttribute('src', url);
+
+    const url = '/star-icon.svg';
+    const img = screen.getByAltText(/Mew is marked as favorite`/i);
+    expect(img).toHaveAttribute('src', url);
   });
 
   it('Se a página contem um link para informações do pokémon', () => {

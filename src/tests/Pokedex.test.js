@@ -8,8 +8,8 @@ import renderWithRouter from '../services/renderWithRouter';
 describe('Verifica o componente "Pokedex.js"', () => {
   test('A pagina contém a tag h2 com o texto "Encountered pokémons"', () => {
     renderWithRouter(<App />);
-    const h2Title = screen.getByRole('heading', { name: /Encountered pokémons/i });
-    expect(h2Title).toBeInTheDocument();
+    const title = screen.getByRole('heading', { name: /Encountered pokémons/i });
+    expect(title).toBeInTheDocument();
   });
 
   test('Verifica se tem 1 pokemon por vez', () => {

@@ -11,6 +11,7 @@ describe('Pokedex test', () => {
   });
 
   const pokeName = 'pokemon-name';
+  const nextPokemon = 'Próximo pokémon';
 
   test('A página deve conter o texto "Encountered pokémons"', () => {
     const EncounteredText = screen.getByRole('heading', {
@@ -18,6 +19,11 @@ describe('Pokedex test', () => {
       level: 2,
     });
     expect(EncounteredText).toBeInTheDocument();
+  });
+
+  test('Verifica se é renderizado o botão com txto "Próximo pokémon"', () => {
+    const proximo = screen.getByText(nextPokemon);
+    expect(proximo).toBeInTheDocument();
   });
 
   test('Deve ser exibido o pŕoximo Pokemón quando o botão for clicado', () => {

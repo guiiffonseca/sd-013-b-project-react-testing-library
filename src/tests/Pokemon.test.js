@@ -23,7 +23,6 @@ describe('Test 6- Pokemon page', () => {
 
     const moreDetails = screen.getByRole('link', { name: 'More details' });
     expect(moreDetails).toBeInTheDocument();
-    expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
 
     userEvent.click(moreDetails);
 

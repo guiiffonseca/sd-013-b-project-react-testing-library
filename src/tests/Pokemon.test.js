@@ -77,7 +77,5 @@ describe('Pokémon test', () => {
     const starIcon = screen.getByAltText(/pikachu is marked as favorite/i);
     expect(starIcon.src).toBe('http://localhost/star-icon.svg');
     expect(starIcon).toBeInTheDocument();
-  //   const favoritedPikachu = screen.getByAltText('Pikachu is marked as favorite');
-  //   expect(favoritedPikachu).toHaveProperty('src', 'http://localhost/star-icon.svg');
   });
 });

@@ -52,5 +52,6 @@ describe('Teste o componente Pokedex', () => {
     renderWithRouter(<App />);
     const buttonReset = screen.getByRole('button', { name: 'All' });
     expect(buttonReset).toBeInTheDocument();
+    userEvent.click(buttonReset);
   });
 });

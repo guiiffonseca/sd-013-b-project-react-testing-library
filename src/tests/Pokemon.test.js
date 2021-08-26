@@ -9,13 +9,16 @@ describe('Test 6- Pokemon page', () => {
     renderWithRouter(<App />);
 
     const pokemonName = screen.getByTestId('pokemon-name');
-    expect(pokemonName).toHaveTextContent('Pikachu');
     const pokemonType = screen.getByTestId('pokemon-type');
-    expect(pokemonType).toHaveTextContent('Electric');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
-    expect(pokemonWeight.textContent).toContain('Average weight: 6.0 kg');
-    const pokemonSprite = screen.getByAltText('Pikachu sprite');
-    expect(pokemonSprite).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    const pokemonImg = screen.getByAltText(/sprite/i);
+
+    expect(pokemonName).not.toHaveTextContent('');
+    expect(pokemonType).not.toHaveTextContent('');
+    expect(pokemonWeight).toHaveTextContent(/weight/);
+    expect(pokemonWeight).toHaveTextContent(/[0-9]/);
+    expect(pokemonWeight).toHaveTextContent(/kg/);
+    expect(pokemonImg.src).not.toBe('');
   });
 
   it('Test if More details id works proprerly', () => {

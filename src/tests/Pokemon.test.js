@@ -14,7 +14,7 @@ describe('Test 6- Pokemon page', () => {
     expect(pokemonType).toHaveTextContent('Electric');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
     expect(pokemonWeight.textContent).toContain('Average weight: 6.0 kg');
-    const pokemonSprite = screen.getByAltText(/sprite/i);
+    const pokemonSprite = screen.getByAltText('Pikachu sprite');
     expect(pokemonSprite).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
@@ -27,7 +27,10 @@ describe('Test 6- Pokemon page', () => {
 
     userEvent.click(moreDetails);
 
-    const moreDetailsPage = screen.getByText(/Summary/i);
+    const moreDetailsPage = screen.getByRole('heading', {
+      level: 2,
+      name: 'Summary',
+    });
     expect(moreDetailsPage).toBeInTheDocument();
   });
 
@@ -39,7 +42,7 @@ describe('Test 6- Pokemon page', () => {
 
     userEvent.click(moreDetails);
 
-    const checkbox = screen.getByRole('checkbox');
+    const checkbox = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
     expect(checkbox).toBeInTheDocument();
 
     userEvent.click(checkbox);

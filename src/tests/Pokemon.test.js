@@ -10,8 +10,9 @@ describe('Testa se o component Pokédex contem informações sobre a Pokédex.',
   it('As informações dos Pokémons devem ser mostrado na tela', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={ [pokemons[5], pokemons[3]] }
-        isPokemonFavoriteById={ {} }
+        pokemons={ [pokemons[5]] }
+        isPokemonFavoriteById={ 151 }
+        isFavorite
       />,
     );
 
@@ -27,10 +28,6 @@ describe('Testa se o component Pokédex contem informações sobre a Pokédex.',
     const url = 'https://cdn2.bulbagarden.net/upload/4/43/Spr_5b_151.png';
     const img = screen.getByAltText(/Mew sprite/i);
     expect(img).toHaveAttribute('src', url);
-
-    const urll = '/star-icon.svg';
-    const imge = screen.getByAltText(/Mew is marked as favorite`/i);
-    expect(imge).toHaveAttribute('src', urll);
   });
 
   it('Se a página contem um link para informações do pokémon', () => {
@@ -43,6 +40,11 @@ describe('Testa se o component Pokédex contem informações sobre a Pokédex.',
     expect(link).toBeInTheDocument();
 
     userEvent.click(link);
+    userEvent.click(screen.getByRole('checkbox'));
+
+    const urll = '/star-icon.svg';
+    const imge = screen.getByAltText(/Pikachu is marked as favorite/i);
+    expect(imge).toHaveAttribute('src', urll);
 
     const heading = screen.getByText(/Summary/i);
     expect(heading).toBeInTheDocument();

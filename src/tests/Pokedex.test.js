@@ -84,7 +84,6 @@ describe('Testa se o component Pokédex renderiza.', () => {
     });
     userEvent.click(Electric);
 
-    // const Dragonair = screen.getByText('Dragonair');
     expect(Pikachu).toBeInTheDocument();
 
     const Psychic = screen.getByRole('button', {

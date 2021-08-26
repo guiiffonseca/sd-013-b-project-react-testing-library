@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 // import pokemons from '../data';
@@ -23,5 +24,84 @@ describe('Pokedex test', () => {
       name: /próximo pokémon/i,
     });
     expect(pokedexButton).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const charmander = screen.getByText('Charmander');
+    expect(charmander).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const caterpie = screen.getByText('Caterpie');
+    expect(caterpie).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const ekans = screen.getByText('Ekans');
+    expect(ekans).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const alakazam = screen.getByText('Alakazam');
+    expect(alakazam).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const mew = screen.getByText('Mew');
+    expect(mew).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const rapidash = screen.getByText('Rapidash');
+    expect(rapidash).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const snorlax = screen.getByText('Snorlax');
+    expect(snorlax).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const dragonair = screen.getByText('Dragonair');
+    expect(dragonair).toBeInTheDocument();
+
+    userEvent.click(pokedexButton);
+
+    const pikachu = screen.getByText('Pikachu');
+    expect(pikachu).toBeInTheDocument();
+  });
+
+  test('página mostra apenas um pokémon por vez', () => {
+    renderWithRouter(<App />);
+
+    const pokemonCard = screen.getAllByTestId('pokemon-name');
+    expect(pokemonCard.length).toBe(1);
+  });
+
+  test('página possui botões de filtro', () => {
+    renderWithRouter(<App />);
+
+    const pokemonTypes = 7;
+    const button = screen.getAllByTestId('pokemon-type-button');
+    expect(button.length).toBe(pokemonTypes);
+
+    const allButton = screen.getByRole('button', {
+      name: /all/i,
+    });
+    expect(allButton).toBeInTheDocument();
+  });
+
+  test('página possui botão para resetar o filtro', () => {
+    renderWithRouter(<App />);
+
+    const allButton = screen.getByRole('button', {
+      name: /all/i,
+    });
+    expect(allButton).toBeInTheDocument();
+
+    userEvent.click(allButton);
+
+    const pikachu = screen.getByText('Pikachu');
+    expect(pikachu).toBeInTheDocument();
   });
 });

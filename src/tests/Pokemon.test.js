@@ -22,11 +22,13 @@ describe('Pokemon.js', () => {
 
     const pesoMedio = screen.getByTestId('pokemon-weight');
     expect(pesoMedio).toBeInTheDocument();
+  });
 
-    const imgs = screen.getByRole('img', {
-      name: 'Pikachu sprite',
-    });
-    expect(imgs).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+  test('A imagem do Pokémon deve ser exibida', () => {
+    renderWithRouter(<App />);
+    const image = screen.getAllByRole('img');
+    expect(image[0]).toHaveAttribute('alt', 'Pikachu sprite');
+    expect(image[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   test(`testa se a URL exibida no navegador muda para /pokemon/<id>, onde <id> 
@@ -39,6 +41,21 @@ describe('Pokemon.js', () => {
     userEvent.click(detailsLink);
 
     expect(history.location.pathname).toBe('/pokemons/25');
+  });
+
+  test('URL exibida no navegador muda é o id do Pokémon', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push(route);
+    const numPikachu = screen.getAllByText(/pikachu/i);
+    const num = 3;
+    expect(numPikachu.length).toBe(num);
+  });
+
+  test('Teste se o tipo do pokemons aparece', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/pokemons/4');
+    const tipo = screen.getByText(/fire/i);
+    expect(tipo).toBeInTheDocument();
   });
 
   test(`testa se ao clicar no link "More details"

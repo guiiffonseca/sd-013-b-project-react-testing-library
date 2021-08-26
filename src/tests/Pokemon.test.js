@@ -36,16 +36,17 @@ describe('Test 6- Pokemon page', () => {
   it('Test if favorite icon appears on the screen', () => {
     renderWithRouter(<App />);
 
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
-    expect(moreDetails).toBeInTheDocument();
+    const detailLink = screen.getByRole('link', { name: 'More details' });
+    expect(detailLink).toBeInTheDocument();
 
-    userEvent.click(moreDetails);
+    userEvent.click(detailLink);
 
-    const checkbox = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
-    userEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    const favoriteMarker = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
 
-    const favoritePokemon = screen.getByAltText('Pikachu is marked as favorite');
-    expect(favoritePokemon).toHaveAttribute('src', 'star-icon.svg');
+    userEvent.click(favoriteMarker);
+    expect(favoriteMarker).toBeChecked();
+
+    const favoriteIcon = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoriteIcon.src).toContain('star-icon.svg');
   });
 });

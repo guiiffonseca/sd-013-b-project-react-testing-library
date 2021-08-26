@@ -81,8 +81,13 @@ describe('Pokedex test', () => {
 
     const pokemonTypes = 7;
     const button = screen.getAllByTestId('pokemon-type-button');
-    expect(button).toHaveLength(pokemonTypes);
-    // expect(button.length).toBe(pokemonTypes);
+    // expect(button).toHaveLength(pokemonTypes);
+    expect(button.length).toBe(pokemonTypes);
+
+    const typeButton = screen.getByRole('button', {
+      name: /electric/i,
+    });
+    expect(typeButton).toBeInTheDocument();
 
     const allButton = screen.getByRole('button', {
       name: /all/i,

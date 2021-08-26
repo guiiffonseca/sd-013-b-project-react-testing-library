@@ -1,18 +1,13 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 
 describe('App.js tests', () => {
   test('Verifica se o topo da aplicação contém um conjunto de links de navegação', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithRouter(<App />);
 
     const homeLink = screen.getByRole('link', {
       name: /Home/i,

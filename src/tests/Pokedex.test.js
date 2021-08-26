@@ -33,40 +33,40 @@ describe('Pokedex test', () => {
     const caterpie = screen.getByText('Caterpie');
     expect(caterpie).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const ekans = screen.getByText('Ekans');
-    // expect(ekans).toBeInTheDocument();
+    const ekans = screen.getByText('Ekans');
+    expect(ekans).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const alakazam = screen.getByText('Alakazam');
-    // expect(alakazam).toBeInTheDocument();
+    const alakazam = screen.getByText('Alakazam');
+    expect(alakazam).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const mew = screen.getByText('Mew');
-    // expect(mew).toBeInTheDocument();
+    const mew = screen.getByText('Mew');
+    expect(mew).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const rapidash = screen.getByText('Rapidash');
-    // expect(rapidash).toBeInTheDocument();
+    const rapidash = screen.getByText('Rapidash');
+    expect(rapidash).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const snorlax = screen.getByText('Snorlax');
-    // expect(snorlax).toBeInTheDocument();
+    const snorlax = screen.getByText('Snorlax');
+    expect(snorlax).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const dragonair = screen.getByText('Dragonair');
-    // expect(dragonair).toBeInTheDocument();
+    const dragonair = screen.getByText('Dragonair');
+    expect(dragonair).toBeInTheDocument();
 
-    // userEvent.click(pokedexButton);
+    userEvent.click(pokedexButton);
 
-    // const pikachu = screen.getByText('Pikachu');
-    // expect(pikachu).toBeInTheDocument();
+    const pikachu = screen.getByText('Pikachu');
+    expect(pikachu).toBeInTheDocument();
   });
 
   test('página mostra apenas um pokémon por vez', () => {
@@ -81,7 +81,8 @@ describe('Pokedex test', () => {
 
     const pokemonTypes = 7;
     const button = screen.getAllByTestId('pokemon-type-button');
-    expect(button.length).toBe(pokemonTypes);
+    expect(button).toHaveLength(pokemonTypes);
+    // expect(button.length).toBe(pokemonTypes);
 
     const allButton = screen.getByRole('button', {
       name: /all/i,

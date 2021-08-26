@@ -6,14 +6,14 @@ import { createMemoryHistory } from 'history';
 import App from '../App';
 
 function renderWithRouter(componentRender) {
-  const history = createMemoryHistory();
+  const historye = createMemoryHistory();
   return {
     ...render(
-      <Router history={ history }>
+      <Router history={ historye }>
         {componentRender}
       </Router>,
     ),
-    history: history,
+    history: historye,
   };
 }
 

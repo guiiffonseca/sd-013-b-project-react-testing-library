@@ -8,9 +8,7 @@ import pokemons from '../data';
 describe('Pokemon.js', () => {
   const route = '/pokemons/25';
   const tipoPikachu = 2;
-  const unit = pokemons[0].averageWeight.measurementUnit;
-  const value = pokemons[0].averageWeight.value;
-  const  average = 'Average weight:';
+  const averages = 'Average weight:';
   test('testa se é renderizado um card com informações de um pokémon', () => {
     const { history } = renderWithRouter(<App />);
     history.push(route);
@@ -25,7 +23,11 @@ describe('Pokemon.js', () => {
     expect(typo).toBeInTheDocument();
 
     const pesoMedio = screen.getByTestId('pokemon-weight');
-    expect(pesoMedio).toHaveTextContent(`${average } ${value} ${unit}`);
+    expect(pesoMedio)
+      .toHaveTextContent(
+        `${averages} ${pokemons[0].averageWeight.value} ${pokemons[0]
+          .averageWeight.measurementUnit}`,
+      );
   });
 
   test('A imagem do Pokémon deve ser exibida', () => {

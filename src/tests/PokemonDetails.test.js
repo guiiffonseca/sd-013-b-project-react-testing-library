@@ -29,7 +29,7 @@ describe('Test PokemonDetails', () => {
     expect(componentDetails).toBeInTheDocument();
   });
 
-  it('pokemon map', () => {
+  it('pokemon mapi', () => {
 
     renderWithRouter(<App />);
 

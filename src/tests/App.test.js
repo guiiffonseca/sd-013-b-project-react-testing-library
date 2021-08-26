@@ -23,4 +23,4 @@ describe('testa link', () => {
   });
 });
 
-// https://testing-library.com/docs/example-react-router/;
+// https://testing-library.com/docs/example-react-router/ ;

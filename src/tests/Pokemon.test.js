@@ -18,11 +18,18 @@ describe('Test 6- Pokemon page', () => {
     expect(pokemonSprite).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
-  it('Test if More details works proprerly', () => {
+  it('Test if More details id works proprerly', () => {
     renderWithRouter(<App />);
 
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    const moreDetails = screen.getByText(/More details/i);
     expect(moreDetails).toBeInTheDocument();
+    expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
+  });
+
+  it('Test if More details redirection works proprerly', () => {
+    renderWithRouter(<App />);
+
+    const moreDetails = screen.getByText(/More details/i);
 
     userEvent.click(moreDetails);
 
@@ -30,6 +37,7 @@ describe('Test 6- Pokemon page', () => {
       level: 2,
       name: 'Summary',
     });
+
     expect(moreDetailsPage).toBeInTheDocument();
   });
 

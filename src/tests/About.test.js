@@ -8,6 +8,7 @@ import About from '../components/About';
 test('O título da seção é renderizado com o texto "About Pokédex".', () => {
   const { history } = renderWithRouter(<About />);
   const rendersTitle = screen.getByRole('heading', {
+    level: 2,
     name: /about pokédex/i,
   });
   expect(rendersTitle).toBeInTheDocument();

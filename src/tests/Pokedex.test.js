@@ -39,18 +39,6 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
 
   test('se o primeiro Pokémon aparece ao clicar no botão, estando no último', () => {
     renderWithRouter(<App />);
-    // const lastPokemonButton = screen.getByRole('button', {
-    //   name: pokemons[pokemons.length - 1].type,
-    // });
-
-    // userEvent.click(lastPokemonButton);
-
-    // const lastPokemon = screen.getByAltText(`${pokemons[pokemons.length - 1].name} sprite`);
-    // const lastPokemon = screen.getByText(pokemons[pokemons.length - 1].name);
-    // expect(lastPokemon).toBeInTheDocument();
-    // const numberClicks = pokemons.length;
-    // console.log(numberClicks);
-
     const proximoPokemonsButton = screen.getByRole('button', {
       name: 'Próximo pokémon',
     });
@@ -70,8 +58,8 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
   });
 });
 
-describe('se a Pokédex tem os botões de filtro', () => {
-  test('O texto do botão deve corresponder ao nome do tipo, ex. Psychic', () => {
+describe('Teste se a Pokédex tem os botões de filtro', () => {
+  test('se o texto do botão deve corresponder ao nome do tipo, ex. Psychic', () => {
     renderWithRouter(<App />);
     pokemons.forEach(({ type }) => {
       const pokemonFilterButton = screen.getByRole('button', {
@@ -80,40 +68,60 @@ describe('se a Pokédex tem os botões de filtro', () => {
       userEvent.click(pokemonFilterButton);
       const typeText = screen.getByTestId('pokemon-type');
       expect(typeText).toBeInTheDocument();
-      // const namePokemon = screen.getByText(name);
-      // expect(namePokemon).toBeInTheDocument();
     });
   });
 
-  test('O botão All precisa estar sempre visível', () => {
+  test('se existe um botão de filtragem para cada tipo de Pokémon, sem repetir.', () => {
     renderWithRouter(<App />);
-    // const allText = screen.getByRole('button', {
-    //   name: 'All',
-    // });
-    // expect(allText).toBeInTheDocument();
-    // const allText = screen.getAllByTestId('pokemon-type-button');
-    // const proximoPokemonButton = screen.getByRole('button', {
-    //   name: 'Próximo pokémon',
-    // });
-    // userEvent.click(proximoPokemonButton);
-    // expect(allText).toBeInTheDocument();
-
-    // pokemons.forEach((pokemon) => {
-    //   const pokemonFilterButton = screen.getByRole('button', {
-    //     name: pokemon.type,
-    //   });
-    //   userEvent.click(pokemonFilterButton);
-    //   expect(allText).toBeInTheDocument();
-    // });
+    const filtersNumbers = 7;
+    pokemons.forEach(() => {
+      const typeFilterButton = screen.getAllByTestId('pokemon-type-button');
+      expect(typeFilterButton).toHaveLength(filtersNumbers);
+    });
   });
 
-  describe('este se a Pokédex contém um botão para resetar o filtro', () => {
-    test('O texto do botão deve ser All', () => {
-      renderWithRouter(<App />);
-      const allText = screen.getByRole('button', {
-        name: 'All',
-      });
-      expect(allText).toBeInTheDocument();
+  test('se os botões de filtro mostram corretamente os pokemons do tipo certo', () => {
+    renderWithRouter(<App />);
+    const fireButton = screen.getByRole('button', {
+      name: 'Fire',
+    });
+
+    userEvent.click(fireButton);
+
+    const charmander = screen.getByText('Charmander');
+    expect(charmander).toBeInTheDocument();
+
+    const nextPokemon = screen.getByRole('button', {
+      name: /Próximo pokémon/i,
+    });
+    userEvent.click(nextPokemon);
+
+    const rapidash = screen.getByText('Rapidash');
+    expect(rapidash).toBeInTheDocument();
+  });
+
+  test('se o botão All precisa estar sempre visível', () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', {
+      name: 'All',
+    });
+    expect(allButton).toBeInTheDocument();
+  });
+});
+
+describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  test('se o texto do botão deve ser All', () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByText('All');
+    const nextPokemon = screen.getByTestId('next-pokemon');
+
+    userEvent.click(allButton);
+
+    pokemons.forEach(({ name }) => {
+      const pokemonNmae = screen.getByTestId('pokemon-name');
+      expect(pokemonNmae).toHaveTextContent(name);
+
+      userEvent.click(nextPokemon);
     });
   });
 });

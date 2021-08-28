@@ -5,12 +5,13 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Teste componente PokemonDetails', () => {
+  const pikachuRoute = '/pokemons/25';
   test('Teste se as informações do Pokémon selecionado são renderizadas', () => {
     const { history } = renderWithRouter(<App />);
     const buttonDetails = screen.getByText('More details');
     expect(buttonDetails).toBeInTheDocument();
 
-    history.push('/pokemons/25');
+    history.push(pikachuRoute);
     expect(buttonDetails).not.toBeInTheDocument();
 
     const textDetails = screen.getByRole('heading',
@@ -26,7 +27,7 @@ describe('Teste componente PokemonDetails', () => {
 
   test('Teste se existe uma seção com os mapas com as localizações do pokémon', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
+    history.push(pikachuRoute);
     const locationsPokemon = screen.getByRole('heading',
       { level: 2, name: /Locations of Pikachu/i });
     expect(locationsPokemon).toBeInTheDocument();
@@ -42,7 +43,7 @@ describe('Teste componente PokemonDetails', () => {
 
   test('Teste se o usuário pode favoritar um pokémon', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
+    history.push(pikachuRoute);
 
     const favButton = screen.getByLabelText(/favoritado?/);
     expect(favButton).toBeInTheDocument();

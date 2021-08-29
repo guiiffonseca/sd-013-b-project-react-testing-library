@@ -14,7 +14,8 @@ describe('testando a pag Not Fund', () => {
 
   test('testa se a img renderiza na tela', () => {
     render(<NotFound />);
-    const imgNot = screen.getAllByRole('img')[1];
-    expect(imgNot.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    const img = screen.getByAltText(/Pikachu crying /i);
+    // https://github.com/testing-library/react-testing-library/issues/43 encontrado toHaveAttribute;
+    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

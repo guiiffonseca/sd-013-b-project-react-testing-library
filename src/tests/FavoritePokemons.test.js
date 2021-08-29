@@ -7,7 +7,7 @@ import pokemons from '../data';
 describe('testando o componente FavoritePokemons', () => {
   test('renderiza o texto No favorite pokemon found, se nao houver favoritos', () => {
     render(
-      // renderiza o FavoritePokemosn com o array pokemons vazio
+      // quando FavoritePokemons renderiza na tela sem nada contem o texto No favorite pokemon found;
       <MemoryRouter>
         <FavoritePokemons pokemons={ [] } />
       </MemoryRouter>,
@@ -16,12 +16,12 @@ describe('testando o componente FavoritePokemons', () => {
   });
   test('renderizar card favorito', () => {
     render(
-      // renderiza o FavoritePokemosn ja na pag /favorites com array pokemons povuado;
+      // Quando FavoritePokemosn tive com os Pokemons marcados como favoritos;
       <MemoryRouter>
         <FavoritePokemons pokemons={ pokemons } />
       </MemoryRouter>,
     );
-    const namesPokemons = screen.getAllByTestId('pokemon-name');
-    expect(namesPokemons.length).toBe(pokemons.length);
+    const pokemonsFavorites = screen.getAllByTestId('pokemon-name');
+    expect(pokemonsFavorites.length).toBe(pokemons.length);
   });
 });

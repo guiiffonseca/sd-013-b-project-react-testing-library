@@ -14,6 +14,7 @@ describe('Testando o component Pokemon', () => {
     expect(pokemon).toHaveTextContent('Pikachu');
     expect(pokemonType).toHaveTextContent('Electric');
     expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
+
     const pokemonSprite = screen.getByAltText('Pikachu sprite');
     expect(pokemonSprite.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
 
@@ -25,29 +26,28 @@ describe('Testando o component Pokemon', () => {
   });
   test('Se contém um link para mais detalhes do Pokémon', () => {
     renderWithRouter(<App />);
-    const moreDetails = screen.getByText(/More details/i);
-    fireEvent(moreDetails);
-
-    const moreDetailsPage = screen.getByRole('heading', {
-      level: 2,
-      name: /Pickachu Details/i,
-    });
-    expect(moreDetailsPage).toBeInTheDocument();
+    const moreDetailsLink = screen.getByText(/More details/i);
+    expect(moreDetailsLink).toBeInTheDocument();
+    expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
   });
   test('Se a página redireciona ao acessar o link /pokemons/:id', () => {
-    const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const moreDetails = screen.getByText(/More details/i);
-    fireEvent(moreDetails);
-    const { pathname } = history.location;
-    expect(pathname).toBe('pokemons/25');
+    fireEvent.click(moreDetails);
+
+    const details = screen.getByRole('heading', {
+      level: 2,
+      name: /Pikachu details/i,
+    });
+    expect(details).toBeInTheDocument();
   });
   test('Se a página contém a estrela nos pokémons favoritados', () => {
     renderWithRouter(<App />);
     const favorite = screen.getByText(/More Details/i);
 
-    fireEvent(favorite);
+    fireEvent.click(favorite);
 
-    const checkbox = screen.getByText('Pokemon favoritado?');
+    const checkbox = screen.getByLabelText('Pokémon favoritado?');
     expect(checkbox).toBeInTheDocument();
 
     fireEvent.click(checkbox);
@@ -55,7 +55,7 @@ describe('Testando o component Pokemon', () => {
     const favoritePokemon = screen.getByAltText('Pikachu is marked as favorite');
     expect(favoritePokemon).toBeInTheDocument();
 
-    fireEvent(favoritePokemon);
+    fireEvent.click(favoritePokemon);
     expect(favoritePokemon.src).toBe('http://localhost/star-icon.svg');
   });
 });

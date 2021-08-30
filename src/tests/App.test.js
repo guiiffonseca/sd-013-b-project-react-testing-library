@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import renderWithRouter from './Utils/utils';
 
-describe('Testes do Header de App.js', () => {
+describe('Testes do App.js', () => {
   test('Teste se o topo da aplicação contém um conjunto fixo de links de navegação',
     () => {
       render(

@@ -5,6 +5,7 @@ import pokemons from '../data';
 
 import Pokedex from '../components/Pokedex';
 import App from '../App';
+import userEvent from '@testing-library/user-event';
 
 describe('O título da seção Pokédex deve ser renderizado.', () => {
   test('A página contém um heading h2 com o texto "Encountered pokémons".', () => {
@@ -72,5 +73,6 @@ describe('A página contém vários botões para selecionar por tipo.', () => {
     />);
     const allButton = screen.getByText('All');
     expect(allButton.innerHTML).toBe('All');
+    userEvent.click(allButton);
   });
 });

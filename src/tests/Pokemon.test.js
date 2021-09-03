@@ -78,7 +78,7 @@ describe('O card do Pokémon indicado na Pokédex contém um link para exibir de
     expect(detailsLink.pathname).toBe("/pokemons/25");
     userEvent.click(poisonButton);
     expect(detailsLink.pathname).toBe("/pokemons/23");
-    history.push('/pokemons/23'); 
+    // history.push('/pokemons/23'); 
     expect(window.location.pathname).toBe('I was expecting to see something');
   });
 });

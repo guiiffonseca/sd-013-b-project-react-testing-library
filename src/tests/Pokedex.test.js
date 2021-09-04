@@ -1,11 +1,11 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../routes/router';
 import pokemons from '../data';
 
 import Pokedex from '../components/Pokedex';
 import App from '../App';
-import userEvent from '@testing-library/user-event';
 
 describe('O título da seção Pokédex deve ser renderizado.', () => {
   test('A página contém um heading h2 com o texto "Encountered pokémons".', () => {

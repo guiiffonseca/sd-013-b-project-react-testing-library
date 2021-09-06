@@ -5,10 +5,7 @@ clear
 cd /home/lucas/projetos/sd-013-b-project-react-testing-library
 if [ -z $1 ];
 then
-    for QUERY in $(ls stryker)
-    do
-        echo stryker/$QUERY
-    done
+    npx stryker run
 else
     for QUERY in $(ls stryker | grep -ie $1)
     do

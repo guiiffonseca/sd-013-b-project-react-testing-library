@@ -1,7 +1,6 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-// import pokemons from '../data';
 import App from '../App';
 
 describe('Teste o componente Pokemon', () => {

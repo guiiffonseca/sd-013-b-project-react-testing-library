@@ -4,10 +4,12 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
+const POKEMON = '/pokemons/4';
+
 describe('teste pokemon details', () => {
   test('verifica se pokemon details renderiza as infomacao do pokemon', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/4');
+    history.push(POKEMON);
     const moreDetailsTitulo = screen.getByRole('heading', {
       level: 2,
       name: /Charmander Details/i,
@@ -23,7 +25,7 @@ describe('teste pokemon details', () => {
   });
   test('verifica secao no mapa', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/4');
+    history.push(POKEMON);
     const locationInGame = screen.getByRole('heading', {
       level: 2,
       name: /Game Locations of Charmander/i,
@@ -45,7 +47,7 @@ describe('teste pokemon details', () => {
   });
   test('Verifique se um usuário pode adicionar um Pokémon como favorito', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/4');
+    history.push(POKEMON);
     const checkboxFavorite = screen.getByRole('checkbox');
     expect(checkboxFavorite).toBeInTheDocument();
     userEvent.dblClick(checkboxFavorite);

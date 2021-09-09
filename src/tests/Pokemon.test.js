@@ -5,15 +5,15 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('test Card Pokemons', () => {
-  test('Verificar as informacoes do car', () => {
+  test('Verificar as informacoes do card', () => {
     renderWithRouter(<App />);
 
     const btnElectric = screen.getByRole('button', {
       name: /Electric/i,
     });
     userEvent.click(btnElectric);
-    const namePokemon = screen.getByText('Pikachu');
-    expect(namePokemon).toBeInTheDocument();
+    const namePokemon = screen.getByTestId('pokemon-name');
+    expect(namePokemon.innerHTML).toBe('Pikachu');
     const typePokemon = screen.getByTestId('pokemon-type');
     expect(typePokemon.innerHTML).toBe('Electric');
     const average = screen.getByText(/Average weight/i);

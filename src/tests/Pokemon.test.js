@@ -20,6 +20,8 @@ describe('test Card Pokemons', () => {
     expect(average).toBeInTheDocument();
     const valueWeight = screen.getByText(/6.0/i);
     expect(valueWeight).toBeInTheDocument();
+    const unidade = screen.getByText(/kg/i);
+    expect(unidade).toBeInTheDocument();
     const imgPokemon = screen.getByRole('img');
     expect(imgPokemon).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(imgPokemon).toHaveAttribute('alt', 'Pikachu sprite');

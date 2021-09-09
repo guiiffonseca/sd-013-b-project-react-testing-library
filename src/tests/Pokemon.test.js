@@ -41,5 +41,3 @@ describe('test Card Pokemons', () => {
     expect(imgStar).toHaveAttribute('src', '/star-icon.svg');
   });
 });
-
-// test('', () => {});

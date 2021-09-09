@@ -12,7 +12,7 @@ describe('test Card Pokemons', () => {
       name: /Electric/i,
     });
     userEvent.click(btnElectric);
-    const namePokemon = screen.getByText(/Pikachu/i);
+    const namePokemon = screen.getByText('Pikachu');
     expect(namePokemon).toBeInTheDocument();
     const typePokemon = screen.getByTestId('pokemon-type');
     expect(typePokemon.innerHTML).toBe('Electric');

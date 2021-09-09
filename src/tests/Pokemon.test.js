@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('test Card Pokemons', () => {
-  test('test 1', () => {
+  test('Verificar as informacoes do car', () => {
     renderWithRouter(<App />);
 
     const btnElectric = screen.getByRole('button', {

@@ -10,14 +10,14 @@ describe('Teste Pokemon.js', () => {
     renderWithRouter(
       <App />,
     );
-    pokemons.forEach((pokemon) => {
-      expect(screen.getByTestId('pokemon-name')).toHaveTextContent(pokemon.name);
-      expect(screen.getByTestId('pokemon-type')).toHaveTextContent(pokemon.type);
+    pokemons.forEach(({ type, name, averageWeight, image }) => {
+      expect(screen.getByTestId('pokemon-name')).toHaveTextContent(name);
+      expect(screen.getByTestId('pokemon-type')).toHaveTextContent(type);
       expect(screen.getByTestId('pokemon-weight')).toHaveTextContent(
-        `${pokemon.averageWeight.value} ${pokemon.averageWeight.measurementUnit}`,
+        `Average weight: ${averageWeight.value} ${averageWeight.measurementUnit}`,
       );
-      expect(screen.getByRole('img')).toHaveAttribute('src', pokemon.image);
-      expect(screen.getByRole('img')).toHaveAttribute('alt', `${pokemon.name} sprite`);
+      expect(screen.getByRole('img')).toHaveAttribute('src', image);
+      expect(screen.getByRole('img')).toHaveAttribute('alt', `${name} sprite`);
       const nextButton = screen.getByRole('button', { name: /Próximo pokémon/i });
       userEvent.click(nextButton);
     });

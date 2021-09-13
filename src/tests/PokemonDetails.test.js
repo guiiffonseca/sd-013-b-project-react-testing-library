@@ -36,7 +36,7 @@ describe('testes do componente "PokemonDetails"', () => {
     expect(pokemonFirstLocationText).toBeInTheDocument();
     const pikachuSecondLocation = screen.getByText(/Kanto Power Plant/i);
     expect(pikachuSecondLocation).toBeInTheDocument();
-    const pikachuMaps = screen.getAllByAltText('Pikachu location');
+    const pikachuMaps = screen.getAllByAltText(`${pokemons[0].name} location`);
     expect(pikachuMaps[0]).toHaveAttribute(
       'src',
       pokemons[0].foundAt[0].map,
@@ -60,5 +60,10 @@ describe('testes do componente "PokemonDetails"', () => {
     const originalChecked = favoritePokemonCheckbox.checked;
     userEvent.click(favoritePokemonCheckbox);
     expect(favoritePokemonCheckbox.checked).toBe(!originalChecked);
+    const gameLocationsOfPikachuHeading = screen.getByRole('heading', {
+      name: /Game Locations of Pikachu/i,
+      level: 2,
+    });
+    expect(gameLocationsOfPikachuHeading).toBeInTheDocument();
   });
 });

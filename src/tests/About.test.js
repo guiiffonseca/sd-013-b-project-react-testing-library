@@ -5,7 +5,10 @@ import About from '../components/About';
 
 const CONTEXT_HEADER = /One can filter Pokémons by type/;
 const POKEDEX_ABOUT = 'About Pokédex';
-// const CONTEXT_P = 'About Pokédex';
+const CONTEXT_P1 = (
+  'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons');
+const CONTEXT_P2 = (
+  'One can filter Pokémons by type, and see more details for each one of them');
 
 describe('Teste o componente About', () => {
   it('Se contem Pokédex infos', () => {
@@ -17,5 +20,12 @@ describe('Teste o componente About', () => {
     render(<About />);
     const heading = screen.getByText(POKEDEX_ABOUT);
     expect(heading).toBeInTheDocument();
+  });
+  it('Se contem paragrafos', () => {
+    render(<About />);
+    const pFirst = screen.getByText(CONTEXT_P1);
+    expect(pFirst).toBeInTheDocument();
+    const pSecond = screen.getByText(CONTEXT_P2);
+    expect(pSecond).toBeInTheDocument();
   });
 });

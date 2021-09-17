@@ -11,24 +11,24 @@ describe('Teste se possui um nav', () => {
     userEvent.click(screen.getByText(/Home/i));
     const { location: { pathname } } = history;
     expect(pathname).toBe('/');
-    // const aboutAll = screen.getByText(/Encountered pokémons/);
-    // expect(aboutAll).toBeInTheDocument();
+    const context = screen.getByText(/Encountered pokémons/);
+    expect(context).toBeInTheDocument();
   });
   it('abrir About na URL /about', () => {
     const { history } = renderWithRouter(<App />);
     userEvent.click(screen.getByText(/About/i));
     const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
-    // const aboutAll = screen.getByText(/About Pokédex/);
-    // expect(aboutAll).toBeInTheDocument();
+    const context = screen.getByText(/About Pokédex/);
+    expect(context).toBeInTheDocument();
   });
   it('abrir Pokémons Favoritados na URL /favorites', () => {
     const { history } = renderWithRouter(<App />);
     userEvent.click(screen.getByText(/Favorite Pokémons/i));
     const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
-    // const aboutAll = screen.getByText(/Favorite pokémons/);
-    // expect(aboutAll).toBeInTheDocument();
+    const context = screen.getByText(/Favorite pokémons/);
+    expect(context).toBeInTheDocument();
   });
   it('abrir Not Found em outra URL.', () => {
     const { history } = renderWithRouter(<App />);

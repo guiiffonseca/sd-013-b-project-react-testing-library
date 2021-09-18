@@ -62,7 +62,7 @@ describe('PokemonDetails.js Tests', () => {
   });
 
   test('Teste se o usuário pode favoritar um pokémon na página de detalhes.', () => {
-    const favoriteCheck = screen.getByRole('checkbox');
+    const favoriteCheck = screen.getByText('Pokémon favoritado?');
     const getFavIcon = () => screen.getByAltText(`${name} is marked as favorite`);
 
     expect(getFavIcon).toThrow();

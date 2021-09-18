@@ -59,7 +59,7 @@ describe('Pokemon.JS Tests', () => {
     expect(history.location.pathname).toBe(`/pokemons/${id}`);
   });
 
-  test('Ao clicar redireciona para a tela de detalhes.', () => {
+  test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     history.push(`/pokemons/${id}`);
     const favoriteCheck = screen.getByRole('checkbox');
     userEvent.click(favoriteCheck);

@@ -5,10 +5,8 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
-// const MAX_LINKS = 4;
-
-describe('<App.js /> Testes', () => {
-  test('1) se no topo da aplicação contém um conjunto fixo de links de navegação.',
+describe('<App.js /> Integration Tests:', () => {
+  test('1) Se o topo da aplicação contém um conjunto fixo de links de navegação.',
     () => {
       render(<MemoryRouter><App /></MemoryRouter>);
 
@@ -21,85 +19,69 @@ describe('<App.js /> Testes', () => {
       expect(favoriteLink).toBeInTheDocument();
     });
 
-  test('2) se a aplicação redireciona para a página inicial clicando no link "Home".',
-    () => {
-      render(<MemoryRouter><App /></MemoryRouter>);
+  test('2) Se a aplicação é redirecionada para a página inicial,'
+  + ' na URL "/" ao clicar no link "Home" da barra de navegação.',
+  () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
 
-      const homeLink = screen.getByRole('link', { name: 'Home' });
+    const homeLink = screen.getByRole('link', { name: 'Home' });
 
-      userEvent.click(homeLink);
+    userEvent.click(homeLink);
 
-      const homePageText = screen.getByRole('heading', {
-        level: 2,
-        name: /Encountered pokémons/i,
-      });
-
-      expect(homePageText).toBeInTheDocument();
+    const homePageText = screen.getByRole('heading', {
+      level: 2,
+      name: /Encountered pokémons/i,
     });
 
-  test('3) se a aplicação redireciona para a página "About" clicando no link "About".',
-    () => {
-      render(<MemoryRouter><App /></MemoryRouter>);
+    expect(homePageText).toBeInTheDocument();
+  });
 
-      const aboutLink = screen.getByRole('link', { name: 'About' });
+  test('3) Se a aplicação é redirecionada para a página de "About",'
+  + ' na URL "/about", ao clicar no link "About" da barra de navegação.',
+  () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
 
-      userEvent.click(aboutLink);
+    const aboutLink = screen.getByRole('link', { name: 'About' });
 
-      const aboutPageText = screen.getByRole('heading', {
-        level: 2,
-        name: /About Pokédex/i,
-      });
+    userEvent.click(aboutLink);
 
-      expect(aboutPageText).toBeInTheDocument();
+    const aboutPageText = screen.getByRole('heading', {
+      level: 2,
+      name: /About Pokédex/i,
     });
 
-  test('4) se redireciona para a página de favoritos clicando em "Favorite Pokémons".',
-    () => {
-      render(<MemoryRouter><App /></MemoryRouter>);
+    expect(aboutPageText).toBeInTheDocument();
+  });
 
-      const favoritePokemonLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
+  test('4) Se a aplicação é redirecionada para a página de "Pokémons Favoritados",'
+  + ' na URL "/favorites", ao clicar no link "Favorite Pokémons" da barra de navegação.',
+  () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
 
-      userEvent.click(favoritePokemonLink);
+    const favoritePokemonLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
 
-      const favoritePokemonPageText = screen.getByRole('heading', {
-        level: 2,
-        name: /Favorite pokémons/i,
-      });
+    userEvent.click(favoritePokemonLink);
 
-      expect(favoritePokemonPageText).toBeInTheDocument();
+    const favoritePokemonPageText = screen.getByRole('heading', {
+      level: 2,
+      name: /Favorite pokémons/i,
     });
 
-  test('5) se redireciona para a página "Not Found" ao entrar em URL desconhecida.',
-    () => {
-      const { history } = renderWithRouter(<App />);
+    expect(favoritePokemonPageText).toBeInTheDocument();
+  });
 
-      history.push('/URL-desconhecida');
+  test('5) Se a aplicação é redirecionada para a página "Not Found"'
+  + ' ao entrar em uma URL desconhecida.',
+  () => {
+    const { history } = renderWithRouter(<App />);
 
-      const pageNotFoundText = screen.getByRole('heading', {
-        level: 2,
-        name: /Page requested not found/i,
-      });
+    history.push('/URL-desconhecida');
 
-      expect(pageNotFoundText).toBeInTheDocument();
+    const pageNotFoundText = screen.getByRole('heading', {
+      level: 2,
+      name: /Page requested not found/i,
     });
 
-  // });
-  // const aboutMeText = screen.getByRole('heading', {
-  //   level: 1,
-  //   name: /página sobre mim/i,
-  // });
-
-  // expect(aboutMeText).toBeInTheDocument();
-
-  // const projectsLink = screen.getByRole('link', {
-  //   name: /projetos/i,
-  // });
-  // userEvent.click(projectsLink);
-
-  // const projectsPageText = screen.getByRole('heading', {
-  //   level: 1,
-  //   name: /página de projetos/i,
-  // });
-
-  // expect(projectsPageText).toBeInTheDocument();
+    expect(pageNotFoundText).toBeInTheDocument();
+  });
 });

@@ -94,5 +94,12 @@ describe('Test Pokedex.js', () => {
     fireEvent.click(allButton);
 
     expect(pokemonName.textContent).toBe('Pikachu');
+
+    const nextPokemon = screen.getByTestId('next-pokemon');
+    expect(nextPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+
+    expect(pokemonName.textContent).toBe('Charmander');
   });
 });

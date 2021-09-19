@@ -1,7 +1,5 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import { render } from 'react-dom';
-// import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 import { About } from '../components';
 

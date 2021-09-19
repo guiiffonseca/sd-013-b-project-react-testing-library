@@ -1,58 +1,24 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
-import App from '../App';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
-
-describe('Teste o componente <App.js />', () => {
-  it('Se a página principal da Pokédex é renderizada ao carregar o caminho "/"', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const homePage = getByText(/Encountered pokémons/i);
-    expect(homePage).toBeInTheDocument();
+describe('test component app', () => {
+  test('test link Home', () => {
+    renderWithRouter(<App />);
+    const elementText = screen.getByText(/Home/);
+    expect(elementText).toBeInTheDocument();
   });
 
-  it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText('Home')).toBeInTheDocument();
-    expect(getByText('About')).toBeInTheDocument();
-    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  test('test link About', () => {
+    renderWithRouter(<App />);
+    const elementText = screen.getByText(/About/);
+    expect(elementText).toBeInTheDocument();
   });
 
-  it('Redireciona para / ao clicar em Home', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const home = getByText('Home');
-    fireEvent.click(home);
-    expect(history.location.pathname).toBe('/');
-  });
-
-  it('Redireciona para /about ao clicar em About', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const about = getByText('About');
-    fireEvent.click(about);
-    expect(history.location.pathname).toBe('/about');
-  });
-
-  it('Redireciona para /favorites ao clicar em Favorite Pokémons', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const favorite = getByText('Favorite Pokémons');
-    fireEvent.click(favorite);
-    expect(history.location.pathname).toBe('/favorites');
-  });
-
-  it('Redireciona para a página Not Found ao entrar em uma URL desconhecida.', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('eduardo-teixeira');
-    const error = getByText(/Page requested not found/);
-    expect(error).toBeInTheDocument();
+  test('test link favoritePokemon', () => {
+    renderWithRouter(<App />);
+    const elementText = screen.getByText(/Favorite Pokémon/);
+    expect(elementText).toBeInTheDocument();
   });
 });

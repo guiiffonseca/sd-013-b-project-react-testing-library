@@ -73,6 +73,7 @@ describe('Test Pokedex.js', () => {
     );
 
     const pokemonName = screen.getByTestId(pokemonNameTestId);
+
     const filterButtons = screen.getAllByTestId(pokemonTypeButtonTestId);
     const filterButtonsLength = 7;
     expect(filterButtons.length).toBe(filterButtonsLength);
@@ -95,7 +96,10 @@ describe('Test Pokedex.js', () => {
 
     expect(pokemonName.textContent).toBe('Pikachu');
 
-    const nextPokemon = screen.getByTestId('next-pokemon');
+    // const nextPokemon = screen.getByTestId('next-pokemon');
+    const nextPokemon = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
     expect(nextPokemon).toBeInTheDocument();
 
     fireEvent.click(nextPokemon);

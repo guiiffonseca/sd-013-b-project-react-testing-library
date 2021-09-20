@@ -36,5 +36,11 @@ describe('Teste o componente <Pokemon.js />', () => {
     const { location: { pathname } } = history;
     expect(pathname).toBe(`/pokemons/${showPokemon.id}`);
   });
+  it('Link para detalhes abre detalhes', () => {
+    renderWithRouter(<Pokemon pokemon={ showPokemon } isFavorite={ false } />);
+    userEvent.click(screen.getByText(/More details/i));
+    expect(screen.getByTestId('pokemon-name')).toHaveTextContent(showPokemon.name);
+  });
+  // it('', () => {});
   // it('', () => {});
 });

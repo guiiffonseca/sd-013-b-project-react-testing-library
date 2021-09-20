@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import data from '../data';
 import { Pokemon } from '../components';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 describe('Teste o componente <Pokemon.js />', () => {
   const showPokemon = data[0];
@@ -51,5 +50,4 @@ describe('Teste o componente <Pokemon.js />', () => {
     const star = screen.getByAltText(IMG_ALT_STAR);
     expect(star).toHaveAttribute('src', IMG_SRC_STAR);
   });
-  // it('', () => {});
 });

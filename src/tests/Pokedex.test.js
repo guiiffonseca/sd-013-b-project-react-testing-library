@@ -27,7 +27,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     for (let i = 1; i <= data.length - 1; i += 1) {
       userEvent.click(screen.getByTestId(NEXT_POKEMON));
     }
-    expect(screen.getByText('Pikachu'));
+    expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
   it('Exibe um pokémon por vez', () => {
     renderWithRouter(<App />);
@@ -44,7 +44,7 @@ describe('Teste o componente <Pokedex.js />', () => {
 
     const filtersTypesOnScreen = screen.getAllByTestId(TYPE_BUTTON);
     types.forEach((type, index) => {
-      // Verifica se não repete o filtro
+      // Verifica se não repete o filtro e texto
       expect(filtersTypesOnScreen[index]).toHaveTextContent(type);
 
       // Verifica que exibe os pokémons conforme clicado no filtro
@@ -56,8 +56,14 @@ describe('Teste o componente <Pokedex.js />', () => {
       expect(buttons[0]).toBeEnabled();
     });
   });
-  /* it('Exibe o próximo pokémon', () => {
+  it('Possui um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
-
-  }); */
+    const nextButton = screen.getByTestId(NEXT_POKEMON);
+    const filterButtons = screen.getAllByRole('button');
+    userEvent.click(filterButtons[3]);
+    userEvent.click(filterButtons[0]);
+    data.forEach(() => userEvent.click(nextButton));
+    expect(screen.getByText('Pikachu')).toBeInTheDocument();
+    expect(filterButtons[0]).toHaveTextContent('All');
+  });
 });

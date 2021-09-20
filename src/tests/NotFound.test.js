@@ -2,8 +2,6 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { NotFound } from '../components';
-// import userEvent from '@testing-library/user-event';
-// import renderWithRouter from '../services/renderWithRouter';
 
 describe('<NotFound.js /> Integration Tests:', () => {
   test('1) Se página contém um heading "h2" com o texto "Page requested not found 😭".',

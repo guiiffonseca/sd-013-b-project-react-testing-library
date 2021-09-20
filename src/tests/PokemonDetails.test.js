@@ -32,5 +32,21 @@ describe('Teste o componente <PokemonDetails.js />', () => {
   it('Exibe um resumo do Pokémon.', () => {
     expect(screen.getByText(showPokemon.summary)).toBeInTheDocument();
   });
+  it('Possuir título para localizações.', () => {
+    const h2 = screen.getByRole('heading', {
+      level: 2,
+      name: `Game Locations of ${showPokemon.name}`,
+    });
+    expect(h2).toBeInTheDocument();
+  });
+  it('Todas as localizações do Pokémon devem ser mostradas na seção de detalhes', () => {
+    const locations = screen.getAllByAltText(`${showPokemon.name} location`).length;
+    expect(locations).toBe(showPokemon.foundAt.length);
+
+    // Verifica se exibe os nomes
+    showPokemon.foundAt.forEach((local) => {
+      expect(screen.getByText(local.location)).toBeInTheDocument();
+    });
+  });
 });
 // it('', () => {});

@@ -6,8 +6,11 @@ import data from '../data';
 import App from '../App';
 
 const NEXT_POKEMON = 'next-pokemon';
+const TYPE_BUTTON = 'pokemon-type-button';
 
 describe('Teste o componente <Pokedex.js />', () => {
+  // afterAll();
+
   it('Possui um Heading h2 com texto Encountered pokémons', () => {
     renderWithRouter(<App />);
     const heading = screen.getByText(/Encountered pokémons/);
@@ -33,10 +36,25 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
   it('Exibe o botoes de filtro', () => {
     const QTY_FILTERS = 7;
+    const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
     renderWithRouter(<App />);
-    const filtersOnScreen = screen.getAllByTestId('pokemon-type-button');
+
+    const filtersOnScreen = screen.getAllByTestId(TYPE_BUTTON);
     expect(filtersOnScreen.length).toBe(QTY_FILTERS);
 
+    const filtersTypesOnScreen = screen.getAllByTestId(TYPE_BUTTON);
+    types.forEach((type, index) => {
+      // Verifica se não repete o filtro
+      expect(filtersTypesOnScreen[index]).toHaveTextContent(type);
+
+      // Verifica que exibe os pokémons conforme clicado no filtro
+      userEvent.click(screen.getAllByTestId(TYPE_BUTTON)[index]);
+      expect(screen.getByTestId('pokemon-type')).toHaveTextContent(type);
+
+      // Verifica se o botão All está habilitado
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).toBeEnabled();
+    });
   });
   /* it('Exibe o próximo pokémon', () => {
     renderWithRouter(<App />);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import data from '../data';
 import { Pokemon } from '../components';
@@ -21,4 +22,19 @@ describe('Teste o componente <Pokemon.js />', () => {
     const MSG_WEIGHT = `Average weight: ${weightValue} ${unitM}`;
     expect(screen.getByTestId('pokemon-weight')).toHaveTextContent(MSG_WEIGHT);
   });
+  it('Exibe o imagem do pokemon corretamente', () => {
+    renderWithRouter(<Pokemon pokemon={ showPokemon } isFavorite={ false } />);
+    const IMG_ALT = `${showPokemon.name} sprite`;
+    const img = screen.getByAltText(IMG_ALT);
+    expect(img).toHaveAttribute('src', showPokemon.image);
+  });
+  it('Possui link para detalhes', () => {
+    const { history } = renderWithRouter(
+      <Pokemon pokemon={ showPokemon } isFavorite={ false } />,
+    );
+    userEvent.click(screen.getByText(/More details/i));
+    const { location: { pathname } } = history;
+    expect(pathname).toBe(`/pokemons/${showPokemon.id}`);
+  });
+  // it('', () => {});
 });

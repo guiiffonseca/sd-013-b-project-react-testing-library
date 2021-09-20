@@ -2,8 +2,6 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { About } from '../components';
-// import userEvent from '@testing-library/user-event';
-// import renderWithRouter from '../services/renderWithRouter';
 
 describe('<About.js /> Integration Tests:', () => {
   test('1) Se a página contém um heading "h2" com o texto "About Pokédex".',

@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import data from '../data';
 import { Pokemon } from '../components';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 describe('Teste o componente <Pokemon.js />', () => {
   const showPokemon = data[0];
@@ -41,6 +42,14 @@ describe('Teste o componente <Pokemon.js />', () => {
     userEvent.click(screen.getByText(/More details/i));
     expect(screen.getByTestId('pokemon-name')).toHaveTextContent(showPokemon.name);
   });
-  // it('', () => {});
+  it('Exibe icone de favorito', () => {
+    const favorite = true;
+    renderWithRouter(<Pokemon pokemon={ showPokemon } isFavorite={ favorite } />);
+    const IMG_ALT_STAR = `${showPokemon.name} is marked as favorite`;
+    const IMG_SRC_STAR = '/star-icon.svg';
+
+    const star = screen.getByAltText(IMG_ALT_STAR);
+    expect(star).toHaveAttribute('src', IMG_SRC_STAR);
+  });
   // it('', () => {});
 });

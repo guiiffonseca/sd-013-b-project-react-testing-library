@@ -1,31 +1,33 @@
-// import React from 'react';
-// import { render, fireEvent } from '@testing-library/react';
-// import FavoritePokemons from '../components/FavoritePokemons';
-// import renderWithRouter from '../renderWithRouter';
-// import App from '../App';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { BrowserRouter as Router } from 'react-router-dom';
+import FavoritePokemons from '../components/FavoritePokemons';
+import App from '../App';
 
-// describe('FavoritePokemons tests', () => {
-//   test('Tests if "No favorite pokemon found" in case the user have no favorite pokemons.',
-//     () => {
-//       const { getByText } = render(<FavoritePokemons />);
-//       const noFavoritePokemonMessage = getByText('No favorite pokemon found');
+describe('Testing component <FavoritePokemons.js />', () => {
+  it('Testing if the person doesnt have favourites', () => {
+    render(<Router><FavoritePokemons /></Router>);
+    const message = screen.getByText('No favorite pokemon found');
+    expect(message).toBeInTheDocument();
+  });
 
-//       expect(noFavoritePokemonMessage).toBeInTheDocument();
-//     });
+  it('Test if the person dont have favourites', () => {
+    render(<Router><App /></Router>);
+    const details = screen.getByRole('link', {
+      name: /more details/i,
+    });
+    userEvent.click(details);
 
-//   test('Tests if all favorite Pokemon cards are displayed.',
-//     () => {
-//       const { getByText, container } = renderWithRouter(<App />);
-//       const MoreDetails = getByText('More details');
-//       fireEvent.click(MoreDetails);
+    const checkbox = screen.getByRole('checkbox');
+    userEvent.click(checkbox);
 
-//       const favoritePokemon = getByText('Pokémon favoritado?');
-//       fireEvent.click(favoritePokemon);
+    const favorite = screen.getByRole('link', {
+      name: /favorite pokémons/i,
+    });
+    userEvent.click(favorite);
 
-//       const favoritePokemonsB = getByText('Favorite Pokémons');
-//       fireEvent.click(favoritePokemonsB);
-
-//       const pokemonOverview = container.querySelector('.pokemon-overview');
-//       expect(pokemonOverview).toBeInTheDocument();
-//     });
-// });
+    const pikachu = screen.getByText(/pikachu/i);
+    expect(pikachu).toBeInTheDocument();
+  });
+});

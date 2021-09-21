@@ -6,7 +6,6 @@ import App from '../App';
 
 describe('Teste o componente <PokemonDetails.js />', () => {
   const showPokemon = data[0];
-  const favorite = false;
   beforeEach(() => {
     const { history } = renderWithRouter(<App />);
     history.push(`/pokemons/${showPokemon.id}`);

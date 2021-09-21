@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import RouterMemory from './RouterMemory';
 import App from '../App';
 
-describe('Requisito 5 Pokedex', () => {
+describe('Requisito Pokedex test', () => {
   test('Verifica se há um h2 com o texto "Encountered pokémons"', () => {
     RouterMemory(<App />);
 

@@ -54,5 +54,13 @@ describe('Teste o componente <PokemonDetails.js />', () => {
       expect(imgsOnScreen[index]).toHaveAttribute('src', img.map);
     });
   });
+  it('Testa que pode ser pokémon favoritado.', () => {
+    const ALT_TEXT_STAR = `${showPokemon.name} is marked as favorite`;
+    if (screen.queryByAltText(ALT_TEXT_STAR) === null) {
+      expect(screen.getByLabelText('Pokémon favoritado?')).not.toBeChecked();
+    } else {
+      expect(screen.getByLabelText('Pokémon favoritado?')).toBeChecked();
+    }
+  });
 });
 // it('', () => {});

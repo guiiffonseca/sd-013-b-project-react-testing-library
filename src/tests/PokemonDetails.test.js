@@ -5,12 +5,13 @@ import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
+const pokemonSelected = pokemons[0];
 const MAX_DETAILS = 3;
+const MAX_LOCATIONS = pokemonSelected.foundAt.length;
 
 describe('<PokemonDetails.js /> Integration Tests:', () => {
   test('1) Se as informações detalhadas do Pokémon selecionado são mostradas na tela.',
     () => {
-      const pokemonSelected = pokemons[0];
       renderWithRouter(<App />);
 
       const detailsLink = screen.getByRole('link', {
@@ -34,101 +35,59 @@ describe('<PokemonDetails.js /> Integration Tests:', () => {
       });
       expect(summaryHeadingText).toBeInTheDocument();
 
-      const summaryContentText = screen.getByText('This intelligent Pokémon roasts'
-      + ' hard berries with electricity to make them tender enough to eat.');
+      const summaryContentText = screen.getByText(pokemonSelected.summary);
       expect(summaryContentText).toBeInTheDocument();
     });
 
-  // test('2) Se é exibido o próximo Pokémon da lista quando'
-  // + ' o botão "Próximo pokémon" é clicado.',
-  // () => {
-  //   renderWithRouter(<Pokedex
-  //     pokemons={ [pokemons[0], pokemons[4], pokemons[5]] }
-  //     isPokemonFavoriteById={ { 25: true, 65: true, 151: true } }
-  //   />);
+  test('2) Se tem na página uma seção com os mapas contendo as localizações do pokémon.',
+    () => {
+      renderWithRouter(<App />);
 
-  //   const nextPokemonButton = screen.getByRole('button', { name: NEXT_POKEMON });
-  //   expect(nextPokemonButton).toBeInTheDocument();
+      const detailsLink = screen.getByRole('link', {
+        name: /more details/i,
+      });
+      userEvent.click(detailsLink);
 
-  //   userEvent.click(nextPokemonButton);
-  //   const firstPokemonNameText = screen.getByText('Alakazam');
-  //   expect(firstPokemonNameText).toBeInTheDocument();
+      const gameHeadingText = screen.getByRole('heading', {
+        level: 2,
+        name: `Game Locations of ${pokemonSelected.name}`,
+      });
+      expect(gameHeadingText).toBeInTheDocument();
 
-  //   userEvent.click(nextPokemonButton);
-  //   const secondPokemonNameText = screen.getByText('Mew');
-  //   expect(secondPokemonNameText).toBeInTheDocument();
+      const allPokemonLocations = screen.getAllByAltText(
+        `${pokemonSelected.name} location`,
+      );
+      expect(allPokemonLocations).toHaveLength(MAX_LOCATIONS);
 
-  //   userEvent.click(nextPokemonButton);
-  //   const thirdPokemonNameText = screen.getByText('Pikachu');
-  //   expect(thirdPokemonNameText).toBeInTheDocument();
-  // });
+      pokemonSelected.foundAt.forEach((local, index) => {
+        const nameLocation = screen.getByText(local.location);
+        const allPokemonImages = screen.getAllByRole('img');
+        expect(nameLocation).toBeInTheDocument();
+        expect(allPokemonImages[index + 1]).toHaveAttribute('src', local.map);
+      });
+    });
 
-  // test('3) Se é mostrado apenas um Pokémon por vez.',
-  //   () => {
-  //     renderWithRouter(<Pokedex
-  //       pokemons={ pokemons }
-  //       isPokemonFavoriteById={ { 25: true } }
-  //     />);
+  test('3) Se o usuário pode favoritar um pokémon através da página de detalhes.',
+    () => {
+      renderWithRouter(<App />);
 
-  //     const showPokemonsOnScreen = screen.getAllByTestId('pokemon-name');
+      const detailsLink = screen.getByRole('link', {
+        name: /more details/i,
+      });
+      userEvent.click(detailsLink);
 
-  //     expect(showPokemonsOnScreen).toHaveLength(1);
-  //   });
+      const favoriteCheckbox = screen.getByRole('checkbox');
+      expect(favoriteCheckbox).toBeInTheDocument();
 
-  // test('4) Se a Pokédex tem os botões de filtro.',
-  //   () => {
-  //     const MAX_TYPES = 7;
-  //     renderWithRouter(<Pokedex
-  //       pokemons={ pokemons }
-  //       isPokemonFavoriteById={ { 25: true, 65: true, 151: true } }
-  //     />);
+      const favoriteCheckboxLabel = screen.getByLabelText('Pokémon favoritado?');
+      expect(favoriteCheckboxLabel).toBeInTheDocument();
 
-  //     const allFilterButton = screen.getByRole('button', { name: 'All' });
-  //     const electricFilterButton = screen.getByRole('button', { name: 'Electric' });
-  //     const fireFilterButton = screen.getByRole('button', { name: 'Fire' });
-  //     const bugFilterButton = screen.getByRole('button', { name: 'Bug' });
-  //     const poisonFilterButton = screen.getByRole('button', { name: 'Poison' });
-  //     const psychicFilterButton = screen.getByRole('button', { name: 'Psychic' });
-  //     const normalFilterButton = screen.getByRole('button', { name: 'Normal' });
-  //     const dragonFilterButton = screen.getByRole('button', { name: 'Dragon' });
-
-  //     expect(allFilterButton).toBeInTheDocument();
-  //     expect(electricFilterButton).toBeInTheDocument();
-  //     expect(fireFilterButton).toBeInTheDocument();
-  //     expect(bugFilterButton).toBeInTheDocument();
-  //     expect(poisonFilterButton).toBeInTheDocument();
-  //     expect(psychicFilterButton).toBeInTheDocument();
-  //     expect(normalFilterButton).toBeInTheDocument();
-  //     expect(dragonFilterButton).toBeInTheDocument();
-
-  //     const pokemonTypeButtons = screen.getAllByTestId('pokemon-type-button');
-  //     expect(pokemonTypeButtons).toHaveLength(MAX_TYPES);
-
-  //     userEvent.click(psychicFilterButton);
-  //     const firstPokemonFilteredText = screen.getByText('Alakazam');
-  //     expect(firstPokemonFilteredText).toBeInTheDocument();
-
-  //     const nextPokemonButton = screen.getByRole('button', { name: NEXT_POKEMON });
-  //     userEvent.click(nextPokemonButton);
-  //     const secondPokemonFilteredText = screen.getByText('Mew');
-  //     expect(secondPokemonFilteredText).toBeInTheDocument();
-  //   });
-
-  // test('5) Se a Pokédex contém um botão para resetar o filtro.',
-  //   () => {
-  //     renderWithRouter(<Pokedex
-  //       pokemons={ [pokemons[0], pokemons[4], pokemons[5]] }
-  //       isPokemonFavoriteById={ { 25: true, 65: true, 151: true } }
-  //     />);
-
-  //     const allFilterButton = screen.getByRole('button', { name: 'All' });
-  //     userEvent.click(allFilterButton);
-  //     const firstPokemonFilteredText = screen.getByText('Pikachu');
-  //     expect(firstPokemonFilteredText).toBeInTheDocument();
-
-  //     const nextPokemonButton = screen.getByRole('button', { name: NEXT_POKEMON });
-  //     userEvent.click(nextPokemonButton);
-  //     const secondPokemonFilteredText = screen.getByText('Alakazam');
-  //     expect(secondPokemonFilteredText).toBeInTheDocument();
-  //   });
+      userEvent.click(favoriteCheckbox);
+      const favoriteStarImage = screen.getByAltText(
+        `${pokemonSelected.name} is marked as favorite`,
+      );
+      expect(favoriteStarImage).toBeInTheDocument();
+      userEvent.click(favoriteCheckbox);
+      expect(favoriteStarImage).not.toBeInTheDocument();
+    });
 });

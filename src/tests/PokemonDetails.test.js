@@ -48,5 +48,11 @@ describe('Teste o componente <PokemonDetails.js />', () => {
       expect(screen.getByText(local.location)).toBeInTheDocument();
     });
   });
+  it('Deve conter as imagens correspondentes às localizações.', () => {
+    const imgsOnScreen = screen.getAllByAltText(`${showPokemon.name} location`);
+    showPokemon.foundAt.forEach((img, index) => {
+      expect(imgsOnScreen[index]).toHaveAttribute('src', img.map);
+    });
+  });
 });
 // it('', () => {});

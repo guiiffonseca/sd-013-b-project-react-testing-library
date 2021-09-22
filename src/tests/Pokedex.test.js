@@ -15,6 +15,8 @@ const pokemonsList = ['Charmander',
   'Pikachu',
 ];
 
+const POKEMON_NAME = 'pokemon-name';
+
 const pokemonType = ['Electric',
   'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Normal', 'Dragon'];
 
@@ -64,7 +66,7 @@ describe('Teste se é mostrado apenas um Pokémon por vez.', () => {
     renderWithRouter(<App />);
   });
   test('Teste se é mostrado apenas um Pokémon por vez.', () => {
-    expect(screen.getAllByTestId('pokemon-name')).toHaveLength(1);
+    expect(screen.getAllByTestId(POKEMON_NAME)).toHaveLength(1);
   });
 });
 
@@ -102,12 +104,12 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   test('A Pokedéx deverá mostrar os Pokémons quando o botão All for clicado', () => {
     pokemonsList.forEach((element) => {
       userEvent.click(screen.getByRole('button', { name: /próximo pokémon/i }));
-      expect(screen.getByTestId('pokemon-name').innerHTML).toEqual(element);
+      expect(screen.getByTestId(POKEMON_NAME).innerHTML).toEqual(element);
     });
   });
 
   test('Ao carregar a página, o filtro selecionado deverá ser All', () => {
     userEvent.click(screen.getByRole('button', { name: 'All' }));
-    expect(screen.getByTestId('pokemon-name').innerHTML).toBe('Pikachu');
+    expect(screen.getByTestId(POKEMON_NAME).innerHTML).toBe('Pikachu');
   });
 });

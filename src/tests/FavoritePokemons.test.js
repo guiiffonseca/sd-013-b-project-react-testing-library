@@ -23,3 +23,12 @@ describe('Testa o componente FavoritePokemons', () => {
     expect(namePokemon).toBeInTheDocument();
   });
 });
+
+// test('Jeito de fazer o teste de cima que o Genesis me ensinou', () => {
+//   // Envia os pokemons como props //
+//   renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
+//   // Captura todos os names do pokemon //
+//   const pokemonCard = screen.findAllByTestId('pokemon-name');
+//   // Verifica se o retorno é diferente de 0 //
+//   expect(pokemonCard.length).not.toBe(0); //
+// });

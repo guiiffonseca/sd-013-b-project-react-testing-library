@@ -59,7 +59,10 @@ describe('Teste do componente App', () => {
   test('Testa se redireciona para pagina Not Found', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/not-found');
-    const notFound = screen.getByText('Page requested not found');
+    const notFound = screen.getByRole('Heading', {
+      level: 2,
+      name: 'Page requested not found',
+    });
     expect(notFound).toBeInTheDocument();
   });
 });

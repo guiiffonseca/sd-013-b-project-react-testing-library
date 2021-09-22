@@ -9,7 +9,7 @@ describe('testando pagina NotFound', () => {
 
     const notFound = screen.getByRole('heading', {
       level: 2,
-      name: 'Page requested not found Crying emoji',
+      name: 'Page requested not found',
     });
     expect(notFound).toBeInTheDocument();
   });

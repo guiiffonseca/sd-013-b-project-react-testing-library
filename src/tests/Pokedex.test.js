@@ -43,7 +43,7 @@ describe('Testando a pagina Pokedex', () => {
 
     userEvent.click(buttonAll);
 
-    expect(pokeName).toHaveTextContext('Pikachu');
+    expect(pokeName).toHaveTextContent('Pikachu');
     expect(type).toHaveTextContent('Electric');
     expect(screen.getByAltText('Pikachu sprite')).toBeInTheDocument();
 

@@ -15,7 +15,7 @@ describe('Testando o About', () => {
 
     const aboutText = screen.getByRole('heading', {
       level: 2,
-      name: /About Pokédex/i,
+      name: 'About Pokédex',
     });
 
     expect(aboutText).toBeInTheDocument();

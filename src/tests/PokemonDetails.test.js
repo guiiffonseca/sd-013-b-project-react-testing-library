@@ -60,7 +60,7 @@ describe('Sobre a tela de detalhes de um Pokemon', () => {
     expect(favoriteCheckbox).toBeInTheDocument();
 
     fireEvent.click(favoriteCheckbox);
-    const favoriteIcon = screen.getByTestId('favorite-icon');
+    const favoriteIcon = screen.getByAltText(/is marked as favorite/i);
     expect(favoriteIcon).toBeInTheDocument();
     fireEvent.click(favoriteCheckbox);
     expect(favoriteIcon).not.toBeInTheDocument();

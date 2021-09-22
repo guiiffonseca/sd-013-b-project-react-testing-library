@@ -5,6 +5,7 @@ import { isPokemonFavoriteByIdType, pokemonType } from '../types';
 import Button from './Button';
 import Pokemon from './Pokemon';
 import './pokedex.css';
+import pokemons from '../data';
 
 class Pokedex extends React.Component {
   constructor(props) {

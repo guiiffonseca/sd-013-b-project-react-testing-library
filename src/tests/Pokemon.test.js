@@ -16,7 +16,7 @@ describe('Testando o componente Pokemon', () => {
 
     expect(pokeName).toHaveTextContent('Pikachu');
     expect(poketype).toHaveTextContent('Electric');
-    expect(pokeweight).toHaveTextContent('/average weight: 6.0 kg/i');
+    expect(pokeweight).toHaveTextContent(/average weight: 6.0 kg/i);
     expect(pokeImg).toBeInTheDocument();
   });
 

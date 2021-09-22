@@ -61,7 +61,7 @@ describe('Teste do componente App', () => {
     history.push('/not-found');
     const notFound = screen.getByRole('Heading', {
       level: 2,
-      name: 'Page requested not found',
+      name: 'Page requested not found Crying emoji',
     });
     expect(notFound).toBeInTheDocument();
   });

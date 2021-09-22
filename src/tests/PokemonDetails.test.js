@@ -26,6 +26,15 @@ describe('Testando o componente PokemonDetails', () => {
 
     const pokeSumma = screen.getByText(/electricity/i);
     expect(pokeSumma).toBeInTheDocument();
+  });
+
+  test('Test H2 locations', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/pokemons/10');
+
+    const locTitle = screen.getByRole('heading', {
+      level: 2, name: `Game Locations of ${caterpie}` });
+    expect(locTitle).toBeInTheDocument();
 
     const CatLocationLength = pokemons[2].foundAt.length;
 

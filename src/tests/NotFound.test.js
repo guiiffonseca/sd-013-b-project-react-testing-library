@@ -7,11 +7,11 @@ describe('testando pagina NotFound', () => {
   test('testa se a pagina tem um h2', () => {
     renderWithRouter(<NotFound />);
 
-    const FoundText = screen.getByRole('heading', {
+    const notFound = screen.getByRole('heading', {
       level: 2,
       name: 'Page requested not found Crying emoji',
     });
-    expect(FoundText).toBeInTheDocument();
+    expect(notFound).toBeInTheDocument();
   });
 
   test('Teste se a pagina mostra uma imagem', () => {

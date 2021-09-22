@@ -6,6 +6,7 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Testando o componente PokemonDetails', () => {
+  const caterpie = pokemons[2].name;
   test('Testando se informacoes do pokemon sao mostradas', () => {
     renderWithRouter(<App />);
     const details = screen.getByText(/more details/i);
@@ -50,3 +51,5 @@ describe('Testando o componente PokemonDetails', () => {
     expect(checkbox).toBeInTheDocument();
   });
 });
+// Consultei o repositório do Guilherme Gomes para conseguir localizar um erro. (Estava faltando escrever o teste 3)
+// Repositório do Guilherme Gomes https://github.com/tryber/sd-013-b-project-react-testing-library/tree/guilherme-gomes-project-react-testing-library/src/tests

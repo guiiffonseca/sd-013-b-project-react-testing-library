@@ -15,7 +15,7 @@ describe('Testando component FavoritePokemons', () => {
   test('Teste detalhes do pokemon', () => {
     renderWithRouter(<App />);
     const linkDetails = screen.getByRole('link', {
-      name: 'More Details',
+      name: 'More details',
     });
 
     userEvent.click(linkDetails);
@@ -43,7 +43,7 @@ describe('Testando component FavoritePokemons', () => {
 
   test('Testa botao next', () => {
     renderWithRouter(<App />);
-    const buttonNext = screen.getAllByTestId('next-pokemon');
+    const buttonNext = screen.getByTestId('next-pokemon');
     userEvent.click(buttonNext);
   });
 });

@@ -16,7 +16,7 @@ describe('Testando o componente PokemonDetails', () => {
       name: /pikachu details/i });
 
     expect(header).toBeInTheDocument();
-    expect(details).toBeInTheDocument();
+    expect(details).not.toBeInTheDocument();
 
     const summary = screen.getByRole('heading', {
       level: 2, name: /Summary/i });

@@ -56,7 +56,7 @@ describe('Testando o componente PokemonDetails', () => {
     expect(locImg[2]).toHaveAttribute('alt', `${caterpie} location`);
     expect(locImg[3]).toHaveAttribute('alt', `${caterpie} location`);
 
-    const checkbox = screen.getByLabelText('Pokémon Favoritado?');
+    const checkbox = screen.getByLabelText('Pokémon favoritado?');
     expect(checkbox).toBeInTheDocument();
   });
 });

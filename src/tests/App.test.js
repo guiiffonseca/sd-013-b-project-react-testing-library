@@ -7,7 +7,7 @@ import App from '../App';
 describe('Teste do componente App', () => {
   test('verificando se tem link com o texto home', () => {
     renderWithRouter(<App />);
-    const HomeText = screen.getByText('link', {
+    const HomeText = screen.getByRole('link', {
       name: 'Home',
     });
     expect(HomeText).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('Teste do componente App', () => {
 
   test('verificando se tem link com o texto About', () => {
     renderWithRouter(<App />);
-    const AboutText = screen.getByText('link', {
+    const AboutText = screen.getByRole('link', {
       name: 'About',
     });
     expect(AboutText).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('Teste do componente App', () => {
 
   test('verificando se tem link com o Favorite Pokemons', () => {
     renderWithRouter(<App />);
-    const PokemonsText = screen.getByText('link', {
+    const PokemonsText = screen.getByRole('link', {
       name: 'Favorite Pokémons',
     });
     expect(PokemonsText).toBeInTheDocument();

@@ -6,36 +6,36 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Testando o componente Pokemon', () => {
-  const CHARMANDER_SPRITE = 'Charmander sprite';
-  test('testando se renderiza um card de um pokemon', () => {
+  const PIKACHU_SPRITE = 'Pikachu sprite';
+  test('Testando se renderiza um card de um pokemon', () => {
     renderWithRouter(<App />);
     const pokeName = screen.getByTestId('pokemon-name');
     const poketype = screen.getByTestId('pokemon-type');
     const pokeweight = screen.getByTestId('pokemon-weight');
-    const pokeImg = screen.getByAltText(CHARMANDER_SPRITE);
+    const pokeImg = screen.getByAltText(PIKACHU_SPRITE);
 
-    expect(pokeName).toHaveTextContent('Charmander');
-    expect(poketype).toHaveTextContent('Fire');
-    expect(pokeweight).toHaveTextContent('/avarage weight: 8.5 kg/i');
+    expect(pokeName).toHaveTextContent('Pikachu');
+    expect(poketype).toHaveTextContent('Electric');
+    expect(pokeweight).toHaveTextContent('/average weight: 6.0 kg/i');
     expect(pokeImg).toBeInTheDocument();
   });
 
-  test('testa se tem um link que exibe detalhes do pokemon', () => {
+  test('Testa se tem um link que exibe detalhes do pokemon', () => {
     const { history } = renderWithRouter(<App />);
     const linkDetails = screen.getByText(/more details/i);
 
     userEvent.click(linkDetails);
     const path = history.location.pathname;
-    expect(path).toBe('/pokemons/4');
+    expect(path).toBe('/pokemons/25');
   });
 
   test('Verifica a imagem do Pokemon atual', () => {
     renderWithRouter(<App />);
-    const { image } = pokemons[1];
-    const pokeImg = screen.getByAltText(CHARMANDER_SPRITE);
+    const { image } = pokemons[0];
+    const pokeImg = screen.getByAltText(PIKACHU_SPRITE);
 
     expect(pokeImg).toBeInTheDocument();
-    expect(pokeImg).toHaveAttribute('alt', CHARMANDER_SPRITE);
+    expect(pokeImg).toHaveAttribute('alt', PIKACHU_SPRITE);
     expect(pokeImg).toHaveAttribute('src', image);
   });
 
@@ -47,7 +47,7 @@ describe('Testando o componente Pokemon', () => {
     const check = screen.getByRole('checkbox');
     userEvent.click(check);
 
-    const iconFavorite = screen.getByAltText('Charmander is marked as favorite');
+    const iconFavorite = screen.getByAltText('Pikachu is marked as favorite');
     expect(iconFavorite).toBeInTheDocument();
     expect(iconFavorite).toHaveAttribute('src', '/star-icon.svg');
   });

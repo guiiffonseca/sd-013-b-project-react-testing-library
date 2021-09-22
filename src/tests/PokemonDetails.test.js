@@ -51,5 +51,5 @@ describe('Testando o componente PokemonDetails', () => {
     expect(checkbox).toBeInTheDocument();
   });
 });
-// Consultei o repositório do Guilherme Gomes para conseguir localizar um erro. (Estava faltando escrever o teste 3)
+// Consultei o repositório do Guilherme Gomes para conseguir localizar um erro.
 // Repositório do Guilherme Gomes https://github.com/tryber/sd-013-b-project-react-testing-library/tree/guilherme-gomes-project-react-testing-library/src/tests

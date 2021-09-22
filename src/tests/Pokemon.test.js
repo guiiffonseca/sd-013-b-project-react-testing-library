@@ -1,10 +1,8 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
-import { PokemonDetails } from '../components';
 
 describe('Teste o componente Pokémon.js', () => {
   const POKEMON_NAME = 'pokemon-name';
@@ -18,16 +16,6 @@ describe('Teste o componente Pokémon.js', () => {
   const value = '6.0';
   const measurementUnit = 'kg';
   const PIKACHU = 'Pikachu';
-  // const pokemonsList = ['Charmander',
-  //   'Caterpie',
-  //   'Ekans',
-  //   'Alakazam',
-  //   'Mew',
-  //   'Rapidash',
-  //   'Snorlax',
-  //   'Dragonair',
-  //   'Pikachu',
-  // ];
 
   const pokemonId = ['4', '10', '23', '65', '151', '78', '143', '148', '25'];
 

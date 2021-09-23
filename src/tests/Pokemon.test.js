@@ -23,7 +23,7 @@ describe('Teste o componente Pokémon.js', () => {
     expect(screen.getByTestId(POKEMON_NAME).innerHTML).toBe(PIKACHU);
     expect(screen.getByTestId(POKEMON_TYPE).innerHTML).toBe('Electric');
     expect(screen.getByTestId(POKEMON_WEIGHT))
-      .toHaveTextContent(`${value} ${measurementUnit}`);
+      .toHaveTextContent((`Average weight: ${value} ${measurementUnit}`));
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(screen.getByRole('img')).toHaveAttribute('alt', `${PIKACHU} sprite`);
   });

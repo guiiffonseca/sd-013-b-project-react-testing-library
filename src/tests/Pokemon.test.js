@@ -22,7 +22,8 @@ describe('Teste o componente Pokémon.js', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
     expect(screen.getByTestId(POKEMON_NAME).innerHTML).toBe(PIKACHU);
     expect(screen.getByTestId(POKEMON_TYPE).innerHTML).toBe('Electric');
-    expect(screen.getByTestId(POKEMON_WEIGHT)).toHaveTextContent(`${value} ${measurementUnit}`);
+    expect(screen.getByTestId(POKEMON_WEIGHT))
+      .toHaveTextContent(`${value} ${measurementUnit}`);
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(screen.getByRole('img')).toHaveAttribute('alt', `${PIKACHU} sprite`);
   });
